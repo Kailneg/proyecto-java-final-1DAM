@@ -2,6 +2,7 @@ package contenedores;
 
 import java.util.ArrayList;
 
+import exceptions.UsuarioNoEncontrado;
 import models.Usuario;
 
 public class ContenedorUsuarios {
@@ -10,6 +11,14 @@ public class ContenedorUsuarios {
 	
 	public ContenedorUsuarios(){
 		usuarios = new ArrayList<>();
+	}
+	
+	public Usuario obtenUsuario(String nombre){
+		for (Usuario u : usuarios) {
+			if (u.getNombre().equals(nombre))
+				return u;
+		}
+		throw new UsuarioNoEncontrado();
 	}
 	
 	public boolean aniadirUsuario(Usuario usuario){

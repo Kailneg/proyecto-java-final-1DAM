@@ -30,6 +30,9 @@ public class Usuario {
 	}
 	
 	public boolean comprobarContrasenia(String contrasenia){
-		return this.contrasenia.equals(contrasenia);
+		if(this.contrasenia.equals(contrasenia))
+			return true;
+		else
+			throw new ContraseniaNoCoincide("Las contraseñas no coinciden.");
 	}
 }
