@@ -1,0 +1,1 @@
+-Usar GridLayout (2 columnas, 1 fila) que ocupe todo
