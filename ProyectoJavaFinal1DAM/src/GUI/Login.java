@@ -66,10 +66,10 @@ public class Login {
 		btn_entrar.setBounds(10, 155, 265, 67);
 		frmLogin.getContentPane().add(btn_entrar);
 		
-		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
-		btnSalir.setBounds(285, 155, 89, 67);
-		frmLogin.getContentPane().add(btnSalir);
+		JButton btn_salir = new JButton("");
+		btn_salir.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btn_salir.setBounds(285, 155, 89, 67);
+		frmLogin.getContentPane().add(btn_salir);
 		frmLogin.setVisible(true);
 	}
 }
