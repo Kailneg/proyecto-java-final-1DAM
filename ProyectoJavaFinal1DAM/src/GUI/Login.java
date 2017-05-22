@@ -1,7 +1,5 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -16,8 +14,9 @@ public class Login {
 
 	private JFrame frmLogin;
 	private JTextField txt_usuario;
-	private JLabel lb_contrasenia;
+	private JLabel lb_contrasenia, lb_usuario;
 	private JPasswordField txt_contrasenia;
+	private JButton btn_entrar, btnSalir;
 
 
 	/**
@@ -37,7 +36,7 @@ public class Login {
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 		
-		JLabel lb_usuario = new JLabel("Usuario:");
+		lb_usuario = new JLabel("Usuario:");
 		lb_usuario.setHorizontalAlignment(SwingConstants.TRAILING);
 		lb_usuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lb_usuario.setBounds(140, 37, 94, 22);
@@ -61,12 +60,12 @@ public class Login {
 		txt_contrasenia.setBounds(244, 92, 130, 22);
 		frmLogin.getContentPane().add(txt_contrasenia);
 		
-		JButton btn_entrar = new JButton("ENTRAR");
+		btn_entrar = new JButton("ENTRAR");
 		btn_entrar.setFont(new Font("Tahoma", Font.BOLD, 22));
 		btn_entrar.setBounds(10, 155, 265, 67);
 		frmLogin.getContentPane().add(btn_entrar);
 		
-		JButton btnSalir = new JButton("");
+		btnSalir = new JButton();
 		btnSalir.setIcon(new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnSalir.setBounds(285, 155, 89, 67);
 		frmLogin.getContentPane().add(btnSalir);
