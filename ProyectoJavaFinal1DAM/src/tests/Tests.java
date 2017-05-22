@@ -1,16 +1,16 @@
 package tests;
 
 import static org.junit.Assert.*;
-
+import org.junit.Test;
 import org.junit.Before;
 
-public class Test {
+public class Tests {
 
 	@Before
 	public void setUp() throws Exception {
 	}
 
-	@org.junit.Test
+	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
