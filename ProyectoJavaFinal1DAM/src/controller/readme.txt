@@ -1,0 +1,1 @@
+Aquí iría una clase controller o helper.
