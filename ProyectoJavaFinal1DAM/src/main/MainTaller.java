@@ -14,11 +14,7 @@ public class MainTaller {
 		try {
 			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			//Creando usuarios y contrasenias
-			ContenedorUsuarios cu = new ContenedorUsuarios();
-			cu.aniadirUsuario(new Usuario("Paco", "123"));
-			cu.aniadirUsuario(new Usuario("admin", "aaa"));
-			Controlador controlador = new Controlador(cu);
+			Controlador controlador = new Controlador();
 			
 			
 			Login window = new Login(controlador);
