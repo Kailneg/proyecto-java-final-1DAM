@@ -1,30 +1,20 @@
 package main;
 
-import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
 import GUI.Login;
-import contenedores.ContenedorUsuarios;
-import controller.Controlador;
-import models.Usuario;
+import controller.MainController;
 
-public class MainTaller {
+public class Main {
 
 	public static void main(String[] args) {
 		try {
-			
+
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			Controlador controlador = new Controlador();
-			
-			
+			MainController controlador = new MainController();
+
 			Login window = new Login(controlador);
-			
-			
-			
-			
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,7 +1,7 @@
 package models;
 
-import contenedores.ContenedorUsuarios;
-import exceptions.ContraseniaNoCoincide;
+import contenedores.UserContainer;
+import exceptions.PasswordNotFound;
 
 public class Usuario {
 	
@@ -26,13 +26,13 @@ public class Usuario {
 			return true;
 		}
 		else
-			throw new ContraseniaNoCoincide();
+			throw new PasswordNotFound();
 	}
 	
 	public boolean comprobarContrasenia(String contrasenia){
 		if(this.contrasenia.equals(contrasenia))
 			return true;
 		else
-			throw new ContraseniaNoCoincide();
+			throw new PasswordNotFound();
 	}
 }

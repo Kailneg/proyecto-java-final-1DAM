@@ -2,14 +2,14 @@ package contenedores;
 
 import java.util.ArrayList;
 
-import exceptions.UsuarioNoEncontrado;
+import exceptions.UsernameNotFound;
 import models.Usuario;
 
-public class ContenedorUsuarios {
+public class UserContainer {
 
 	private ArrayList<Usuario> usuarios;
 
-	public ContenedorUsuarios() {
+	public UserContainer() {
 		usuarios = new ArrayList<>();
 	}
 
@@ -18,7 +18,7 @@ public class ContenedorUsuarios {
 			if (u.getNombre().equals(nombre))
 				return u;
 		}
-		throw new UsuarioNoEncontrado();
+		throw new UsernameNotFound();
 	}
 
 	public boolean aniadirUsuario(Usuario usuario) {
