@@ -1,6 +1,5 @@
 package models;
 
-import contenedores.UserContainer;
 import exceptions.PasswordNotFound;
 
 public class User {
