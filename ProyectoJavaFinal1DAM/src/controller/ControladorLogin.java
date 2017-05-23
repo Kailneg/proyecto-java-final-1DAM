@@ -16,6 +16,9 @@ public class ControladorLogin extends Login {
 		usuarios = new ContenedorUsuarios();
 	}
 
+	/**
+	 * Valida el usuario y la contraseña cuando intentamos logearnos
+	 */
 	public static void validarLogin() {
 		try {
 			if (usuarios.comprobarLogin(usuarios.obtenUsuario(txt_usuario.getText()),
