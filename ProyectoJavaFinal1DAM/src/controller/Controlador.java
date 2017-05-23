@@ -9,6 +9,7 @@ public class Controlador {
 
 	public Controlador() {
 		this.usuarios = new ContenedorUsuarios();
+		// Usuarios por defecto
 		usuarios.aniadirUsuario(new Usuario("Paco", "123"));
 		usuarios.aniadirUsuario(new Usuario("admin", "aaa"));
 	}
@@ -16,4 +17,6 @@ public class Controlador {
 	public ContenedorUsuarios getUsuarios() {
 		return usuarios;
 	}
+	
+	
 }

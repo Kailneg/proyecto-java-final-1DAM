@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import controller.Controlador;
 import exceptions.ContraseniaNoCoincide;
 import exceptions.UsuarioNoEncontrado;
+import globals.globals;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -54,6 +55,10 @@ public class Login {
 	}
 
 	private void componentsAdders() {
+		frmLogin.getContentPane().setLayout(null);
+		frmLogin.getContentPane().add(lb_panel);
+		frmLogin.setVisible(true);
+		
 		lb_panel.add(lb_usuario);
 		lb_panel.add(txt_usuario);
 		lb_panel.add(lb_contrasenia);
@@ -67,39 +72,36 @@ public class Login {
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 405, 278);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmLogin.getContentPane().setLayout(null);
 
 		lb_panel.setBackground(new Color(255, 204, 0));
 		lb_panel.setBounds(0, 0, 389, 239);
-		frmLogin.getContentPane().add(lb_panel);
 		lb_panel.setLayout(null);
 
 		lb_usuario.setBounds(157, 25, 94, 22);
 		lb_usuario.setHorizontalAlignment(SwingConstants.TRAILING);
-		lb_usuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lb_usuario.setFont(new Font(globals.FONT, Font.PLAIN, 18));
 
 		txt_usuario.setBounds(262, 27, 117, 22);
-		txt_usuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txt_usuario.setFont(new Font(globals.FONT, Font.PLAIN, 18));
 		txt_usuario.setColumns(10);
 
 		lb_contrasenia.setBounds(163, 82, 94, 22);
 		lb_contrasenia.setHorizontalAlignment(SwingConstants.TRAILING);
-		lb_contrasenia.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lb_contrasenia.setFont(new Font(globals.FONT, Font.PLAIN, 18));
 
 		txt_contrasenia.setBounds(262, 84, 117, 22);
-		txt_contrasenia.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txt_contrasenia.setFont(new Font(globals.FONT, Font.PLAIN, 18));
 		txt_contrasenia.setColumns(10);
 
 		btn_entrar.setBounds(10, 161, 265, 67);
-		btn_entrar.setFont(new Font("Tahoma", Font.BOLD, 22));
+		btn_entrar.setFont(new Font(globals.FONT, Font.BOLD, 22));
 
 		btn_salir.setBounds(290, 161, 89, 67);
 		btn_salir.setIcon(
 				new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 
 		lb_logo.setBounds(10, 11, 128, 128);
-		lb_logo.setIcon(new ImageIcon(Login.class.getResource("/res/dast.png")));
-		frmLogin.setVisible(true);
+		lb_logo.setIcon(new ImageIcon(Login.class.getResource(globals.LOGO_PATH)));
 
 	}
 
@@ -114,10 +116,10 @@ public class Login {
 						JOptionPane.showMessageDialog(null, "Login correcto");
 					}
 				} catch (UsuarioNoEncontrado ex1) {
-					JOptionPane.showMessageDialog(null, "El usuario no se encuentra.", "Error",
+					JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} catch (ContraseniaNoCoincide ex1) {
-					JOptionPane.showMessageDialog(null, "La contraseña no coincide.", "Error",
+				} catch (ContraseniaNoCoincide ex2) {
+					JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
