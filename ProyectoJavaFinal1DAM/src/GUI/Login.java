@@ -36,7 +36,7 @@ public class Login {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el contenido del frame.
 	 */
 	private void componentsInitializers() {
 		frmLogin = new JFrame();
@@ -50,6 +50,9 @@ public class Login {
 		lb_logo = new JLabel();
 	}
 
+	/**
+	 * Añade al frame todos los componentes que hemos creado.
+	 */
 	private void componentsAdders() {
 		frmLogin.getContentPane().setLayout(null);
 		frmLogin.getContentPane().add(lb_panel);
@@ -64,6 +67,9 @@ public class Login {
 		lb_panel.add(lb_logo);
 	}
 
+	/**
+	 * Contiene las propiedades de todos los componentes del frame
+	 */
 	private void componentsProperties() {
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 405, 278);
@@ -101,6 +107,9 @@ public class Login {
 
 	}
 
+	/**
+	 * Contiene los eventos asociados al frame
+	 */
 	private void componentsListeners() {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -119,6 +128,9 @@ public class Login {
 		});
 	}
 
+	/**
+	 * Llama a los métodos encargados de inicializar, añadir y definir los componentes del frame
+	 */
 	private void loginComponents() {
 		componentsInitializers();
 		componentsAdders();

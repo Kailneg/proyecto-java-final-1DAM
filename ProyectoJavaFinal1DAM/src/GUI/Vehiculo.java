@@ -68,6 +68,9 @@ public class Vehiculo {
 		vehiculoComponents();
 	}
 
+	/**
+	 * Llama a los métodos encargados de inicializar, añadir y definir los componentes del frame
+	 */
 	private void vehiculoComponents(){
 		componentsInitializers();
 		componentsAdders();
@@ -75,6 +78,9 @@ public class Vehiculo {
 		componentsListeners();
 	}
 	
+	/**
+	 * Inicializa el contenido del frame.
+	 */
 	private void componentsInitializers(){
 		frame = new JFrame();
 		lblNewLabel = new JLabel("Matricula:");
@@ -110,6 +116,9 @@ public class Vehiculo {
 		btnEditar = new JButton("Editar");
 	}
 
+	/**
+	 * Añade al frame todos los componentes que hemos creado.
+	 */
 	private void componentsAdders(){
 		frame.getContentPane().add(lblNewLabel);
 		frame.getContentPane().add(lblNewLabel_1);
@@ -142,6 +151,9 @@ public class Vehiculo {
 		
 	}
 
+	/**
+	 * Contiene las propiedades de todos los componentes del frame
+	 */
 	private void componentsProperties(){
 		frame.setBounds(100, 100, 450, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,6 +216,9 @@ public class Vehiculo {
 		btnEditar.setBounds(93, 358, 89, 53);
 	}
 
+	/**
+	 * Contiene los eventos asociados al frame
+	 */
 	private void componentsListeners(){
 		
 		button.addActionListener(new ActionListener() {
