@@ -20,19 +20,30 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Login {
-	protected static JTextField txt_usuario;
-	protected static JPasswordField txt_contrasenia;
-
-	protected JFrame frmLogin;
-	protected JLabel lb_contrasenia, lb_usuario, lb_logo;
-	protected JPanel lb_panel;
-	protected JButton btn_entrar, btn_salir;
+	private JTextField txt_usuario;
+	private JPasswordField txt_contrasenia;
+	private JFrame frmLogin;
+	private JLabel lb_contrasenia, lb_usuario, lb_logo;
+	private JPanel lb_panel;
+	private JButton btn_entrar, btn_salir;
+	private ControladorLogin cl;
 
 	/**
 	 * Create the application.
 	 */
-	public Login() {
+	public Login(ControladorLogin cl) {
+		this.cl = cl;
 		loginComponents();
+	}
+	
+	//GETTERS
+	
+	public String getUsuario(){
+		return txt_usuario.getText();
+	}
+	
+	public String getContrasenia(){
+		return String.valueOf(txt_contrasenia.getPassword());
 	}
 
 	/**
@@ -114,7 +125,7 @@ public class Login {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ControladorLogin.validarLogin();
+				cl.validarLogin();
 			}
 		});
 

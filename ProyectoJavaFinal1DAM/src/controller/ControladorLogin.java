@@ -7,22 +7,23 @@ import contenedores.ContenedorUsuarios;
 import exceptions.ContraseniaNoEncontrada;
 import exceptions.UsuarioNoEncontrado;
 
-public class ControladorLogin extends Login {
+public class ControladorLogin {
 
-	private static ContenedorUsuarios usuarios;
+	private ContenedorUsuarios usuarios;
+	private Login login;
 
 	public ControladorLogin() {
-		super();
 		usuarios = new ContenedorUsuarios();
+		login = new Login(this);
 	}
 
 	/**
 	 * Valida el usuario y la contraseña cuando intentamos logearnos
 	 */
-	public static void validarLogin() {
+	public void validarLogin() {
 		try {
-			if (usuarios.comprobarLogin(usuarios.obtenUsuario(txt_usuario.getText()),
-					String.valueOf(txt_contrasenia.getPassword()))) {
+			if (usuarios.comprobarLogin(usuarios.obtenUsuario(login.getUsuario()),
+					login.getContrasenia())) {
 				JOptionPane.showMessageDialog(null, "Login correcto");
 			}
 		} catch (UsuarioNoEncontrado ex1) {
@@ -31,5 +32,4 @@ public class ControladorLogin extends Login {
 			JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }
