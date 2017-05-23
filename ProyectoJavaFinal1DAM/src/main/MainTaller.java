@@ -1,5 +1,8 @@
 package main;
 
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+
 import GUI.Login;
 import contenedores.ContenedorUsuarios;
 import controller.Controlador;
@@ -9,6 +12,8 @@ public class MainTaller {
 
 	public static void main(String[] args) {
 		try {
+			
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			//Creando usuarios y contrasenias
 			ContenedorUsuarios cu = new ContenedorUsuarios();
 			cu.aniadirUsuario(new Usuario("Paco", "123"));
