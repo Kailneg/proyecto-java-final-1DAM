@@ -1,20 +1,20 @@
 package controller;
 
-import contenedores.ContenedorUsuarios;
+import contenedores.UserContainer;
 import models.Usuario;
 
-public class Controlador {
+public class MainController {
 
-	private ContenedorUsuarios usuarios;
+	private UserContainer usuarios;
 
-	public Controlador() {
-		this.usuarios = new ContenedorUsuarios();
+	public MainController() {
+		this.usuarios = new UserContainer();
 		// Usuarios por defecto
 		usuarios.aniadirUsuario(new Usuario("Paco", "123"));
 		usuarios.aniadirUsuario(new Usuario("admin", "aaa"));
 	}
 
-	public ContenedorUsuarios getUsuarios() {
+	public UserContainer getUsuarios() {
 		return usuarios;
 	}
 	

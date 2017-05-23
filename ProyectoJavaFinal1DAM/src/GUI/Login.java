@@ -9,9 +9,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import controller.Controlador;
-import exceptions.ContraseniaNoCoincide;
-import exceptions.UsuarioNoEncontrado;
+import controller.MainController;
+import exceptions.PasswordNotFound;
+import exceptions.UsernameNotFound;
 import globals.Globals;
 
 import javax.swing.JButton;
@@ -27,14 +27,14 @@ public class Login {
 	private JTextField txt_usuario;
 	private JLabel lb_contrasenia, lb_usuario, lb_logo;
 	private JPasswordField txt_contrasenia;
-	private Controlador controlador;
+	private MainController controlador;
 	private JPanel lb_panel;
 	private JButton btn_entrar, btn_salir;
 
 	/**
 	 * Create the application.
 	 */
-	public Login(Controlador controlador) {
+	public Login(MainController controlador) {
 		this.controlador = controlador;
 		loginComponents();
 	}
@@ -115,10 +115,10 @@ public class Login {
 							String.valueOf(txt_contrasenia.getPassword()))) {
 						JOptionPane.showMessageDialog(null, "Login correcto");
 					}
-				} catch (UsuarioNoEncontrado ex1) {
+				} catch (UsernameNotFound ex1) {
 					JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} catch (ContraseniaNoCoincide ex2) {
+				} catch (PasswordNotFound ex2) {
 					JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}

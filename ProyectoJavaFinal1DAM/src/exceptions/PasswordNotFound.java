@@ -1,8 +1,8 @@
 package exceptions;
 
 @SuppressWarnings("serial")
-public class ContraseniaNoCoincide extends RuntimeException {
-	public ContraseniaNoCoincide() {
+public class PasswordNotFound extends RuntimeException {
+	public PasswordNotFound() {
 		super("La contraseña no coincide.");
 	}
 }

@@ -1,5 +1,5 @@
 package enums;
 
-public enum TipoCombustible {
+public enum GasType {
 	GASOLINA, DIESEL, GLP, HIBRIDO, ELECTRICO
 }
