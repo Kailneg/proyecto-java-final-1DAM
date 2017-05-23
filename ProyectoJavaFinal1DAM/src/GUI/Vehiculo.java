@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -63,7 +65,6 @@ public class Vehiculo {
 	 * Create the application.
 	 */
 	public Vehiculo() {
-		
 		vehiculoComponents();
 	}
 
@@ -76,34 +77,40 @@ public class Vehiculo {
 	
 	private void componentsInitializers(){
 		frame = new JFrame();
-		JLabel lblNewLabel = new JLabel("Matr\u00EDcula:");
-		JLabel lblNewLabel_1 = new JLabel("Marca:");
-		JLabel lblModelo = new JLabel("Modelo:");
-		JLabel lblPuertas = new JLabel("Puertas:");
-		JRadioButton radioButton = new JRadioButton("3");
-		JRadioButton radioButton_1 = new JRadioButton("5");
-		JLabel lblColor = new JLabel("Color:");
-		JLabel lblAoMatriculacin = new JLabel("A\u00F1o Matriculaci\u00F3n:");
-		JLabel lblCaballos = new JLabel("Caballos:");
-		JLabel lblTipoCombustible = new JLabel("Tipo combustible:");
-		JButton btnClientes = new JButton("Clientes");
-		JButton btnRepararVehvulo = new JButton("Reparar Veh\u00EDvulo");
-		JButton btnAtrs = new JButton("Atr\u00E1s");
+		lblNewLabel = new JLabel("Matricula:");
+		lblNewLabel_1 = new JLabel("Marca:");
+		lblModelo = new JLabel("Modelo:");
+		lblPuertas = new JLabel("Puertas:");
+		radioButton = new JRadioButton("3");
+		radioButton_1 = new JRadioButton("5");
+		lblColor = new JLabel("Color:");
+		lblAoMatriculacin = new JLabel("A\u00F1o Matriculaci\u00F3n:");
+		lblCaballos = new JLabel("Caballos:");
+		lblTipoCombustible = new JLabel("Tipo combustible:");
+		btnClientes = new JButton("Clientes");
+		btnRepararVehvulo = new JButton("Reparar Veh\u00EDvulo");
+		btnAtrs = new JButton("Atras");
 		textField = new JTextField();
+		textField.setBounds(96, 30, 86, 20);
 		textField_1 = new JTextField();
+		textField_1.setBounds(82, 59, 100, 20);
 		textField_2 = new JTextField();
+		textField_2.setBounds(84, 92, 98, 20);
 		textField_3 = new JTextField();
+		textField_3.setBounds(84, 166, 86, 20);
 		textField_4 = new JTextField();
+		textField_4.setBounds(151, 204, 86, 20);
 		textField_5 = new JTextField();
+		textField_5.setBounds(96, 245, 86, 20);
 		textField_6 = new JTextField();
-		JLabel label = new JLabel("0/0");
-		JButton button = new JButton("<");
-		JButton button_1 = new JButton(">");
-		JButton btnEditar = new JButton("Editar");
+		textField_6.setBounds(151, 283, 86, 20);
+		label = new JLabel("0/0");
+		button = new JButton("<");
+		button_1 = new JButton(">");
+		btnEditar = new JButton("Editar");
 	}
 
 	private void componentsAdders(){
-		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblNewLabel);
 		frame.getContentPane().add(lblNewLabel_1);
 		frame.getContentPane().add(lblModelo);
@@ -117,6 +124,7 @@ public class Vehiculo {
 		frame.getContentPane().add(btnClientes);
 		frame.getContentPane().add(btnRepararVehvulo);
 		frame.getContentPane().add(btnAtrs);
+		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(textField);
 		frame.getContentPane().add(textField_1);
 		frame.getContentPane().add(textField_2);
@@ -176,27 +184,12 @@ public class Vehiculo {
 		
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtrs.setBounds(261, 310, 147, 76);
-		
-		textField.setBounds(96, 30, 86, 20);
 		textField.setColumns(10);
-		
-		textField_1.setBounds(82, 59, 100, 20);
 		textField_1.setColumns(10);
-		
-		textField_2.setBounds(84, 92, 98, 20);
 		textField_2.setColumns(10);
-		
-		textField_3.setBounds(84, 166, 86, 20);
 		textField_3.setColumns(10);
-		
-		textField_4.setBounds(151, 204, 86, 20);
 		textField_4.setColumns(10);
-		
-		textField_5.setBounds(96, 245, 86, 20);
 		textField_5.setColumns(10);
-		
-		
-		textField_6.setBounds(151, 283, 86, 20);
 		textField_6.setColumns(10);
 		
 		
