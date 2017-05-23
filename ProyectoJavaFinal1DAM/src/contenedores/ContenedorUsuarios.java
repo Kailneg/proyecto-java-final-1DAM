@@ -21,9 +21,9 @@ public class ContenedorUsuarios {
 	 * @return si lo encuentra devuelve los datos del mismo sino lanza una excepción.
 	 * @throws UsuarioNoEncontrado
 	 */
-	public Usuario obtenUsuario(String nombre) throws UsuarioNoEncontrado {
+	public Usuario obtenUsuario(String usuario) throws UsuarioNoEncontrado {
 		for (Usuario u : usuarios) {
-			if (u.getNombre().equals(nombre))
+			if (u.getUsuario().equals(usuario))
 				return u;
 		}
 		throw new UsuarioNoEncontrado();
