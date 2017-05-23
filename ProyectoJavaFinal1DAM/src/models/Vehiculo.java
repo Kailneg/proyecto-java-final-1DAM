@@ -1,17 +1,17 @@
 package models;
 
-import enums.GasType;
+import enums.TipoCombustible;
 
-public class Vehicle {
+public class Vehiculo {
 	
 	//Variables
 	private String matricula, marca, modelo;
 	private int puertas, anioMatriculacion, cv;
-	private GasType combustible;
+	private TipoCombustible combustible;
 	
 	//Constructor
-	public Vehicle(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
-			GasType combustible) {
+	public Vehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
+			TipoCombustible combustible) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -47,11 +47,11 @@ public class Vehicle {
 		return cv;
 	}
 
-	public GasType getCombustible() {
+	public TipoCombustible getCombustible() {
 		return combustible;
 	}
 
-	public void setCombustible(GasType combustible) {
+	public void setCombustible(TipoCombustible combustible) {
 		this.combustible = combustible;
 	}
 	

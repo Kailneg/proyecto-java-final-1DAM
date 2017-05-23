@@ -1,12 +1,12 @@
 package models;
 
-import exceptions.PasswordNotFound;
+import exceptions.ContraseniaNoEncontrada;
 
-public class User {
+public class Usuario {
 	
 	String nombre, contrasenia;
 
-	public User(String nombre, String contrasenia) {
+	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 	}
@@ -25,13 +25,13 @@ public class User {
 			return true;
 		}
 		else
-			throw new PasswordNotFound();
+			throw new ContraseniaNoEncontrada();
 	}
 	
 	public boolean comprobarContrasenia(String contrasenia){
 		if(this.contrasenia.equals(contrasenia))
 			return true;
 		else
-			throw new PasswordNotFound();
+			throw new ContraseniaNoEncontrada();
 	}
 }

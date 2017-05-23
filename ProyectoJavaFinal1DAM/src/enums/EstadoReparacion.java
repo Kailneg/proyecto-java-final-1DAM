@@ -1,5 +1,5 @@
 package enums;
 
-public enum RepairState {
+public enum EstadoReparacion {
 	REPARADO, NO_REPARADO, PENDIENTE, BLOQUEADO
 }

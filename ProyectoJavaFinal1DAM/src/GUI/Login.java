@@ -9,8 +9,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import controller.LoginController;
-import globals.Globals;
+import controller.ControladorLogin;
+import globals.Constantes;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -75,29 +75,29 @@ public class Login {
 
 		lb_usuario.setBounds(157, 25, 94, 22);
 		lb_usuario.setHorizontalAlignment(SwingConstants.TRAILING);
-		lb_usuario.setFont(new Font(Globals.FONT, Font.PLAIN, 18));
+		lb_usuario.setFont(new Font(Constantes.FONT, Font.PLAIN, 18));
 
 		txt_usuario.setBounds(262, 27, 117, 22);
-		txt_usuario.setFont(new Font(Globals.FONT, Font.PLAIN, 18));
+		txt_usuario.setFont(new Font(Constantes.FONT, Font.PLAIN, 18));
 		txt_usuario.setColumns(10);
 
 		lb_contrasenia.setBounds(163, 82, 94, 22);
 		lb_contrasenia.setHorizontalAlignment(SwingConstants.TRAILING);
-		lb_contrasenia.setFont(new Font(Globals.FONT, Font.PLAIN, 18));
+		lb_contrasenia.setFont(new Font(Constantes.FONT, Font.PLAIN, 18));
 
 		txt_contrasenia.setBounds(262, 84, 117, 22);
-		txt_contrasenia.setFont(new Font(Globals.FONT, Font.PLAIN, 18));
+		txt_contrasenia.setFont(new Font(Constantes.FONT, Font.PLAIN, 18));
 		txt_contrasenia.setColumns(10);
 
 		btn_entrar.setBounds(10, 161, 265, 67);
-		btn_entrar.setFont(new Font(Globals.FONT, Font.BOLD, 22));
+		btn_entrar.setFont(new Font(Constantes.FONT, Font.BOLD, 22));
 
 		btn_salir.setBounds(290, 161, 89, 67);
 		btn_salir.setIcon(
 				new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 
 		lb_logo.setBounds(10, 11, 128, 128);
-		lb_logo.setIcon(new ImageIcon(Login.class.getResource(Globals.LOGO_PATH)));
+		lb_logo.setIcon(new ImageIcon(Login.class.getResource(Constantes.LOGO_PATH)));
 
 	}
 
@@ -105,7 +105,7 @@ public class Login {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				LoginController.validarLogin();
+				ControladorLogin.validarLogin();
 			}
 		});
 

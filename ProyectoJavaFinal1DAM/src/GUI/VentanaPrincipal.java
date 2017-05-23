@@ -4,22 +4,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import controller.MainController;
+import controller.ControladorPrincipal;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 
-public class MainWindow {
+public class VentanaPrincipal {
 
 	private JFrame Principal;
-	private MainController controlador;
+	private ControladorPrincipal controlador;
 
 	/**
 	 * Create the application.
 	 */
-	public MainWindow(MainController controlador) {
+	public VentanaPrincipal(ControladorPrincipal controlador) {
 		this.controlador = controlador;
 		initialize();
 	}

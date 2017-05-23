@@ -1,8 +1,8 @@
 package globals;
 
-import contenedores.UserContainer;
+import contenedores.ContenedorUsuarios;
 
-public class Globals {
+public class Constantes {
 	public static final String LOGO_PATH = "/res/dast.png";
 	public static final String FONT = "Tahoma";
 }

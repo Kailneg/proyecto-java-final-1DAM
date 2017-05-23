@@ -3,17 +3,17 @@ package controller;
 import javax.swing.JOptionPane;
 
 import GUI.Login;
-import contenedores.UserContainer;
-import exceptions.PasswordNotFound;
-import exceptions.UsernameNotFound;
+import contenedores.ContenedorUsuarios;
+import exceptions.ContraseniaNoEncontrada;
+import exceptions.UsuarioNoEncontrado;
 
-public class LoginController extends Login {
+public class ControladorLogin extends Login {
 
-	private static UserContainer usuarios;
+	private static ContenedorUsuarios usuarios;
 
-	public LoginController() {
+	public ControladorLogin() {
 		super();
-		usuarios = new UserContainer();
+		usuarios = new ContenedorUsuarios();
 	}
 
 	public static void validarLogin() {
@@ -22,9 +22,9 @@ public class LoginController extends Login {
 					String.valueOf(txt_contrasenia.getPassword()))) {
 				JOptionPane.showMessageDialog(null, "Login correcto");
 			}
-		} catch (UsernameNotFound ex1) {
+		} catch (UsuarioNoEncontrado ex1) {
 			JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (PasswordNotFound ex2) {
+		} catch (ContraseniaNoEncontrada ex2) {
 			JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
