@@ -2,7 +2,7 @@ package models;
 
 import enums.GasType;
 
-public class Vehiculo {
+public class Vehicle {
 	
 	//Variables
 	private String matricula, marca, modelo;
@@ -10,7 +10,7 @@ public class Vehiculo {
 	private GasType combustible;
 	
 	//Constructor
-	public Vehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
+	public Vehicle(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
 			GasType combustible) {
 		this.matricula = matricula;
 		this.marca = marca;

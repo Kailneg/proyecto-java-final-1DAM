@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-public class Reparacion {
+public class Repair {
 
 	private int idReparacion;
 	private Date fechaInicio;
@@ -12,7 +12,7 @@ public class Reparacion {
 	private String comentarios;
 
 	
-	public Reparacion(int idReparacion, Date fechaInicio, Date fechaFin, float presupuesto, String estado,
+	public Repair(int idReparacion, Date fechaInicio, Date fechaFin, float presupuesto, String estado,
 			String comentarios) {
 		this.idReparacion = idReparacion;
 		this.fechaInicio = new Date();	

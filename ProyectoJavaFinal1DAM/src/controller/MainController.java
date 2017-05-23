@@ -1,7 +1,7 @@
 package controller;
 
 import contenedores.UserContainer;
-import models.Usuario;
+import models.User;
 
 public class MainController {
 
@@ -10,8 +10,8 @@ public class MainController {
 	public MainController() {
 		this.usuarios = new UserContainer();
 		// Usuarios por defecto
-		usuarios.aniadirUsuario(new Usuario("Paco", "123"));
-		usuarios.aniadirUsuario(new Usuario("admin", "aaa"));
+		usuarios.aniadirUsuario(new User("Paco", "123"));
+		usuarios.aniadirUsuario(new User("admin", "aaa"));
 	}
 
 	public UserContainer getUsuarios() {

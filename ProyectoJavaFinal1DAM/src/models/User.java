@@ -3,11 +3,11 @@ package models;
 import contenedores.UserContainer;
 import exceptions.PasswordNotFound;
 
-public class Usuario {
+public class User {
 	
 	String nombre, contrasenia;
 
-	public Usuario(String nombre, String contrasenia) {
+	public User(String nombre, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 	}

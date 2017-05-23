@@ -1,6 +1,6 @@
 package models;
 
-public class Cliente {
+public class Clients {
 
 	private String dni;
 	private String nombre;
@@ -9,7 +9,7 @@ public class Cliente {
 	private long telefono;
 	private String email;
 
-	public Cliente(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
+	public Clients(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;

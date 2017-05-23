@@ -3,33 +3,33 @@ package contenedores;
 import java.util.ArrayList;
 
 import exceptions.UsernameNotFound;
-import models.Usuario;
+import models.User;
 
 public class UserContainer {
 
-	private ArrayList<Usuario> usuarios;
+	private ArrayList<User> usuarios;
 
 	public UserContainer() {
 		usuarios = new ArrayList<>();
 	}
 
-	public Usuario obtenUsuario(String nombre) {
-		for (Usuario u : usuarios) {
+	public User obtenUsuario(String nombre) {
+		for (User u : usuarios) {
 			if (u.getNombre().equals(nombre))
 				return u;
 		}
 		throw new UsernameNotFound();
 	}
 
-	public boolean aniadirUsuario(Usuario usuario) {
+	public boolean aniadirUsuario(User usuario) {
 		return usuarios.add(usuario);
 	}
 
-	public boolean comprobarLogin(Usuario usuario, String contrasenia) {
+	public boolean comprobarLogin(User usuario, String contrasenia) {
 		return usuarios.contains(usuario) && usuario.comprobarContrasenia(contrasenia);
 	}
 
-	public boolean eliminarUsuario(Usuario usuario) {
+	public boolean eliminarUsuario(User usuario) {
 		return usuarios.remove(usuario);
 	}
 }
