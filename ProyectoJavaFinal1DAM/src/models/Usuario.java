@@ -26,13 +26,13 @@ public class Usuario {
 			return true;
 		}
 		else
-			throw new ContraseniaNoCoincide("Las contraseñas no coinciden.");
+			throw new ContraseniaNoCoincide();
 	}
 	
 	public boolean comprobarContrasenia(String contrasenia){
 		if(this.contrasenia.equals(contrasenia))
 			return true;
 		else
-			throw new ContraseniaNoCoincide("Las contraseñas no coinciden.");
+			throw new ContraseniaNoCoincide();
 	}
 }

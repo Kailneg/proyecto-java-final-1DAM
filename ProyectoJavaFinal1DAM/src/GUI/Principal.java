@@ -30,7 +30,7 @@ public class Principal {
 	private void initialize() {
 		Principal = new JFrame();
 		Principal.setTitle("Principal");
-		Principal.setBounds(100, 100, 450, 300);
+		Principal.setBounds(100, 100, 450, 193);
 		Principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -41,9 +41,9 @@ public class Principal {
 		btn_nuevoVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(btn_nuevoVehiculo);
 		
-		JButton btnNewButton_1 = new JButton("Buscar veh\u00EDculo\r\n");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel.add(btnNewButton_1);
+		JButton btn_buscarVehiculo = new JButton("Buscar veh\u00EDculo\r\n");
+		btn_buscarVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		panel.add(btn_buscarVehiculo);
 		Principal.setVisible(true);
 	}
 
