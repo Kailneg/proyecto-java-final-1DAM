@@ -18,5 +18,4 @@ public class Controlador {
 		return usuarios;
 	}
 	
-	
 }
