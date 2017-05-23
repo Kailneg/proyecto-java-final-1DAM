@@ -8,14 +8,15 @@ import exceptions.PasswordNotFound;
 import exceptions.UsernameNotFound;
 
 public class LoginController extends Login {
-	
-	private UserContainer usuarios;
+
+	private static UserContainer usuarios;
 
 	public LoginController() {
 		super();
+		usuarios = new UserContainer();
 	}
 
-	public void validarLogin() {
+	public static void validarLogin() {
 		try {
 			if (usuarios.comprobarLogin(usuarios.obtenUsuario(txt_usuario.getText()),
 					String.valueOf(txt_contrasenia.getPassword()))) {

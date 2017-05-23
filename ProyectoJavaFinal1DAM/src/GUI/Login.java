@@ -9,9 +9,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import controller.MainController;
-import exceptions.PasswordNotFound;
-import exceptions.UsernameNotFound;
+import controller.LoginController;
 import globals.Globals;
 
 import javax.swing.JButton;
@@ -22,11 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Login {
+	protected static JTextField txt_usuario;
+	protected static JPasswordField txt_contrasenia;
 
 	protected JFrame frmLogin;
-	protected JTextField txt_usuario;
 	protected JLabel lb_contrasenia, lb_usuario, lb_logo;
-	protected JPasswordField txt_contrasenia;
 	protected JPanel lb_panel;
 	protected JButton btn_entrar, btn_salir;
 
@@ -56,7 +54,7 @@ public class Login {
 		frmLogin.getContentPane().setLayout(null);
 		frmLogin.getContentPane().add(lb_panel);
 		frmLogin.setVisible(true);
-		
+
 		lb_panel.add(lb_usuario);
 		lb_panel.add(txt_usuario);
 		lb_panel.add(lb_contrasenia);
@@ -107,7 +105,7 @@ public class Login {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+				LoginController.validarLogin();
 			}
 		});
 
