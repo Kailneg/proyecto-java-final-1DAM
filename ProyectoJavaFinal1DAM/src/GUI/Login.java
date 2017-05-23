@@ -23,19 +23,17 @@ import java.awt.event.MouseEvent;
 
 public class Login {
 
-	private JFrame frmLogin;
-	private JTextField txt_usuario;
-	private JLabel lb_contrasenia, lb_usuario, lb_logo;
-	private JPasswordField txt_contrasenia;
-	private MainController controlador;
-	private JPanel lb_panel;
-	private JButton btn_entrar, btn_salir;
+	protected JFrame frmLogin;
+	protected JTextField txt_usuario;
+	protected JLabel lb_contrasenia, lb_usuario, lb_logo;
+	protected JPasswordField txt_contrasenia;
+	protected JPanel lb_panel;
+	protected JButton btn_entrar, btn_salir;
 
 	/**
 	 * Create the application.
 	 */
-	public Login(MainController controlador) {
-		this.controlador = controlador;
+	public Login() {
 		loginComponents();
 	}
 
@@ -109,19 +107,7 @@ public class Login {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					if (controlador.getUsuarios().comprobarLogin(
-							controlador.getUsuarios().obtenUsuario(txt_usuario.getText()),
-							String.valueOf(txt_contrasenia.getPassword()))) {
-						JOptionPane.showMessageDialog(null, "Login correcto");
-					}
-				} catch (UsernameNotFound ex1) {
-					JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error",
-							JOptionPane.ERROR_MESSAGE);
-				} catch (PasswordNotFound ex2) {
-					JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
+				
 			}
 		});
 

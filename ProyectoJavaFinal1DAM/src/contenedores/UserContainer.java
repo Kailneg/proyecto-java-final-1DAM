@@ -11,6 +11,7 @@ public class UserContainer {
 
 	public UserContainer() {
 		usuarios = new ArrayList<>();
+		usuarios.add(new User("admin", "123"));
 	}
 
 	public User obtenUsuario(String nombre) {
