@@ -3,7 +3,6 @@ package contenedores;
 import java.util.ArrayList;
 
 import exceptions.ClienteNoEncontrado;
-import exceptions.ContraseniaNoEncontrada;
 import exceptions.UsuarioNoEncontrado;
 import models.Clientes;
 import models.Usuario;
