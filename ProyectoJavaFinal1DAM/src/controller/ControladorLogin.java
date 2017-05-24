@@ -10,12 +10,23 @@ import exceptions.UsuarioNoEncontrado;
 public class ControladorLogin {
 
 	private ContenedorUsuarios usuarios;
+	private ControladorPrincipal controladorPrincipal;
 	private Login login;
 
-	public ControladorLogin() {
-		usuarios = new ContenedorUsuarios();
-		login = new Login(this);
+	public ControladorLogin(ControladorPrincipal controladorPrincipal) {
+		this.controladorPrincipal = controladorPrincipal;
+		this.usuarios = new ContenedorUsuarios();
+		this.login = new Login(this);
 	}
+	
+	public void mostrarLogin(){
+		login.mostrarVentana();
+	}
+	
+	public void ocultarLogin(){
+		login.ocultarVentana();
+	}
+
 
 	/**
 	 * Valida el usuario y la contraseña cuando intentamos logearnos
@@ -25,6 +36,8 @@ public class ControladorLogin {
 			if (usuarios.comprobarLogin(usuarios.obtenUsuario(login.getUsuario()),
 					login.getContrasenia())) {
 				JOptionPane.showMessageDialog(null, "Login correcto");
+				ocultarLogin();
+				controladorPrincipal.getControladorMenu().mostrarMenu();
 			}
 		} catch (UsuarioNoEncontrado ex1) {
 			JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

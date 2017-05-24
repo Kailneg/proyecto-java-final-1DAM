@@ -38,6 +38,7 @@ public class Login {
 	
 	//GETTERS
 	
+	
 	public String getUsuario(){
 		return txt_usuario.getText();
 	}
@@ -46,6 +47,16 @@ public class Login {
 		return String.valueOf(txt_contrasenia.getPassword());
 	}
 
+	//Ocultar y mostrar
+	public void mostrarVentana(){
+		frmLogin.setVisible(true);
+	}
+	
+	public void ocultarVentana(){
+		frmLogin.setVisible(false);
+	}
+	
+	
 	/**
 	 * Inicializa el contenido del frame.
 	 */
@@ -67,7 +78,7 @@ public class Login {
 	private void componentsAdders() {
 		frmLogin.getContentPane().setLayout(null);
 		frmLogin.getContentPane().add(lb_panel);
-		frmLogin.setVisible(true);
+		
 
 		lb_panel.add(lb_usuario);
 		lb_panel.add(txt_usuario);

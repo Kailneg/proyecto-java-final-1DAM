@@ -11,10 +11,13 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import controller.ControladorVehiculos;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Vehiculo {
+public class Vehiculos {
 
 	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -42,30 +45,24 @@ public class Vehiculo {
 	private JButton button;
 	private JButton button_1;
 	private JButton btnEditar;
+	private ControladorVehiculos controladorVehiculos;
 	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vehiculo window = new Vehiculo();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public Vehiculo() {
+	public Vehiculos(ControladorVehiculos controladorVehiculos) {
+		this.controladorVehiculos = controladorVehiculos;
 		vehiculoComponents();
+	}
+	
+	//Ocultar y mostrar
+	public void mostrarVentana(){
+		frame.setVisible(true);
+	}
+	
+	public void ocultarVentana(){
+		frame.setVisible(false);
 	}
 
 	/**
