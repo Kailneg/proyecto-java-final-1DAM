@@ -11,7 +11,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 
-public class VentanaPrincipal {
+public class Menu {
 
 	private JFrame Principal;
 	private ControladorPrincipal controlador;
@@ -19,7 +19,7 @@ public class VentanaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public VentanaPrincipal(ControladorPrincipal controlador) {
+	public Menu(ControladorPrincipal controlador) {
 		this.controlador = controlador;
 		initialize();
 	}
