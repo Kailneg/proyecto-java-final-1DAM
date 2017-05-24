@@ -21,7 +21,7 @@ public class ContenedorClientes {
 			if (u.getNombre().equals(cliente))
 				return u;
 		}
-		throw new UsuarioNoEncontrado();
+		throw new ClienteNoEncontrado();
 	}
 
 	public boolean aniadirCliente(Clientes cliente) {
