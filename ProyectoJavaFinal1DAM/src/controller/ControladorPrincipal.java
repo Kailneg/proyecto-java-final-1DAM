@@ -1,8 +1,39 @@
 package controller;
 
 public class ControladorPrincipal {
+	
+	private ControladorLogin controladorLogin;
+	private ControladorMenu controladorMenu;
+	private ControladorVehiculos controladorVehiculo;
+	private ControladorCliente controladorCliente;
+	private ControladorReparaciones controladorReparaciones;
 
 	public ControladorPrincipal() {
-		new ControladorLogin();
+		controladorLogin = new ControladorLogin(this);
+		controladorLogin.mostrarLogin();
+	}
+	
+	public ControladorMenu getControladorMenu() {
+		if (controladorMenu == null)
+			controladorMenu = new ControladorMenu(this);
+		return controladorMenu;
+	}
+	
+	public ControladorVehiculos getControladorVehiculo(){
+		if (controladorVehiculo == null)
+			controladorVehiculo = new ControladorVehiculos(this);
+		return controladorVehiculo;
+	}
+	
+	public ControladorCliente getControladorCliente(){
+		if (controladorCliente == null)
+			controladorCliente = new ControladorCliente(this);
+		return controladorCliente;
+	}
+	
+	public ControladorReparaciones getControladorReparaciones(){
+		if (controladorReparaciones == null)
+			controladorReparaciones = new ControladorReparaciones(this);
+		return controladorReparaciones;
 	}
 }
