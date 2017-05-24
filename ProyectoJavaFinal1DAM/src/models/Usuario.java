@@ -6,10 +6,14 @@ import exceptions.ContraseniaNoEncontrada;
 
 public class Usuario {
 	
+	// VARIABLES
 	private String usuario, nombre, apellidos, contrasenia;
 	private float sueldo;
 	private int diasVacaciones;
 	private Calendar fechaContratacion;
+	
+	
+	// CONSTRUCTOR
 	
 	/**
 	 * Crea un objeto de tipo Usuario con los mínimos atributos posibles.

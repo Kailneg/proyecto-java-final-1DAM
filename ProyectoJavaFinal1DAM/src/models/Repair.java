@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Repair {
 
+	// VARIABLES
 	private int idReparacion;
 	private Date fechaInicio;
 	private Date fechaFin;
@@ -11,7 +12,7 @@ public class Repair {
 	private String estado;
 	private String comentarios;
 
-	
+	// CONSTRUCTOR
 	public Repair(int idReparacion, Date fechaInicio, Date fechaFin, float presupuesto, String estado,
 			String comentarios) {
 		this.idReparacion = idReparacion;

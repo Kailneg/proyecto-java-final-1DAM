@@ -2,6 +2,7 @@ package models;
 
 public class Clientes {
 
+	// VARIABLES
 	private String dni;
 	private String nombre;
 	private String apellidos;
@@ -9,6 +10,7 @@ public class Clientes {
 	private long telefono;
 	private String email;
 
+	// CONSTRUCTOR
 	public Clientes(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
 		this.dni = dni;
 		this.nombre = nombre;

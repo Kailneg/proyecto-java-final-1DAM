@@ -4,12 +4,12 @@ import enums.TipoCombustible;
 
 public class Vehiculo {
 	
-	//Variables
+	// VARIABLES
 	private String matricula, marca, modelo;
 	private int puertas, anioMatriculacion, cv;
 	private TipoCombustible combustible;
 	
-	//Constructor
+	// CONSTRUCTOR
 	public Vehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
 			TipoCombustible combustible) {
 		this.matricula = matricula;
