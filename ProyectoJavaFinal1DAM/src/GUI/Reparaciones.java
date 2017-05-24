@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import java.awt.ScrollPane;
 import java.awt.TextArea;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class Reparaciones {
 
@@ -156,10 +157,12 @@ public class Reparaciones {
 		frmParteDeReparacin.getContentPane().add(txt_comentario);
 		
 		JButton btn_guardar = new JButton("GUARDAR");
+		btn_guardar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btn_guardar.setBounds(56, 281, 97, 62);
 		frmParteDeReparacin.getContentPane().add(btn_guardar);
 		
 		JButton btn_atras = new JButton("ATRAS");
+		btn_atras.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btn_atras.setBounds(163, 281, 96, 62);
 		frmParteDeReparacin.getContentPane().add(btn_atras);
 	}
