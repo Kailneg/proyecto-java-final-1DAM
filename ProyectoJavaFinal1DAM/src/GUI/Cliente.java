@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.ControladorCliente;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JMenuBar;
@@ -46,16 +49,27 @@ public class Cliente extends JFrame {
 	private JPanel panel_botones;
 	private JButton btn_crear;
 	private JButton btnAtrs;
+	private ControladorCliente controladorCliente;
 
 	/**
 	 * Create the frame.
 	 */
-	public Cliente() {
+	public Cliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 		setUpFrame();
 		setUpComponents();
 		addComponents();
 		addAdapters();
 
+	}
+	
+	//Ocultar y mostrar
+	public void mostrarVentana(){
+		setVisible(true);
+	}
+	
+	public void ocultarVentana(){
+		setVisible(false);
 	}
 
 	private void setUpFrame() {
@@ -165,6 +179,7 @@ public class Cliente extends JFrame {
 		btnAtrs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				controladorCliente.pulsarAtras();
 			}
 		});
 		

@@ -23,9 +23,16 @@ public class ControladorVehiculos {
 	
 	public void pulsarClientes(){
 		vehiculos.ocultarVentana();
+		controladorPrincipal.getControladorCliente().mostrarClientes();
 	}
 	
 	public void pulsarReparaciones(){
 		vehiculos.ocultarVentana();
+		controladorPrincipal.getControladorReparaciones().mostrarReparaciones();
+	}
+	
+	public void pulsarAtras(){
+		vehiculos.ocultarVentana();
+		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 }

@@ -16,6 +16,8 @@ import controller.ControladorVehiculos;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Vehiculos {
 
@@ -218,8 +220,32 @@ public class Vehiculos {
 	 */
 	private void componentsListeners(){
 		
+		//Clientes
+		btnClientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorVehiculos.pulsarClientes();
+			}
+		});
+		
+		//Reparaciones
+		btnRepararVehvulo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorVehiculos.pulsarReparaciones();
+			}
+		});
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		//Atras
+		btnAtrs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorVehiculos.pulsarAtras();
 			}
 		});
 	}

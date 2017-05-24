@@ -26,5 +26,6 @@ public class ControladorMenu {
 	
 	public void pulsarNuevo(){
 		menu.ocultarVentana();
+		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 }
