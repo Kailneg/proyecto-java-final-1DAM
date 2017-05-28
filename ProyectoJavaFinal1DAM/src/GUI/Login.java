@@ -18,13 +18,15 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login {
 	private JTextField txt_usuario;
 	private JPasswordField txt_contrasenia;
 	private JFrame frmLogin;
 	private JLabel lb_contrasenia, lb_usuario, lb_logo;
-	private JPanel lb_panel;
+	private JPanel panel;
 	private JButton btn_entrar, btn_salir;
 	private ControladorLogin cl;
 
@@ -62,7 +64,7 @@ public class Login {
 	 */
 	private void componentsInitializers() {
 		frmLogin = new JFrame();
-		lb_panel = new JPanel();
+		panel = new JPanel();
 		lb_usuario = new JLabel("Usuario:");
 		txt_usuario = new JTextField();
 		lb_contrasenia = new JLabel("Contrase\u00F1a:");
@@ -77,16 +79,16 @@ public class Login {
 	 */
 	private void componentsAdders() {
 		frmLogin.getContentPane().setLayout(null);
-		frmLogin.getContentPane().add(lb_panel);
+		frmLogin.getContentPane().add(panel);
 		
 
-		lb_panel.add(lb_usuario);
-		lb_panel.add(txt_usuario);
-		lb_panel.add(lb_contrasenia);
-		lb_panel.add(txt_contrasenia);
-		lb_panel.add(btn_entrar);
-		lb_panel.add(btn_salir);
-		lb_panel.add(lb_logo);
+		panel.add(lb_usuario);
+		panel.add(txt_usuario);
+		panel.add(lb_contrasenia);
+		panel.add(txt_contrasenia);
+		panel.add(btn_entrar);
+		panel.add(btn_salir);
+		panel.add(lb_logo);
 	}
 
 	/**
@@ -97,9 +99,9 @@ public class Login {
 		frmLogin.setBounds(100, 100, 405, 278);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		lb_panel.setBackground(new Color(255, 204, 0));
-		lb_panel.setBounds(0, 0, 389, 239);
-		lb_panel.setLayout(null);
+		panel.setBackground(new Color(255, 204, 0));
+		panel.setBounds(0, 0, 389, 239);
+		panel.setLayout(null);
 
 		lb_usuario.setBounds(157, 25, 94, 22);
 		lb_usuario.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -137,6 +139,14 @@ public class Login {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cl.validarLogin();
+			}
+		});
+		//Aniadido evento a la ventana para que valide con el intro
+		txt_contrasenia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+					cl.validarLogin();
 			}
 		});
 

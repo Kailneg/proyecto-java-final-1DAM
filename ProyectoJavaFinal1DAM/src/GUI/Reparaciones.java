@@ -58,10 +58,10 @@ public class Reparaciones {
 	 */
 	public Reparaciones(ControladorReparaciones controladorReparaciones) {
 		this.controladorReparaciones = controladorReparaciones;
-		adaptadores();
 		componentsInitializers();
 		componentsProperties();
 		componentsAdders();
+		adaptadores();
 		
 		
 	}
