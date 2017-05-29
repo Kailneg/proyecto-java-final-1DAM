@@ -1,0 +1,28 @@
+- conector dedicado, no hay conectores universales
+	"sql server jdbc driver" en google para descargar el driver de jdbc
+	link:
+	https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774
+	importar en el proyecto right click -> builth path -> add external libraries -> importar el "sqljdbc42.jar"
+	https://docs.microsoft.com/en-us/sql/connect/jdbc/connection-url-sample
+
+- Pasos para conectar la db:
+	- Desactivar el firewall
+	- Dentro de SQL en tu instancia, click derecho en la misma instancia y luego propiedades
+	- Seguridad
+	- Activar el "Modo de autenticación de Windows y SQL Server"
+	- Abrir el administrador de SQL Server
+	- Configuración de red de SQL Server (64Bit)
+	- Doble click sobre la base de datos
+	- Habilitar TCP/IP, todo se pone "Si"
+	- Luego en direcciones ip, abajo del todo, ip all Puerto TCP = 1433
+	- Volver a Servicios de SQL y reinicia la instancia que ha sufrido los cambios
+	- Crear un nuevo usuario en SQL para entrar desde java
+	- Seguridad -> Inicios de sesion -> click derecho -> Cambiar nombre de usuario y contraseña como Autenticación de SQL Server
+	- Quitar que el usuario de eclipse tenga que cambiar la contraseña
+	- Roles del servidor todo marcado
+	- Asignación de usuarios -> elegir la base de datos con la que se quiere acceder
+	- Debajo, marcar todos los roles
+	- Intro
+	- Ahora en el codigo java, donde pone localhost, poner el nombre de la instancia Ej: PORT100\\CHARMANDER (importante \\)
+	- databaseName=XXX poner el nombre de la base de datos
+	- user=XXX passowrd=XXX poner el usuario y la contraseña del usuario de la base de datos antes creado
