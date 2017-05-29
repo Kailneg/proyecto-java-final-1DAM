@@ -1,15 +1,15 @@
 package controller;
 
-import GUI.Menu;
+import GUI.VentanaMenu;
 
 public class ControladorMenu {
 	
 	private ControladorPrincipal controladorPrincipal;
-	private Menu menu;
+	private VentanaMenu menu;
 	
 	public ControladorMenu(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
-		menu = new Menu(this);
+		menu = new VentanaMenu(this);
 	}
 	
 	public void mostrarMenu(){

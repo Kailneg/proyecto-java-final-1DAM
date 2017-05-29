@@ -1,6 +1,6 @@
 package models;
 
-public class Clientes {
+public class Cliente {
 
 	// VARIABLES
 	private String dni;
@@ -11,7 +11,7 @@ public class Clientes {
 	private String email;
 
 	// CONSTRUCTOR
-	public Clientes(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
+	public Cliente(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;

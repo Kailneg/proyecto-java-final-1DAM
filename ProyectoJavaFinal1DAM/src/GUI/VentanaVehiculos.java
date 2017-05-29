@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Vehiculos {
+public class VentanaVehiculos {
 
 	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -58,7 +58,7 @@ public class Vehiculos {
 	/**
 	 * Create the application.
 	 */
-	public Vehiculos(ControladorVehiculos controladorVehiculos) {
+	public VentanaVehiculos(ControladorVehiculos controladorVehiculos) {
 		this.controladorVehiculos = controladorVehiculos;
 		vehiculoComponents();
 	}

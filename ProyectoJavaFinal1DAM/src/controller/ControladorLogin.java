@@ -2,7 +2,7 @@ package controller;
 
 import javax.swing.JOptionPane;
 
-import GUI.Login;
+import GUI.VentanaLogin;
 import contenedores.ContenedorUsuarios;
 import exceptions.ContraseniaNoEncontrada;
 import exceptions.UsuarioNoEncontrado;
@@ -11,12 +11,12 @@ public class ControladorLogin {
 
 	private ContenedorUsuarios usuarios;
 	private ControladorPrincipal controladorPrincipal;
-	private Login login;
+	private VentanaLogin login;
 
 	public ControladorLogin(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
 		this.usuarios = new ContenedorUsuarios();
-		this.login = new Login(this);
+		this.login = new VentanaLogin(this);
 	}
 	
 	public void mostrarLogin(){

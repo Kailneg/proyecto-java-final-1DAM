@@ -1,16 +1,16 @@
 package controller;
 
-import GUI.Menu;
-import GUI.Vehiculos;
+import GUI.VentanaMenu;
+import GUI.VentanaVehiculos;
 
 public class ControladorVehiculos {
 	
 	private ControladorPrincipal controladorPrincipal;
-	private Vehiculos vehiculos;
+	private VentanaVehiculos vehiculos;
 	
 	public ControladorVehiculos(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
-		vehiculos = new Vehiculos(this);
+		vehiculos = new VentanaVehiculos(this);
 	}
 	
 	public void mostrarVehiculos(){

@@ -25,7 +25,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Reparaciones {
+public class VentanaReparaciones {
 
 	private JFrame frame;
 	private JTextField txt_ID;
@@ -56,7 +56,7 @@ public class Reparaciones {
 	/**
 	 * Create the application.
 	 */
-	public Reparaciones(ControladorReparaciones controladorReparaciones) {
+	public VentanaReparaciones(ControladorReparaciones controladorReparaciones) {
 		this.controladorReparaciones = controladorReparaciones;
 		componentsInitializers();
 		componentsProperties();

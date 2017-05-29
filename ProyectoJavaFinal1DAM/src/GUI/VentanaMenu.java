@@ -14,7 +14,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Menu {
+public class VentanaMenu {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -24,7 +24,7 @@ public class Menu {
 	/**
 	 * Create the application.
 	 */
-	public Menu(ControladorMenu controladorMenu) {
+	public VentanaMenu(ControladorMenu controladorMenu) {
 		this.controladorMenu = controladorMenu;
 		initialize();
 		adaptadores();

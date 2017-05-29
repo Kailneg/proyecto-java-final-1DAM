@@ -21,7 +21,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Login {
+public class VentanaLogin {
 	private JTextField txt_usuario;
 	private JPasswordField txt_contrasenia;
 	private JFrame frmLogin;
@@ -33,7 +33,7 @@ public class Login {
 	/**
 	 * Create the application.
 	 */
-	public Login(ControladorLogin cl) {
+	public VentanaLogin(ControladorLogin cl) {
 		this.cl = cl;
 		loginComponents();
 	}
@@ -124,10 +124,10 @@ public class Login {
 
 		btn_salir.setBounds(290, 161, 89, 67);
 		btn_salir.setIcon(
-				new ImageIcon(Login.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+				new ImageIcon(VentanaLogin.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 
 		lb_logo.setBounds(10, 11, 128, 128);
-		lb_logo.setIcon(new ImageIcon(Login.class.getResource(Constantes.LOGO_PATH)));
+		lb_logo.setIcon(new ImageIcon(VentanaLogin.class.getResource(Constantes.LOGO_PATH)));
 
 	}
 

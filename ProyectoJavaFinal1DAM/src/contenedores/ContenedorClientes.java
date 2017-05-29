@@ -4,26 +4,26 @@ import java.util.ArrayList;
 
 import exceptions.ClienteNoEncontrado;
 import exceptions.UsuarioNoEncontrado;
-import models.Clientes;
+import models.Cliente;
 import models.Usuario;
 
 public class ContenedorClientes {
 	
-	private ArrayList<Clientes> clientes;
+	private ArrayList<Cliente> clientes;
 	
 	public ContenedorClientes() {
-		clientes = new ArrayList<Clientes>();
+		clientes = new ArrayList<Cliente>();
 	}
 	
-	public Clientes obtenCliente(String cliente) throws UsuarioNoEncontrado {
-		for (Clientes u : clientes) {
+	public Cliente obtenCliente(String cliente) throws UsuarioNoEncontrado {
+		for (Cliente u : clientes) {
 			if (u.getNombre().equals(cliente))
 				return u;
 		}
 		throw new ClienteNoEncontrado();
 	}
 
-	public boolean aniadirCliente(Clientes cliente) {
+	public boolean aniadirCliente(Cliente cliente) {
 		return clientes.add(cliente);
 	}
 

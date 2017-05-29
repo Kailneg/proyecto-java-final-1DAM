@@ -24,7 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Cliente extends JFrame {
+public class VentanaClientes extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txt_nif;
@@ -54,7 +54,7 @@ public class Cliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Cliente(ControladorCliente controladorCliente) {
+	public VentanaClientes(ControladorCliente controladorCliente) {
 		this.controladorCliente = controladorCliente;
 		setUpFrame();
 		setUpComponents();

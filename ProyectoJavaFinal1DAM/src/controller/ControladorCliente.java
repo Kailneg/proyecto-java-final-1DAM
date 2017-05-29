@@ -1,16 +1,16 @@
 package controller;
 
-import GUI.Cliente;
-import GUI.Vehiculos;
+import GUI.VentanaClientes;
+import GUI.VentanaVehiculos;
 
 public class ControladorCliente {
 	
 	private ControladorPrincipal controladorPrincipal;
-	private Cliente clientes;
+	private VentanaClientes clientes;
 	
 	public ControladorCliente(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
-		clientes = new Cliente(this);
+		clientes = new VentanaClientes(this);
 	}
 	
 	public void mostrarClientes(){

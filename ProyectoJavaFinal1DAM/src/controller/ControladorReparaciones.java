@@ -1,16 +1,16 @@
 package controller;
 
-import GUI.Cliente;
-import GUI.Reparaciones;
+import GUI.VentanaClientes;
+import GUI.VentanaReparaciones;
 
 public class ControladorReparaciones {
 	
 	private ControladorPrincipal controladorPrincipal;
-	private Reparaciones reparaciones;
+	private VentanaReparaciones reparaciones;
 	
 	public ControladorReparaciones(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
-		reparaciones = new Reparaciones(this);
+		reparaciones = new VentanaReparaciones(this);
 	}
 	
 	public void mostrarReparaciones(){
