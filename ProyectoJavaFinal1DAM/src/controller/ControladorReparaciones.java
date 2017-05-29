@@ -40,7 +40,7 @@ public class ControladorReparaciones {
 	
 	public void pulsarAtras(){
 		reparaciones.ocultarVentana();
-		controladorPrincipal.getControladorVehiculo().mostrarVehiculos(false);
+		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 	
 	public void pulsarTest(){

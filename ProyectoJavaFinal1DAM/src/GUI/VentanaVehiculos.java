@@ -27,6 +27,7 @@ public class VentanaVehiculos {
 	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
 			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
 	private final String tiposCombustible[] = { "Diesel", "Electrico", "Gasolina", "GLP", "Hibrido" };
+	private boolean modoLectura;
 
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
@@ -63,6 +64,10 @@ public class VentanaVehiculos {
 		vehiculoComponents();
 	}
 
+	public void setModoLectura(boolean b) {
+		modoLectura = b;
+	}
+	
 	public int getTipoCombustible() {
 		return cbTipoCombustible.getSelectedIndex();
 	}
@@ -84,8 +89,8 @@ public class VentanaVehiculos {
 	}
 
 	// Ocultar y mostrar
-	public void mostrarVentana(boolean modoLectura) {
-		hideComponentsInBuscar(!modoLectura);
+	public void mostrarVentana() {
+		hideComponents(modoLectura);
 		frmVehiculos.setVisible(true);
 	}
 
@@ -269,7 +274,7 @@ public class VentanaVehiculos {
 
 	}
 
-	private void hideComponentsInBuscar(boolean b) {
+	private void hideComponents(boolean b) {
 		txt_marca.setEnabled(b);
 		txt_matricula.setEnabled(b);
 		txt_modelo.setEnabled(b);

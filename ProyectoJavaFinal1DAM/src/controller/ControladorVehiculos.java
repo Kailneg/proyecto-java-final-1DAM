@@ -18,11 +18,7 @@ public class ControladorVehiculos {
 	}
 
 	public void mostrarVehiculos() {
-		vehiculos.mostrarVentana(true);//Mostrar ventana con enabled a false
-	}
-	
-	public void mostrarVehiculos(boolean modoLectura) {
-		vehiculos.mostrarVentana(modoLectura);
+		vehiculos.mostrarVentana();//Mostrar ventana con enabled a false
 	}
 
 	public void ocultarVehiculos() {
@@ -44,6 +40,13 @@ public class ControladorVehiculos {
 		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 
+	public void enableModoLectura() {
+		vehiculos.setModoLectura(true);
+	}
+	
+	public void disableModoLectura() {
+		vehiculos.setModoLectura(false);
+	}
 
 	public TipoCombustible convertidorTipoCombustible() {
 		switch (vehiculos.getTipoCombustible()) {
