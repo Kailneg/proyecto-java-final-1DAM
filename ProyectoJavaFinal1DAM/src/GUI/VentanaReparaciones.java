@@ -1,33 +1,20 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
 import controller.ControladorReparaciones;
 
-import javax.swing.JScrollPane;
-import java.awt.ScrollPane;
-import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
-import java.util.Date;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import enums.Meses;
 import java.awt.Font;
 
@@ -36,6 +23,7 @@ public class VentanaReparaciones {
 	private final Integer dias[] = {1, 2, 3, 4 , 5, 6 ,7 ,8 ,9 ,10,
 			11, 12, 13, 14, 15 , 16, 17 ,18 ,19, 20, 21, 22, 23, 24,
 			25, 26, 27, 28, 29, 30, 31};
+	
 	private final Integer anios[] = {2017, 2016, 2015, 2014, 2013, 2012, 2011
 			, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000
 			, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990};

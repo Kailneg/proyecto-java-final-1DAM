@@ -38,6 +38,6 @@ public class ControladorCliente {
 	
 	public void pulsarAtras(){
 		clientes.ocultarVentana();
-		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
+		controladorPrincipal.getControladorVehiculo().mostrarVehiculos(false);
 	}
 }

@@ -1,15 +1,11 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -92,7 +88,8 @@ public class VentanaVehiculos {
 	}
 
 	// Ocultar y mostrar
-	public void mostrarVentana() {
+	public void mostrarVentana(boolean modoLectura) {
+		hideComponents(!modoLectura);
 		frmVehiculos.setVisible(true);
 	}
 
@@ -110,7 +107,7 @@ public class VentanaVehiculos {
 		componentsProperties();
 		componentsListeners();
 	}
-
+	
 	/**
 	 * Inicializa el contenido del frame.
 	 */
@@ -268,11 +265,21 @@ public class VentanaVehiculos {
 
 		button_1.setBounds(185, 369, 53, 93);
 
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnGuardar.setBounds(93, 426, 89, 53);
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardar.setBounds(100, 409, 75, 53);
 
 	}
 
+	private void hideComponents(boolean b) {
+		txt_marca.setEnabled(b);
+		txt_matricula.setEnabled(b);
+		txt_modelo.setEnabled(b);
+		rb_3puertas.setEnabled(b);
+		rb_5puertas.setEnabled(b);
+		cbox_ano.setEnabled(b);
+		txt_potencia.setEnabled(b);
+	}
+	
 	/**
 	 * Contiene los eventos asociados al frame
 	 */
@@ -313,7 +320,7 @@ public class VentanaVehiculos {
 				controladorVehiculos.guardarVehiculo(
 						txt_matricula.getText(), 
 						txt_marca.getText(),
-						lblModelo.getText(), 
+						txt_modelo.getText(), 
 						(rb_3puertas.isSelected() ? "3" : "5"),
 						cbox_ano.getSelectedItem().toString(),
 						txt_potencia.getText()
