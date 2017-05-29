@@ -1,11 +1,8 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import controller.ControladorMenu;
-import controller.ControladorPrincipal;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -46,6 +43,7 @@ public class VentanaMenu {
 		frame.setTitle("Principal");
 		frame.setBounds(100, 100, 450, 193);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);

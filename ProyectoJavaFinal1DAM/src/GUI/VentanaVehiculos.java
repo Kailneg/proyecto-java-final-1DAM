@@ -153,6 +153,7 @@ public class VentanaVehiculos {
 	 * Añade al frame todos los componentes que hemos creado.
 	 */
 	private void componentsAdders(){
+		frmVehiculos.setResizable(false);
 		frmVehiculos.getContentPane().add(lblNewLabel);
 		frmVehiculos.getContentPane().add(lblNewLabel_1);
 		frmVehiculos.getContentPane().add(lblModelo);

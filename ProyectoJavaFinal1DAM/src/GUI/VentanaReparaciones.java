@@ -148,6 +148,7 @@ public class VentanaReparaciones {
 		frame.setTitle("Parte de reparaci\u00F3n");
 		frame.setBounds(100, 100, 547, 428);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		lblIDReparacion.setBounds(56, 28, 97, 24);
 		
