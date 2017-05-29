@@ -57,23 +57,26 @@ public class ControladorVehiculos {
 
 		}
 	}
-	
-	public void validarDatos() {
-		
+
+	public void validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
+			String cv) {
+		try {
+			if (matricula == null || marca == null || modelo == null || puertas == null || anioMatriculacion == null || cv == null) {
+				throw new Exception("Los datos no pueden estar vacios");
+			}
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+
 	}
 
 	public void guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
-		try {
-			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirCliente(new Vehiculo(matricula,
-					marca, modelo, Integer.parseInt(puertas), Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
-			System.out.println(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().obtenVehiculo("hola"));
-		}
-		catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
+		validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv);
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
+				.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
+						Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
 	}
 }
