@@ -16,7 +16,7 @@ public class ContenedorVehiculos {
 		vehiculos = new ArrayList<Vehiculo>();
 	}
 	
-	public Vehiculo obtenVehiculo(String matricula) throws UsuarioNoEncontrado {
+	public Vehiculo obtenVehiculo(String matricula) throws VehiculoNoEncontrado {
 		for (Vehiculo v : vehiculos) {
 			if (v.getMatricula().equals(matricula))
 				return v;
@@ -28,7 +28,7 @@ public class ContenedorVehiculos {
 		return vehiculos.add(vehiculo);
 	}
 
-	public boolean eliminarCliente(Usuario vehiculo) {
+	public boolean eliminarCliente(Vehiculo vehiculo) {
 		return vehiculos.remove(vehiculo);
 	}
 }

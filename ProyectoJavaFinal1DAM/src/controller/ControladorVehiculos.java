@@ -1,7 +1,9 @@
 package controller;
 
-import GUI.VentanaMenu;
 import GUI.VentanaVehiculos;
+import contenedores.ContenedorPrincipal;
+import enums.TipoCombustible;
+import models.Vehiculo;
 
 public class ControladorVehiculos {
 	
@@ -34,5 +36,10 @@ public class ControladorVehiculos {
 	public void pulsarAtras(){
 		vehiculos.ocultarVentana();
 		controladorPrincipal.getControladorMenu().mostrarMenu();
+	}
+	
+	public void guardarVehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
+			TipoCombustible combustible) {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirCliente(new Vehiculo(matricula, marca, modelo, puertas, anioMatriculacion, cv, combustible));
 	}
 }
