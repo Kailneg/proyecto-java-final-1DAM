@@ -20,11 +20,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class VentanaVehiculos {
 
-	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblModelo;
@@ -52,6 +55,10 @@ public class VentanaVehiculos {
 	private JComboBox cbox_dia;
 	private JComboBox cbox_mes;
 	private JComboBox cbox_ano;
+	private JMenuBar menuBar;
+	private JMenu mnModo;
+	private JMenuItem mntmLeer;
+	private JMenuItem mntmCrear;
 	private ControladorVehiculos controladorVehiculos;
 	
 
@@ -65,11 +72,11 @@ public class VentanaVehiculos {
 	
 	//Ocultar y mostrar
 	public void mostrarVentana(){
-		frame.setVisible(true);
+		frmVehiculos.setVisible(true);
 	}
 	
 	public void ocultarVentana(){
-		frame.setVisible(false);
+		frmVehiculos.setVisible(false);
 	}
 
 	/**
@@ -86,7 +93,8 @@ public class VentanaVehiculos {
 	 * Inicializa el contenido del frame.
 	 */
 	private void componentsInitializers(){
-		frame = new JFrame();
+		frmVehiculos = new JFrame();
+		frmVehiculos.setTitle("Vehiculos");
 		lblNewLabel = new JLabel("Matricula:");
 		lblNewLabel_1 = new JLabel("Marca:");
 		lblModelo = new JLabel("Modelo:");
@@ -115,30 +123,42 @@ public class VentanaVehiculos {
 		cbox_mes = new JComboBox();
 		cbox_ano = new JComboBox();
 		
+		menuBar = new JMenuBar();
+		frmVehiculos.setJMenuBar(menuBar);
+		
+		mnModo = new JMenu("Modo");
+		menuBar.add(mnModo);
+		
+		mntmLeer = new JMenuItem("Leer");
+		mnModo.add(mntmLeer);
+		
+		mntmCrear = new JMenuItem("Crear");
+		mnModo.add(mntmCrear);
+		
 	}
 
 	/**
 	 * Añade al frame todos los componentes que hemos creado.
 	 */
 	private void componentsAdders(){
-		frame.getContentPane().add(lblNewLabel);
-		frame.getContentPane().add(lblNewLabel_1);
-		frame.getContentPane().add(lblModelo);
-		frame.getContentPane().add(lblPuertas);
-		frame.getContentPane().add(rb_3puertas);
-		frame.getContentPane().add(rb_5puertas);
-		frame.getContentPane().add(lblColor);
-		frame.getContentPane().add(lblAoMatriculacin);
-		frame.getContentPane().add(lblCaballos);
-		frame.getContentPane().add(lblTipoCombustible);
-		frame.getContentPane().add(btnClientes);
-		frame.getContentPane().add(btnRepararVehvulo);
-		frame.getContentPane().add(btnAtrs);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(label);
-		frame.getContentPane().add(button);
-		frame.getContentPane().add(button_1);
-		frame.getContentPane().add(btnEditar);
+		frmVehiculos.getContentPane().add(lblNewLabel);
+		frmVehiculos.getContentPane().add(lblNewLabel_1);
+		frmVehiculos.getContentPane().add(lblModelo);
+		frmVehiculos.getContentPane().add(lblPuertas);
+		frmVehiculos.getContentPane().add(rb_3puertas);
+		frmVehiculos.getContentPane().add(rb_5puertas);
+		frmVehiculos.getContentPane().add(lblColor);
+		frmVehiculos.getContentPane().add(lblAoMatriculacin);
+		frmVehiculos.getContentPane().add(lblCaballos);
+		frmVehiculos.getContentPane().add(lblTipoCombustible);
+		frmVehiculos.getContentPane().add(btnClientes);
+		frmVehiculos.getContentPane().add(btnRepararVehvulo);
+		frmVehiculos.getContentPane().add(btnAtrs);
+		frmVehiculos.getContentPane().setLayout(null);
+		frmVehiculos.getContentPane().add(label);
+		frmVehiculos.getContentPane().add(button);
+		frmVehiculos.getContentPane().add(button_1);
+		frmVehiculos.getContentPane().add(btnEditar);
 		
 		buttonGroup.add(rb_3puertas);
 		buttonGroup.add(rb_5puertas);
@@ -147,57 +167,57 @@ public class VentanaVehiculos {
 		txt_cv.setEditable(false);
 		txt_cv.setText("CV");
 		txt_cv.setBounds(207, 243, 30, 24);
-		frame.getContentPane().add(txt_cv);
+		frmVehiculos.getContentPane().add(txt_cv);
 		txt_cv.setColumns(10);	
 		
 		txt_marca.setColumns(10);
 		txt_marca.setBounds(119, 59, 118, 24);
-		frame.getContentPane().add(txt_marca);
+		frmVehiculos.getContentPane().add(txt_marca);
 		
 		txt_matricula.setColumns(10);
 		txt_matricula.setBounds(119, 28, 118, 24);
-		frame.getContentPane().add(txt_matricula);	
+		frmVehiculos.getContentPane().add(txt_matricula);	
 		
 		txt_modelo.setColumns(10);
 		txt_modelo.setBounds(119, 91, 118, 24);
-		frame.getContentPane().add(txt_modelo);	
+		frmVehiculos.getContentPane().add(txt_modelo);	
 		
 		txt_color.setColumns(10);
 		txt_color.setBounds(119, 163, 118, 24);
-		frame.getContentPane().add(txt_color);
+		frmVehiculos.getContentPane().add(txt_color);
 		
 		
 		txt_combustible.setColumns(10);
 		txt_combustible.setBounds(119, 281, 118, 24);
-		frame.getContentPane().add(txt_combustible);
+		frmVehiculos.getContentPane().add(txt_combustible);
 		
 		
 		txt_potencia.setColumns(10);
 		txt_potencia.setBounds(119, 243, 89, 24);
-		frame.getContentPane().add(txt_potencia);
+		frmVehiculos.getContentPane().add(txt_potencia);
 		
 		
 		cbox_dia.setModel(new DefaultComboBoxModel(new String[] {"D"}));
 		cbox_dia.setBounds(121, 202, 38, 20);
-		frame.getContentPane().add(cbox_dia);
+		frmVehiculos.getContentPane().add(cbox_dia);
 		
 
 		cbox_mes.setModel(new DefaultComboBoxModel(new String[] {"M"}));
 		cbox_mes.setBounds(158, 202, 38, 20);
-		frame.getContentPane().add(cbox_mes);
+		frmVehiculos.getContentPane().add(cbox_mes);
 		
 
 		cbox_ano.setModel(new DefaultComboBoxModel(new String[] {"A"}));
 		cbox_ano.setBounds(197, 202, 40, 20);
-		frame.getContentPane().add(cbox_ano);
+		frmVehiculos.getContentPane().add(cbox_ano);
 	}
 
 	/**
 	 * Contiene las propiedades de todos los componentes del frame
 	 */
 	private void componentsProperties(){
-		frame.setBounds(100, 100, 450, 478);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVehiculos.setBounds(100, 100, 450, 478);
+		frmVehiculos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(36, 29, 64, 19);
@@ -253,6 +273,18 @@ public class VentanaVehiculos {
 	 */
 	private void componentsListeners(){
 		
+		//MENU SUPERIOR
+		//Boton leer
+		mntmLeer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		//Boton crear
+		mntmCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		//Clientes
 		btnClientes.addMouseListener(new MouseAdapter() {
 			@Override
@@ -282,7 +314,4 @@ public class VentanaVehiculos {
 			}
 		});
 	}
-	
-	
-	
 }
