@@ -26,7 +26,7 @@ public class VentanaVehiculos {
 			24, 25, 26, 27, 28, 29, 30, 31 };
 	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
 			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
-	private final String tiposCombustible[] = {"Diesel", "Electrico", "Gasolina", "GLP", "Hibrido"};
+	private final String tiposCombustible[] = { "Diesel", "Electrico", "Gasolina", "GLP", "Hibrido" };
 
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
@@ -52,6 +52,8 @@ public class VentanaVehiculos {
 	private JTextField txt_potencia;
 	private JComboBox cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible;
 	private ControladorVehiculos controladorVehiculos;
+	private JTextField txt_buscarPorMatricula;
+	private JLabel lblBuscar;
 
 	/**
 	 * Create the application.
@@ -68,10 +70,6 @@ public class VentanaVehiculos {
 	public String getPuertas() {
 		return (rb_3puertas.isSelected() ? "3" : "5");
 	}
-	
-	public String getLblModelo() {
-		return lblModelo.getText();
-	}
 
 	public String getTxt_marca() {
 		return txt_marca.getText();
@@ -87,7 +85,7 @@ public class VentanaVehiculos {
 
 	// Ocultar y mostrar
 	public void mostrarVentana(boolean modoLectura) {
-		hideComponents(!modoLectura);
+		hideComponentsInBuscar(!modoLectura);
 		frmVehiculos.setVisible(true);
 	}
 
@@ -105,7 +103,7 @@ public class VentanaVehiculos {
 		componentsProperties();
 		componentsListeners();
 	}
-	
+
 	/**
 	 * Inicializa el contenido del frame.
 	 */
@@ -202,10 +200,21 @@ public class VentanaVehiculos {
 		cbox_ano.setModel(new DefaultComboBoxModel<Integer>(anios));
 		cbox_ano.setBounds(120, 247, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_ano);
-		
+
 		cbTipoCombustible.setModel(new DefaultComboBoxModel<String>(tiposCombustible));
 		cbTipoCombustible.setBounds(120, 316, 118, 20);
 		frmVehiculos.getContentPane().add(cbTipoCombustible);
+
+		txt_buscarPorMatricula = new JTextField();
+		txt_buscarPorMatricula.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txt_buscarPorMatricula.setText("Matricula ...");
+		txt_buscarPorMatricula.setBounds(323, 160, 86, 20);
+		frmVehiculos.getContentPane().add(txt_buscarPorMatricula);
+		txt_buscarPorMatricula.setColumns(10);
+
+		lblBuscar = new JLabel("Buscar");
+		lblBuscar.setBounds(267, 163, 46, 14);
+		frmVehiculos.getContentPane().add(lblBuscar);
 	}
 
 	/**
@@ -260,7 +269,7 @@ public class VentanaVehiculos {
 
 	}
 
-	private void hideComponents(boolean b) {
+	private void hideComponentsInBuscar(boolean b) {
 		txt_marca.setEnabled(b);
 		txt_matricula.setEnabled(b);
 		txt_modelo.setEnabled(b);
@@ -272,54 +281,60 @@ public class VentanaVehiculos {
 		cbox_mes.setEnabled(b);
 		cbox_ano.setEnabled(b);
 		cbTipoCombustible.setEnabled(b);
+		btnRepararVehvulo.setVisible(b);
+		lblBuscar.setVisible(!b);
+		txt_buscarPorMatricula.setVisible(!b);
+
 	}
-	
+
 	/**
 	 * Contiene los eventos asociados al frame
 	 */
-	private void componentsListeners(){
-		
-		//Clientes
+	private void componentsListeners() {
+
+		// Clientes
 		btnClientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorVehiculos.pulsarClientes();
 			}
 		});
-		
-		//Reparaciones
+
+		// Reparaciones
 		btnRepararVehvulo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorVehiculos.pulsarReparaciones();
 			}
 		});
-		
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		
-		//Atras
+
+		// Atras
 		btnAtrs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorVehiculos.pulsarAtras();
 			}
 		});
-		
+
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorVehiculos.guardarVehiculo(
-						txt_matricula.getText(), 
-						txt_marca.getText(),
-						txt_modelo.getText(), 
-						(rb_3puertas.isSelected() ? "3" : "5"),
-						cbox_ano.getSelectedItem().toString(),
+				controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(), txt_modelo.getText(),
+						(rb_3puertas.isSelected() ? "3" : "5"), cbox_ano.getSelectedItem().toString(),
 						txt_potencia.getText()
-						
-					);
+
+				);
+			}
+		});
+
+		txt_buscarPorMatricula.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 			}
 		});
 	}

@@ -44,6 +44,7 @@ public class ControladorVehiculos {
 		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 
+
 	public TipoCombustible convertidorTipoCombustible() {
 		switch (vehiculos.getTipoCombustible()) {
 		case 0:
