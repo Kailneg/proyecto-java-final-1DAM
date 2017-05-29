@@ -20,8 +20,6 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VentanaClientes extends JFrame {
 
@@ -34,16 +32,6 @@ public class VentanaClientes extends JFrame {
 	private JPanel panel, panel_botones;
 	private JLabel lb_clientes, lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
 
-	private JTextField txt_nif;
-	private JTextField txt_nombre;
-	private JTextField txt_apellidos;
-	private JTextField txt_direccion;
-	private JTextField txt_telefono;
-	private JTextField txt_email;
-	private JPanel panel;
-	private JLabel lb_nif;
-	private JLabel lb_nombre;
-	private JLabel lb_apellidos;
 	private JSeparator separator;
 	private JLabel lb_email;
 	private JButton btn_crear, btnAtrs;
