@@ -1,7 +1,11 @@
 package controller;
 
+import java.util.Arrays;
+
 import GUI.VentanaClientes;
 import GUI.VentanaVehiculos;
+import contenedores.ContenedorPrincipal;
+import models.Cliente;
 
 public class ControladorCliente {
 	
@@ -22,7 +26,11 @@ public class ControladorCliente {
 	}
 	
 	public void pulsarCrear(){
-		//TODO: hay que completar
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes().aniadirCliente(
+				new Cliente(clientes.getNIF(), clientes.getNombre(), clientes.getApellidos(),
+						clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()));
+		System.out.println(Arrays.toString(ContenedorPrincipal.getContenedorPrincipal()
+				.getContenedorClientes().getCopiaClientes().toArray()));
 	}
 	
 	public void pulsarAtras(){

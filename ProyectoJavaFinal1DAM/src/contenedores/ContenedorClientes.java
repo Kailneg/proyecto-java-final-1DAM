@@ -1,6 +1,7 @@
 package contenedores;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import exceptions.ClienteNoEncontrado;
 import exceptions.UsuarioNoEncontrado;
@@ -13,6 +14,10 @@ public class ContenedorClientes {
 	
 	public ContenedorClientes() {
 		clientes = new ArrayList<Cliente>();
+	}
+	
+	public List<Cliente> getCopiaClientes(){
+		return clientes.subList(0, clientes.size());
 	}
 	
 	public Cliente obtenCliente(String cliente) throws UsuarioNoEncontrado {

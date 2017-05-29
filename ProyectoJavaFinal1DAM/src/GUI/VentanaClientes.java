@@ -71,6 +71,32 @@ public class VentanaClientes extends JFrame {
 	public void ocultarVentana(){
 		setVisible(false);
 	}
+	
+	//Getters
+//nombre, apellidos, direccion, telefono, email
+	public String getNIF(){
+		return txt_nif.getText();
+	}
+	
+	public String getNombre(){
+		return txt_nombre.getText();
+	}
+	
+	public String getApellidos(){
+		return txt_apellidos.getText();
+	}
+	
+	public String getDireccion(){
+		return txt_direccion.getText();
+	}
+	
+	public long getTelefono(){
+		return Long.parseLong(txt_telefono.getText());
+	}
+	
+	public String getEmail(){
+		return txt_email.getText();
+	}
 
 	private void setUpFrame() {
 		setTitle("Clientes");
@@ -172,6 +198,7 @@ public class VentanaClientes extends JFrame {
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				controladorCliente.pulsarCrear();
 			}
 		});
 		
