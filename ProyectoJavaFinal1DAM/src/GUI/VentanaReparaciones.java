@@ -28,7 +28,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import enums.EstadoReparacion;
 import enums.Meses;
+import models.Reparacion;
+
 import java.awt.Font;
 
 public class VentanaReparaciones {
@@ -102,14 +106,14 @@ public class VentanaReparaciones {
 		txt_mecanico.setEditable(escritura);
 		txt_presupuesto.setEditable(escritura);
 		txt_comentario.setEditable(escritura);
-		cb_dia_inicio.setEditable(escritura);
-		cb_mes_inicio.setEditable(escritura);
-		cb_anio_inicio.setEditable(escritura);
-		cb_dia_fin.setEditable(escritura);
-		cb_mes_fin.setEditable(escritura);
+		cb_dia_inicio.setEnabled(escritura);
+		cb_mes_inicio.setEnabled(escritura);
+		cb_anio_inicio.setEnabled(escritura);
+		cb_dia_fin.setEnabled(escritura);
+		cb_mes_fin.setEnabled(escritura);
 		cb_anio_fin.setEditable(escritura);
 		cb_ordenar.setEditable(escritura);
-		cb_estado.setEditable(escritura);
+		cb_estado.setEnabled(escritura);
 		
 		if(escritura)
 			btn_crear.setText("Crear");
@@ -118,11 +122,30 @@ public class VentanaReparaciones {
 	}
 	
 	
-	public void cargarReparacion(){
-		
+	public void cargarReparacion(Reparacion reparacion){
+		if (!isModoEscritura) {
+			txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
+			txt_propietario.setText(reparacion.getPropietario());
+			txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
+			txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
+			txt_comentario.setText(reparacion.getComentarios());
+			cb_dia_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.DAY_OF_MONTH));
+			cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
+			cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR));
+			cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH));
+			cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
+			cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR));
+			cb_estado.setSelectedItem(reparacion.getEstado());
+		} else {
+			throw new RuntimeException("No se puede cargar una reparación en modo Escritura");
+		}
 	}
 
 	// Getters
+	public boolean getIsModoEscritura(){
+		return isModoEscritura;
+	}
+	
 	public int getIdReparacion() {
 		return Integer.parseInt(txt_ID.getText());
 	}
@@ -140,13 +163,17 @@ public class VentanaReparaciones {
 				Integer.parseInt(cb_dia_fin.getSelectedItem().toString()));
 		return c;
 	}
+	
+	public String getPropietario(){
+		return txt_propietario.getText();
+	}
 
 	public float getPresupuesto() {
 		return Float.parseFloat(txt_presupuesto.getText());
 	}
 
-	public String getEstado() {
-		return cb_estado.getSelectedItem().toString();
+	public EstadoReparacion getEstado() {
+		return EstadoReparacion.valueOf(cb_estado.getSelectedItem().toString());
 	}
 
 	public String getComentarios() {
@@ -304,6 +331,14 @@ public class VentanaReparaciones {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorReparaciones.pulsarAtras();
+			}
+		});
+		
+		//USO PARA FINES DE TESTEO
+		txt_euro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorReparaciones.pulsarTest();
 			}
 		});
 	}
