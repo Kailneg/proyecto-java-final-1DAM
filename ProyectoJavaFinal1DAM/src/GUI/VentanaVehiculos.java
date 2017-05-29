@@ -29,6 +29,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import enums.Meses;
 import enums.TipoCombustible;
+import javax.swing.JList;
 
 public class VentanaVehiculos {
 
@@ -37,6 +38,7 @@ public class VentanaVehiculos {
 			24, 25, 26, 27, 28, 29, 30, 31 };
 	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
 			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
+	private final String tiposCombustible[] = {"Diesel", "Electrico", "Gasolina", "GLP", "Hibrido"};
 
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
@@ -61,9 +63,8 @@ public class VentanaVehiculos {
 	private JTextField txt_matricula;
 	private JTextField txt_modelo;
 	private JTextField txt_color;
-	private JTextField txt_combustible;
 	private JTextField txt_potencia;
-	private JComboBox cbox_dia, cbox_mes, cbox_ano;
+	private JComboBox cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible;
 	private ControladorVehiculos controladorVehiculos;
 
 	/**
@@ -74,11 +75,8 @@ public class VentanaVehiculos {
 		vehiculoComponents();
 	}
 
-	public TipoCombustible tipoCombustibleIntToEnum() {
-		switch (Integer.parseInt(txt_combustible.getText())) {
-		case 1:
-			return TipoCombustible.DIESEL;
-		}
+	public JComboBox tipoCombustibleIntToEnum() {
+		return cbTipoCombustible;
 	}
 
 	// Ocultar y mostrar
@@ -129,11 +127,11 @@ public class VentanaVehiculos {
 		txt_matricula = new JTextField();
 		txt_modelo = new JTextField();
 		txt_color = new JTextField();
-		txt_combustible = new JTextField();
 		txt_potencia = new JTextField();
 		cbox_dia = new JComboBox();
 		cbox_mes = new JComboBox();
 		cbox_ano = new JComboBox();
+		cbTipoCombustible = new JComboBox();
 
 	}
 
@@ -187,10 +185,6 @@ public class VentanaVehiculos {
 		txt_color.setBounds(120, 146, 118, 24);
 		frmVehiculos.getContentPane().add(txt_color);
 
-		txt_combustible.setColumns(10);
-		txt_combustible.setBounds(120, 318, 118, 24);
-		frmVehiculos.getContentPane().add(txt_combustible);
-
 		txt_potencia.setColumns(10);
 		txt_potencia.setBounds(120, 280, 89, 24);
 		frmVehiculos.getContentPane().add(txt_potencia);
@@ -206,6 +200,10 @@ public class VentanaVehiculos {
 		cbox_ano.setModel(new DefaultComboBoxModel<Integer>(anios));
 		cbox_ano.setBounds(120, 247, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_ano);
+		
+		cbTipoCombustible.setModel(new DefaultComboBoxModel<String>(tiposCombustible));
+		cbTipoCombustible.setBounds(120, 316, 118, 20);
+		frmVehiculos.getContentPane().add(cbTipoCombustible);
 	}
 
 	/**
@@ -302,10 +300,11 @@ public class VentanaVehiculos {
 			public void mousePressed(MouseEvent e) {
 				controladorVehiculos.guardarVehiculo(
 						txt_matricula.getText(), 
+						txt_marca.getText(),
 						lblModelo.getText(), 
 						(rb_3puertas.isSelected() ? 3 : 5),
 						Integer.parseInt(cbox_ano.getSelectedItem().toString()),
-						txt_cv.getText(),
+						Integer.parseInt(txt_potencia.getText())
 						
 					);
 			}
