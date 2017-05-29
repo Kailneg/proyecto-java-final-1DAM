@@ -1,22 +1,23 @@
 package models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Reparacion {
 
 	// VARIABLES
 	private int idReparacion;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private Calendar fechaInicio;
+	private Calendar fechaFin;
 	private float presupuesto;
 	private String estado;
 	private String comentarios;
 
 	// CONSTRUCTOR
-	public Reparacion(int idReparacion, Date fechaInicio, Date fechaFin, float presupuesto, String estado,
+	public Reparacion(int idReparacion, Calendar fechaInicio, Calendar fechaFin, float presupuesto, String estado,
 			String comentarios) {
 		this.idReparacion = idReparacion;
-		this.fechaInicio = new Date();	
+		this.fechaInicio = fechaInicio;	
 		this.fechaFin = fechaFin;
 		this.presupuesto = presupuesto;
 		this.estado = estado;
@@ -28,7 +29,11 @@ public class Reparacion {
 		return idReparacion;
 	}
 
-	public Date getFechaFin() {
+	public Calendar getFechaInicio() {
+		return fechaInicio;
+	}
+	
+	public Calendar getFechaFin() {
 		return fechaFin;
 	}
 	
@@ -44,16 +49,13 @@ public class Reparacion {
 		return comentarios;
 	}
 
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
 	
 	// SETTERS
 	public void setIdReparacion(int idReparacion) {
 		this.idReparacion = idReparacion;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(Calendar fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
@@ -71,8 +73,12 @@ public class Reparacion {
 
 	@Override
 	public String toString() {
-		return "Reparacion [idReparacion=" + idReparacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ ", presupuesto=" + presupuesto + ", estado=" + estado + ", comentarios=" + comentarios + "]";
+		return "Reparacion [idReparacion=" + idReparacion + 
+				", fechaInicio=" + fechaInicio.get(Calendar.DATE) +
+				"/"+ (fechaInicio.get(Calendar.MONTH)+1) + "/" + fechaInicio.get(Calendar.YEAR)+
+				", fechaFin=" + fechaFin.get(Calendar.DATE) +
+				"/"+ (fechaFin.get(Calendar.MONTH)+1) + "/" + fechaFin.get(Calendar.YEAR)+
+				 ", presupuesto=" + presupuesto + ", estado=" + estado + ", comentarios=" + comentarios + "]";
 	}
 
 
