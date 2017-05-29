@@ -25,13 +25,15 @@ package DAO;
 
 import java.sql.*;
 
-public class connectURL {
+import models.Usuario;
 
-	public static void main(String[] args) {
+public class LoginDAO {
+
+	public static boolean Login(String usuario, String pass) {
 		
 		// Create a variable for the connection string.
-		String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-			"databaseName=AdventureWorks;integratedSecurity=true;";
+		String connectionUrl = "jdbc:sqlserver://PC105\\HASEITUNA;" +
+				"databaseName=Taller;user=taller;password=taller";  
 
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -44,13 +46,13 @@ public class connectURL {
             		con = DriverManager.getConnection(connectionUrl);
             
             		// Create and execute an SQL statement that returns some data.
-            		String SQL = "SELECT TOP 10 * FROM Person.Contact";
             		stmt = con.createStatement();
-            		rs = stmt.executeQuery(SQL);
+            		rs = stmt.executeQuery("SELECT USUARIO, CLAVE FROM MECANICO " +
+            								"WHERE USUARIO='"+usuario+"' and CLAVE='"+pass+"'");
             
             		// Iterate through the data in the result set and display it.
             		while (rs.next()) {
-            			System.out.println(rs.getString(4) + " " + rs.getString(6));
+            			return true;
             		}
         	}
         
@@ -64,6 +66,7 @@ public class connectURL {
 	    		if (stmt != null) try { stmt.close(); } catch(Exception e) {}
 	    		if (con != null) try { con.close(); } catch(Exception e) {}
 		}
+        return false;
 	}
 }
 
