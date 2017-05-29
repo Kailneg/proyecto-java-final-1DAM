@@ -96,12 +96,12 @@ public class VentanaLogin {
 	 */
 	private void componentsProperties() {
 		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 394, 278);
+		frmLogin.setBounds(100, 100, 394, 269);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.setResizable(false);
 
 		panel.setBackground(new Color(255, 204, 0));
-		panel.setBounds(0, 0, 388, 238);
+		panel.setBounds(0, 0, 388, 240);
 		panel.setLayout(null);
 
 		lb_usuario.setBounds(157, 25, 94, 22);

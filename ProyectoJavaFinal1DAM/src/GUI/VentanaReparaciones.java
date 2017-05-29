@@ -52,10 +52,6 @@ public class VentanaReparaciones {
 	private JComboBox cBox_estado;
 	private JTextArea txt_comentario;
 	private JButton btn_guardar;
-	private JMenuBar menuBar;
-	private JMenu mnModo;
-	private JMenuItem mntmLeer;
-	private JMenuItem mntmCrear;
 	
 
 
@@ -98,19 +94,6 @@ public class VentanaReparaciones {
 		txt_comentario = new JTextArea();
 		btn_guardar = new JButton("GUARDAR");
 		btn_atras = new JButton("ATRAS");
-		
-		menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		mnModo = new JMenu("Modo");
-		menuBar.add(mnModo);
-		
-		mntmLeer = new JMenuItem("Leer");
-
-		mnModo.add(mntmLeer);
-		
-		mntmCrear = new JMenuItem("Crear");
-		mnModo.add(mntmCrear);
 	}
 
 	/**
@@ -146,68 +129,68 @@ public class VentanaReparaciones {
 	 */
 	private void componentsProperties(){
 		frame.setTitle("Parte de reparaci\u00F3n");
-		frame.setBounds(100, 100, 547, 428);
+		frame.setBounds(100, 100, 485, 392);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		
-		lblIDReparacion.setBounds(56, 28, 97, 24);
+		lblIDReparacion.setBounds(27, 24, 97, 24);
 		
-		lblFechaInicio.setBounds(56, 78, 76, 14);
+		lblFechaInicio.setBounds(27, 74, 76, 14);
 		
-		lblFechaFin.setBounds(56, 118, 76, 14);
+		lblFechaFin.setBounds(27, 114, 76, 14);
 		
-		lblCliente.setBounds(56, 159, 76, 14);
+		lblCliente.setBounds(27, 155, 76, 14);
 		
-		lblMecnico.setBounds(56, 201, 60, 14);
+		lblMecnico.setBounds(27, 197, 60, 14);
 		
-		lblPresupuesto.setBounds(56, 240, 76, 14);
+		lblPresupuesto.setBounds(27, 236, 76, 14);
 		
-		lblOrdenarPor.setBounds(295, 33, 76, 14);
+		lblOrdenarPor.setBounds(266, 29, 76, 14);
 		
-		lblEstado.setBounds(295, 100, 76, 14);
+		lblEstado.setBounds(266, 96, 76, 14);
 		
-		lblComentarios.setBounds(295, 159, 76, 14);
+		lblComentarios.setBounds(266, 155, 76, 14);
 		
 		txt_ID.setEditable(false);
-		txt_ID.setBounds(143, 28, 116, 24);
+		txt_ID.setBounds(114, 24, 116, 24);
 		
 		txt_ID.setColumns(10);
 		
 		txt_fechaInicio.setColumns(10);
-		txt_fechaInicio.setBounds(142, 73, 117, 24);
+		txt_fechaInicio.setBounds(113, 69, 117, 24);
 		
 		txt_fechaFin.setColumns(10);
-		txt_fechaFin.setBounds(142, 115, 117, 24);
+		txt_fechaFin.setBounds(113, 111, 117, 24);
 		
 		txt_Propietario.setColumns(10);
-		txt_Propietario.setBounds(142, 156, 117, 24);
+		txt_Propietario.setBounds(113, 152, 117, 24);
 		
 		txt_mecanico.setColumns(10);
-		txt_mecanico.setBounds(142, 198, 117, 24);
+		txt_mecanico.setBounds(113, 194, 117, 24);
 		
 		txt_presupuesto.setColumns(10);
-		txt_presupuesto.setBounds(142, 237, 86, 24);
+		txt_presupuesto.setBounds(113, 233, 86, 24);
 		
 		textField_euro.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_euro.setForeground(Color.BLACK);
 		textField_euro.setEditable(false);
 		textField_euro.setText("\u20AC");
-		textField_euro.setBounds(228, 237, 31, 24);
+		textField_euro.setBounds(199, 233, 31, 24);
 		
 		textField_euro.setColumns(10);
 		
 		cBox_ordenar.setModel(new DefaultComboBoxModel(new String[] {"Fecha", "Nombre", "Presupuesto"}));
-		cBox_ordenar.setBounds(381, 30, 97, 20);
+		cBox_ordenar.setBounds(352, 26, 97, 20);
 		
 		cBox_estado.setModel(new DefaultComboBoxModel(new String[] {"Reparado", "Pendiente", "No reparado"}));
-		cBox_estado.setBounds(381, 97, 97, 20);
+		cBox_estado.setBounds(352, 93, 97, 20);
 		
 		txt_comentario.setLineWrap(true);
-		txt_comentario.setBounds(295, 184, 183, 159);
+		txt_comentario.setBounds(266, 180, 183, 159);
 		
-		btn_guardar.setBounds(56, 281, 97, 62);
+		btn_guardar.setBounds(27, 277, 97, 62);
 		
-		btn_atras.setBounds(163, 281, 96, 62);
+		btn_atras.setBounds(134, 277, 96, 62);
 	}
 	
 	//Ocultar y mostrar
@@ -225,18 +208,6 @@ public class VentanaReparaciones {
 	 * Contiene los listeners
 	 */
 	private void adaptadores() {
-		//MENU SUPERIOR
-		//Boton leer
-		mntmLeer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		//Boton crear
-		mntmCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		btn_atras.addMouseListener(new MouseAdapter() {
 			@Override
