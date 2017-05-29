@@ -28,13 +28,13 @@ public class VentanaLogin {
 	private JLabel lb_contrasenia, lb_usuario, lb_logo;
 	private JPanel panel;
 	private JButton btn_entrar, btn_salir;
-	private ControladorLogin cl;
+	private ControladorLogin controladorLogin;
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaLogin(ControladorLogin cl) {
-		this.cl = cl;
+	public VentanaLogin(ControladorLogin controladorLogin) {
+		this.controladorLogin = controladorLogin;
 		loginComponents();
 	}
 	
@@ -138,7 +138,7 @@ public class VentanaLogin {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cl.validarLogin();
+				controladorLogin.validarLogin();
 			}
 		});
 		//Aniadido evento a la ventana para que valide con el intro
@@ -146,7 +146,7 @@ public class VentanaLogin {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					cl.validarLogin();
+					controladorLogin.validarLogin();
 			}
 		});
 
