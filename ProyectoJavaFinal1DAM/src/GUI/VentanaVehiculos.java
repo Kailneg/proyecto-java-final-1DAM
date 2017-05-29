@@ -21,15 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Set;
-import java.util.stream.IntStream;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import enums.Meses;
-import enums.TipoCombustible;
-import javax.swing.JList;
 
 public class VentanaVehiculos {
 
@@ -75,8 +66,28 @@ public class VentanaVehiculos {
 		vehiculoComponents();
 	}
 
-	public JComboBox tipoCombustibleIntToEnum() {
-		return cbTipoCombustible;
+	public int getTipoCombustible() {
+		return cbTipoCombustible.getSelectedIndex();
+	}
+
+	public String getPuertas() {
+		return (rb_3puertas.isSelected() ? "3" : "5");
+	}
+	
+	public String getLblModelo() {
+		return lblModelo.getText();
+	}
+
+	public String getTxt_marca() {
+		return txt_marca.getText();
+	}
+
+	public String getTxt_matricula() {
+		return txt_matricula.getText();
+	}
+
+	public String getTxt_potencia() {
+		return txt_potencia.getText();
 	}
 
 	// Ocultar y mostrar
@@ -302,9 +313,9 @@ public class VentanaVehiculos {
 						txt_matricula.getText(), 
 						txt_marca.getText(),
 						lblModelo.getText(), 
-						(rb_3puertas.isSelected() ? 3 : 5),
-						Integer.parseInt(cbox_ano.getSelectedItem().toString()),
-						Integer.parseInt(txt_potencia.getText())
+						(rb_3puertas.isSelected() ? "3" : "5"),
+						cbox_ano.getSelectedItem().toString(),
+						txt_potencia.getText()
 						
 					);
 			}

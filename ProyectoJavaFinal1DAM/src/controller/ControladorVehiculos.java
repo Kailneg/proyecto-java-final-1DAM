@@ -41,7 +41,7 @@ public class ControladorVehiculos {
 	}
 
 	public TipoCombustible convertidorTipoCombustible() {
-		switch (vehiculos.tipoCombustibleIntToEnum().getSelectedIndex()) {
+		switch (vehiculos.getTipoCombustible()) {
 		case 0:
 			return TipoCombustible.DIESEL;
 		case 1:
@@ -57,15 +57,23 @@ public class ControladorVehiculos {
 
 		}
 	}
+	
+	public void validarDatos() {
+		
+	}
 
-	public void guardarVehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion,
-			int cv) {
+	public void guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
+			String cv) {
 		try {
 			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirCliente(new Vehiculo(matricula,
-					marca, modelo, puertas, anioMatriculacion, cv, convertidorTipoCombustible()));
-			System.out.println(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().toString());
-		} catch (Exception e) {
+					marca, modelo, Integer.parseInt(puertas), Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
+			System.out.println(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().obtenVehiculo("hola"));
+		}
+		catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
