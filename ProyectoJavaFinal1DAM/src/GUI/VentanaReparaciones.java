@@ -24,6 +24,8 @@ import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaReparaciones {
 
@@ -50,6 +52,10 @@ public class VentanaReparaciones {
 	private JComboBox cBox_estado;
 	private JTextArea txt_comentario;
 	private JButton btn_guardar;
+	private JMenuBar menuBar;
+	private JMenu mnModo;
+	private JMenuItem mntmLeer;
+	private JMenuItem mntmCrear;
 	
 
 
@@ -92,6 +98,19 @@ public class VentanaReparaciones {
 		txt_comentario = new JTextArea();
 		btn_guardar = new JButton("GUARDAR");
 		btn_atras = new JButton("ATRAS");
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		mnModo = new JMenu("Modo");
+		menuBar.add(mnModo);
+		
+		mntmLeer = new JMenuItem("Leer");
+
+		mnModo.add(mntmLeer);
+		
+		mntmCrear = new JMenuItem("Crear");
+		mnModo.add(mntmCrear);
 	}
 
 	/**
@@ -205,6 +224,19 @@ public class VentanaReparaciones {
 	 * Contiene los listeners
 	 */
 	private void adaptadores() {
+		//MENU SUPERIOR
+		//Boton leer
+		mntmLeer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		//Boton crear
+		mntmCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		btn_atras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
