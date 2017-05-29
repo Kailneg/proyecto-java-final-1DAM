@@ -56,7 +56,7 @@ public class VentanaVehiculos {
 	private JLabel label;
 	private JButton button;
 	private JButton button_1;
-	private JButton btnEditar;
+	private JButton btnGuardar;
 	private JTextField txt_cv;
 	private JTextField txt_marca;
 	private JTextField txt_matricula;
@@ -123,7 +123,7 @@ public class VentanaVehiculos {
 		label = new JLabel("0/0");
 		button = new JButton("<");
 		button_1 = new JButton(">");
-		btnEditar = new JButton("Editar");
+		btnGuardar = new JButton("Guardar");
 		txt_cv = new JTextField();
 		txt_marca = new JTextField();
 		txt_matricula = new JTextField();
@@ -171,7 +171,7 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(label);
 		frmVehiculos.getContentPane().add(button);
 		frmVehiculos.getContentPane().add(button_1);
-		frmVehiculos.getContentPane().add(btnEditar);
+		frmVehiculos.getContentPane().add(btnGuardar);
 		
 		buttonGroup.add(rb_3puertas);
 		buttonGroup.add(rb_5puertas);
@@ -276,8 +276,8 @@ public class VentanaVehiculos {
 		
 		button_1.setBounds(184, 386, 53, 93);
 		
-		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(93, 426, 89, 53);
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGuardar.setBounds(93, 426, 89, 53);
 		
 	}
 
@@ -324,6 +324,13 @@ public class VentanaVehiculos {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorVehiculos.pulsarAtras();
+			}
+		});
+		
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorVehiculos.guardarVehiculo();
 			}
 		});
 	}

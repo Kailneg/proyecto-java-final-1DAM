@@ -1,7 +1,6 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,28 +26,15 @@ import java.awt.event.ActionEvent;
 public class VentanaClientes extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_nif;
-	private JTextField txt_nombre;
-	private JTextField txt_apellidos;
-	private JTextField txt_direccion;
-	private JTextField txt_telefono;
-	private JTextField txt_email;
+	private JTextField txt_nif, txt_nombre, txt_apellidos, txt_direccion, txt_telefono, txt_email;
 	private JMenuBar menuBar;
 	private JMenu mn_modo;
-	private JMenuItem mntm_lectura;
-	private JMenuItem mntm_escritura;
-	private JPanel panel;
-	private JLabel lb_clientes;
-	private JLabel lb_nif;
-	private JLabel lb_nombre;
-	private JLabel lb_apellidos;
+	private JMenuItem mntm_lectura, mntm_escritura;
+	private JPanel panel, panel_botones;
+	private JLabel lb_clientes, lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
 	private JSeparator separator;
-	private JLabel lb_direccion;
-	private JLabel lb_telefono;
 	private JLabel lb_email;
-	private JPanel panel_botones;
-	private JButton btn_crear;
-	private JButton btnAtrs;
+	private JButton btn_crear, btnAtrs;
 	private ControladorCliente controladorCliente;
 
 	/**
