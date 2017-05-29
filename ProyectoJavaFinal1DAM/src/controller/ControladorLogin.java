@@ -3,6 +3,7 @@ package controller;
 import javax.swing.JOptionPane;
 
 import GUI.VentanaLogin;
+import contenedores.ContenedorPrincipal;
 import contenedores.ContenedorUsuarios;
 import exceptions.ContraseniaNoEncontrada;
 import exceptions.UsuarioNoEncontrado;
@@ -15,7 +16,7 @@ public class ControladorLogin {
 
 	public ControladorLogin(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
-		this.usuarios = new ContenedorUsuarios();
+		this.usuarios = ContenedorPrincipal.getContenedorPrincipal().getContenedorUsuarios();
 		this.login = new VentanaLogin(this);
 	}
 	
