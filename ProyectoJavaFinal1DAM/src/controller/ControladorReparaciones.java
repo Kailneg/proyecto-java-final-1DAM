@@ -45,5 +45,6 @@ public class ControladorReparaciones {
 	
 	public void pulsarTest(){
 		reparaciones.setModoEscritura(!reparaciones.getIsModoEscritura());
+		reparaciones.cargarReparacion(contenedorReparaciones.obtenReparacion(5));
 	}
 }

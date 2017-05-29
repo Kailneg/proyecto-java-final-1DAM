@@ -1,5 +1,5 @@
 package enums;
 
 public enum EstadoReparacion {
-	REPARADO, NO_REPARADO, PENDIENTE, BLOQUEADO
+	Reparado, No_reparado, Pediente, Bloqueado
 }

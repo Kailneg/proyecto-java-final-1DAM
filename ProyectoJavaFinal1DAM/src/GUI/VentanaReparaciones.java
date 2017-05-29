@@ -24,6 +24,7 @@ import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionListener;
@@ -40,8 +41,8 @@ public class VentanaReparaciones {
 	// Constantes
 	private final Integer dias[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
 			24, 25, 26, 27, 28, 29, 30, 31 };
-	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
-			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
+	private final Integer anios[] = { 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010
+			, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018};
 
 	// Variables
 	private ControladorReparaciones controladorReparaciones;
@@ -111,9 +112,9 @@ public class VentanaReparaciones {
 		cb_anio_inicio.setEnabled(escritura);
 		cb_dia_fin.setEnabled(escritura);
 		cb_mes_fin.setEnabled(escritura);
-		cb_anio_fin.setEditable(escritura);
-		cb_ordenar.setEditable(escritura);
+		cb_anio_fin.setEnabled(escritura);
 		cb_estado.setEnabled(escritura);
+		cb_ordenar.setEditable(escritura);
 		
 		if(escritura)
 			btn_crear.setText("Crear");
@@ -124,18 +125,24 @@ public class VentanaReparaciones {
 	
 	public void cargarReparacion(Reparacion reparacion){
 		if (!isModoEscritura) {
+			JComboBox[] comboBoxes = { cb_dia_inicio, cb_mes_inicio, cb_anio_inicio,
+				cb_dia_fin, cb_mes_fin, cb_anio_fin };
 			txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
 			txt_propietario.setText(reparacion.getPropietario());
 			txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
 			txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
 			txt_comentario.setText(reparacion.getComentarios());
-			cb_dia_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.DAY_OF_MONTH));
+			
+			//Combo boxes
+			cb_dia_inicio.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
 			cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
-			cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR));
-			cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH));
+			cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR)-anios[0]);
+			cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
 			cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
-			cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR));
+			cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR)-anios[0]);
+			
 			cb_estado.setSelectedItem(reparacion.getEstado());
+
 		} else {
 			throw new RuntimeException("No se puede cargar una reparación en modo Escritura");
 		}
@@ -300,7 +307,7 @@ public class VentanaReparaciones {
 		cb_ordenar.setBounds(372, 26, 97, 20);
 
 		lb_estado.setBounds(286, 96, 76, 14);
-		cb_estado.setModel(new DefaultComboBoxModel(new String[] { "Reparado", "Pendiente", "No reparado" }));
+		cb_estado.setModel(new DefaultComboBoxModel(EstadoReparacion.values()));
 		cb_estado.setBounds(372, 93, 97, 20);
 
 		lb_comentarios.setBounds(286, 155, 76, 14);
