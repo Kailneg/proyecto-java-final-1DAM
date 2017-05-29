@@ -35,14 +35,13 @@ public class VentanaVehiculos {
 	private JLabel lblPuertas;
 	private JRadioButton rb_3puertas;
 	private JRadioButton rb_5puertas;
-	private JLabel lblColor;
 	private JLabel lblAoMatriculacin;
 	private JLabel lblCaballos;
 	private JLabel lblTipoCombustible;
 	private JButton btnClientes;
 	private JButton btnRepararVehvulo;
 	private JButton btnAtrs;
-	private JLabel label;
+	private JLabel labelContadorVehiculos;
 	private JButton button;
 	private JButton button_1;
 	private JButton btnGuardar;
@@ -50,7 +49,6 @@ public class VentanaVehiculos {
 	private JTextField txt_marca;
 	private JTextField txt_matricula;
 	private JTextField txt_modelo;
-	private JTextField txt_color;
 	private JTextField txt_potencia;
 	private JComboBox cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible;
 	private ControladorVehiculos controladorVehiculos;
@@ -119,15 +117,16 @@ public class VentanaVehiculos {
 		lblModelo = new JLabel("Modelo:");
 		lblPuertas = new JLabel("Puertas:");
 		rb_3puertas = new JRadioButton("3");
+		rb_3puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rb_5puertas = new JRadioButton("5");
-		lblColor = new JLabel("Color:");
+		rb_5puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAoMatriculacin = new JLabel("Matriculaci\u00F3n:");
 		lblCaballos = new JLabel("Potencia:");
 		lblTipoCombustible = new JLabel("Combustible:");
 		btnClientes = new JButton("Clientes");
 		btnRepararVehvulo = new JButton("Reparar Veh\u00EDvulo");
 		btnAtrs = new JButton("Atras");
-		label = new JLabel("0/0");
+		labelContadorVehiculos = new JLabel("0/0");
 		button = new JButton("<");
 		button_1 = new JButton(">");
 		btnGuardar = new JButton("Guardar");
@@ -135,7 +134,6 @@ public class VentanaVehiculos {
 		txt_marca = new JTextField();
 		txt_matricula = new JTextField();
 		txt_modelo = new JTextField();
-		txt_color = new JTextField();
 		txt_potencia = new JTextField();
 		cbox_dia = new JComboBox();
 		cbox_mes = new JComboBox();
@@ -155,7 +153,6 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(lblPuertas);
 		frmVehiculos.getContentPane().add(rb_3puertas);
 		frmVehiculos.getContentPane().add(rb_5puertas);
-		frmVehiculos.getContentPane().add(lblColor);
 		frmVehiculos.getContentPane().add(lblAoMatriculacin);
 		frmVehiculos.getContentPane().add(lblCaballos);
 		frmVehiculos.getContentPane().add(lblTipoCombustible);
@@ -163,7 +160,7 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(btnRepararVehvulo);
 		frmVehiculos.getContentPane().add(btnAtrs);
 		frmVehiculos.getContentPane().setLayout(null);
-		frmVehiculos.getContentPane().add(label);
+		frmVehiculos.getContentPane().add(labelContadorVehiculos);
 		frmVehiculos.getContentPane().add(button);
 		frmVehiculos.getContentPane().add(button_1);
 		frmVehiculos.getContentPane().add(btnGuardar);
@@ -189,10 +186,6 @@ public class VentanaVehiculos {
 		txt_modelo.setColumns(10);
 		txt_modelo.setBounds(120, 74, 118, 24);
 		frmVehiculos.getContentPane().add(txt_modelo);
-
-		txt_color.setColumns(10);
-		txt_color.setBounds(120, 146, 118, 24);
-		frmVehiculos.getContentPane().add(txt_color);
 
 		txt_potencia.setColumns(10);
 		txt_potencia.setBounds(120, 280, 89, 24);
@@ -232,13 +225,10 @@ public class VentanaVehiculos {
 		lblModelo.setBounds(37, 75, 64, 19);
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPuertas.setBounds(37, 120, 64, 14);
+		lblPuertas.setBounds(37, 138, 64, 14);
 
-		rb_3puertas.setBounds(133, 116, 38, 23);
-		rb_5puertas.setBounds(200, 116, 38, 23);
-
-		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblColor.setBounds(37, 150, 46, 14);
+		rb_3puertas.setBounds(120, 132, 38, 23);
+		rb_5puertas.setBounds(160, 132, 38, 23);
 
 		lblAoMatriculacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAoMatriculacin.setBounds(37, 188, 98, 14);
@@ -258,8 +248,8 @@ public class VentanaVehiculos {
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtrs.setBounds(262, 386, 147, 76);
 
-		label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		label.setBounds(120, 375, 38, 23);
+		labelContadorVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelContadorVehiculos.setBounds(120, 375, 38, 23);
 
 		button.setBounds(37, 369, 53, 93);
 
@@ -278,6 +268,10 @@ public class VentanaVehiculos {
 		rb_5puertas.setEnabled(b);
 		cbox_ano.setEnabled(b);
 		txt_potencia.setEnabled(b);
+		cbox_dia.setEnabled(b);
+		cbox_mes.setEnabled(b);
+		cbox_ano.setEnabled(b);
+		cbTipoCombustible.setEnabled(b);
 	}
 	
 	/**

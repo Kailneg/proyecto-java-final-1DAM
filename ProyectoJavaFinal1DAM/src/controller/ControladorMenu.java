@@ -22,7 +22,7 @@ public class ControladorMenu {
 	
 	public void pulsarBuscar(){
 		menu.ocultarVentana();
-		controladorPrincipal.getControladorVehiculo().mostrarVehiculos(/*modoLectura*/true);
+		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 	
 	public void pulsarNuevo(){

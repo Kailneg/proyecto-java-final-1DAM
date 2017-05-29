@@ -18,7 +18,7 @@ public class ControladorVehiculos {
 	}
 
 	public void mostrarVehiculos() {
-		vehiculos.mostrarVentana(false);//Mostrar ventana con enabled a false
+		vehiculos.mostrarVentana(true);//Mostrar ventana con enabled a false
 	}
 	
 	public void mostrarVehiculos(boolean modoLectura) {
