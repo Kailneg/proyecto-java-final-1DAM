@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,13 +21,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Set;
+import java.util.stream.IntStream;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import enums.Meses;
 
 public class VentanaVehiculos {
-
+	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final Integer dias[] = {1, 2, 3, 4 , 5, 6 ,7 ,8 ,9 ,10,
+			11, 12, 13, 14, 15 , 16, 17 ,18 ,19, 20, 21, 22, 23, 24,
+			25, 26, 27, 28, 29, 30, 31};
+	private final Integer anios[] = {2017, 2016, 2015, 2014, 2013, 2012, 2011
+			, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000
+			, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990};
+	
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -166,7 +178,7 @@ public class VentanaVehiculos {
 		txt_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txt_cv.setEditable(false);
 		txt_cv.setText("CV");
-		txt_cv.setBounds(207, 243, 30, 24);
+		txt_cv.setBounds(207, 297, 30, 24);
 		frmVehiculos.getContentPane().add(txt_cv);
 		txt_cv.setColumns(10);	
 		
@@ -188,27 +200,27 @@ public class VentanaVehiculos {
 		
 		
 		txt_combustible.setColumns(10);
-		txt_combustible.setBounds(119, 281, 118, 24);
+		txt_combustible.setBounds(119, 335, 118, 24);
 		frmVehiculos.getContentPane().add(txt_combustible);
 		
 		
 		txt_potencia.setColumns(10);
-		txt_potencia.setBounds(119, 243, 89, 24);
+		txt_potencia.setBounds(119, 297, 89, 24);
 		frmVehiculos.getContentPane().add(txt_potencia);
 		
 		
-		cbox_dia.setModel(new DefaultComboBoxModel(new String[] {"D"}));
-		cbox_dia.setBounds(121, 202, 38, 20);
+		cbox_dia.setModel(new DefaultComboBoxModel(dias));
+		cbox_dia.setBounds(119, 202, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_dia);
 		
 
-		cbox_mes.setModel(new DefaultComboBoxModel(new String[] {"M"}));
-		cbox_mes.setBounds(158, 202, 38, 20);
+		cbox_mes.setModel(new DefaultComboBoxModel(Meses.values()));
+		cbox_mes.setBounds(119, 232, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_mes);
 		
 
-		cbox_ano.setModel(new DefaultComboBoxModel(new String[] {"A"}));
-		cbox_ano.setBounds(197, 202, 40, 20);
+		cbox_ano.setModel(new DefaultComboBoxModel<Integer>(anios));
+		cbox_ano.setBounds(119, 264, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_ano);
 	}
 
@@ -216,7 +228,7 @@ public class VentanaVehiculos {
 	 * Contiene las propiedades de todos los componentes del frame
 	 */
 	private void componentsProperties(){
-		frmVehiculos.setBounds(100, 100, 450, 478);
+		frmVehiculos.setBounds(100, 100, 450, 550);
 		frmVehiculos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -241,30 +253,30 @@ public class VentanaVehiculos {
 		lblAoMatriculacin.setBounds(36, 205, 98, 14);
 		
 		lblCaballos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCaballos.setBounds(36, 246, 64, 14);
+		lblCaballos.setBounds(36, 300, 64, 14);
 		
 		lblTipoCombustible.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTipoCombustible.setBounds(36, 284, 73, 14);
+		lblTipoCombustible.setBounds(36, 338, 73, 14);
 		
 		btnClientes.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnClientes.setBounds(261, 29, 147, 108);
 		
 		btnRepararVehvulo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnRepararVehvulo.setBounds(261, 167, 147, 108);
+		btnRepararVehvulo.setBounds(261, 197, 147, 108);
 		
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAtrs.setBounds(261, 335, 147, 76);
+		btnAtrs.setBounds(261, 403, 147, 76);
 		
 		
 		label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		label.setBounds(119, 324, 38, 23);
+		label.setBounds(119, 392, 38, 23);
 		
-		button.setBounds(36, 318, 53, 93);
+		button.setBounds(36, 386, 53, 93);
 		
-		button_1.setBounds(184, 318, 53, 93);
+		button_1.setBounds(184, 386, 53, 93);
 		
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(93, 358, 89, 53);
+		btnEditar.setBounds(93, 426, 89, 53);
 		
 	}
 
