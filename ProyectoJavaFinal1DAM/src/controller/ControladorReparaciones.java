@@ -32,8 +32,8 @@ public class ControladorReparaciones {
 	public void pulsarCrear(){
 		contenedorReparaciones.aniadirReparacion(
 				new Reparacion(reparaciones.getIdReparacion(), reparaciones.getFechaInicio(), 
-						reparaciones.getFechaFin(), reparaciones.getPresupuesto(), 
-						reparaciones.getEstado(), reparaciones.getComentarios()));
+						reparaciones.getFechaFin(), reparaciones.getPropietario(), 
+						reparaciones.getPresupuesto(), reparaciones.getEstado(), reparaciones.getComentarios()));
 		System.out.println(Arrays.toString(ContenedorPrincipal.getContenedorPrincipal()
 				.getcontenedorReparaciones().getCopiaReparaciones().toArray()));
 	}
@@ -41,5 +41,9 @@ public class ControladorReparaciones {
 	public void pulsarAtras(){
 		reparaciones.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos(false);
+	}
+	
+	public void pulsarTest(){
+		reparaciones.setModoEscritura(!reparaciones.getIsModoEscritura());
 	}
 }
