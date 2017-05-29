@@ -69,5 +69,11 @@ public class Reparacion {
 		this.comentarios = comentarios;
 	}
 
+	@Override
+	public String toString() {
+		return "Reparacion [idReparacion=" + idReparacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", presupuesto=" + presupuesto + ", estado=" + estado + ", comentarios=" + comentarios + "]";
+	}
+
 
 }

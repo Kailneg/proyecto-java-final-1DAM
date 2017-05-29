@@ -54,8 +54,11 @@ public class Vehiculo {
 	public void setCombustible(TipoCombustible combustible) {
 		this.combustible = combustible;
 	}
-	
 
-	
+	@Override
+	public String toString() {
+		return "Vehiculo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", puertas=" + puertas
+				+ ", anioMatriculacion=" + anioMatriculacion + ", cv=" + cv + ", combustible=" + combustible + "]";
+	}
 
 }

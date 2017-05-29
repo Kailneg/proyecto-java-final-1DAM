@@ -113,4 +113,10 @@ public class Usuario {
 		else
 			throw new ContraseniaNoEncontrada();
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
+	}
+	
 }
