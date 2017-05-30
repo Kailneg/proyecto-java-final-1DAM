@@ -1,10 +1,12 @@
 package contenedores;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import exceptions.ClienteNoEncontrado;
 import exceptions.ReparacionNoEncontrada;
 import exceptions.UsuarioNoEncontrado;
+import models.Cliente;
 import models.Reparacion;
 import models.Usuario;
 
@@ -14,6 +16,10 @@ public class ContenedorReparaciones {
 	
 	public ContenedorReparaciones() {
 		reparaciones = new ArrayList<Reparacion>();
+	}
+	
+	public List<Reparacion> getCopiaReparaciones(){
+		return reparaciones.subList(0, reparaciones.size());
 	}
 	
 	public Reparacion obtenReparacion(int idReparacion) throws UsuarioNoEncontrado {

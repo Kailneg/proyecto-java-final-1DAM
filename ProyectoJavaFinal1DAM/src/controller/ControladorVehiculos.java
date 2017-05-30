@@ -18,7 +18,7 @@ public class ControladorVehiculos {
 	}
 
 	public void mostrarVehiculos() {
-		vehiculos.mostrarVentana();
+		vehiculos.mostrarVentana();//Mostrar ventana con enabled a false
 	}
 
 	public void ocultarVehiculos() {
@@ -40,6 +40,14 @@ public class ControladorVehiculos {
 		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 
+	public void enableModoLectura() {
+		vehiculos.setModoLectura(true);
+	}
+	
+	public void disableModoLectura() {
+		vehiculos.setModoLectura(false);
+	}
+
 	public TipoCombustible convertidorTipoCombustible() {
 		switch (vehiculos.getTipoCombustible()) {
 		case 0:
@@ -58,25 +66,32 @@ public class ControladorVehiculos {
 		}
 	}
 
-	public void validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
+	public boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
 		try {
-			if (matricula == null || marca == null || modelo == null || puertas == null || anioMatriculacion == null || cv == null) {
-				throw new Exception("Los datos no pueden estar vacios");
+			if (matricula.isEmpty() || marca.isEmpty() || modelo.isEmpty()) {
+				throw new NullPointerException("No pueden existir datos vacios");
 			}
+			Integer.parseInt(cv);
+			Integer.parseInt(puertas);
+			Integer.parseInt(anioMatriculacion);
+			return true;
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 
 	}
 
 	public void guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
-		validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv);
-		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
-				.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-						Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
+		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
+			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
+			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
+					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
+		}
 	}
 }
