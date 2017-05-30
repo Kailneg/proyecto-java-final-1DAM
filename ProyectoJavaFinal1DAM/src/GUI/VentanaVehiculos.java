@@ -57,6 +57,7 @@ public class VentanaVehiculos {
 	private JTextField txt_modelo;
 	private JTextField txt_potencia;
 	private JComboBox<Integer> cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible, cb_TipoVehiculo;
+	private JButton btnBorrarVehiculo;
 	private ControladorVehiculos controladorVehiculos;
 
 	/**
@@ -70,7 +71,7 @@ public class VentanaVehiculos {
 	public TipoCombustible getTipoCombustible() {
 		return TipoCombustible.valueOf(cbTipoCombustible.getSelectedItem().toString());
 	}
-	
+
 	public TipoVehiculo getTipoVehiculo() {
 		return TipoVehiculo.valueOf(cb_TipoVehiculo.getSelectedItem().toString());
 	}
@@ -90,12 +91,12 @@ public class VentanaVehiculos {
 	public String getTxt_potencia() {
 		return txt_potencia.getText();
 	}
-	
+
 	public void setCantidadVehiculos(String e) {
 		labelContadorVehiculos.setText(e);
 	}
-	
-	public void setTipoVehiculo(TipoVehiculo t){
+
+	public void setTipoVehiculo(TipoVehiculo t) {
 		cb_TipoVehiculo.setSelectedItem(t);
 	}
 
@@ -114,19 +115,19 @@ public class VentanaVehiculos {
 			txt_marca.setText(controladorVehiculos.obtenerVehiculoActual().getMarca());
 			txt_matricula.setText(controladorVehiculos.obtenerVehiculoActual().getMatricula());
 			txt_modelo.setText(controladorVehiculos.obtenerVehiculoActual().getModelo());
-			
+
 			if (controladorVehiculos.obtenerVehiculoActual().getPuertas() == 3)
 				buttonGroup.setSelected(rb_3puertas.getModel(), true);
 			else
 				buttonGroup.setSelected(rb_5puertas.getModel(), true);
-			
+
 			txt_potencia.setText(String.valueOf(controladorVehiculos.obtenerVehiculoActual().getPotencia()));
-			//TODO:
-			//cbox_dia.setToolTipText(controladorVehiculos.updateData());
-			//cbox_mes.setToolTipText(mes);
-			//cbox_ano.setToolTipText(anio);
+			// TODO:
+			// cbox_dia.setToolTipText(controladorVehiculos.updateData());
+			// cbox_mes.setToolTipText(mes);
+			// cbox_ano.setToolTipText(anio);
 			cbTipoCombustible.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getCombustible());
-			cb_TipoVehiculo.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getTipoVehiculo());	
+			cb_TipoVehiculo.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getTipoVehiculo());
 		}
 	}
 
@@ -251,6 +252,12 @@ public class VentanaVehiculos {
 		cb_TipoVehiculo.setModel(new DefaultComboBoxModel(TipoVehiculo.values()));
 		cb_TipoVehiculo.setBounds(120, 152, 118, 20);
 		frmVehiculos.getContentPane().add(cb_TipoVehiculo);
+
+		btnBorrarVehiculo = new JButton("Borrar Vehiculo");
+
+		btnBorrarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBorrarVehiculo.setBounds(262, 279, 147, 108);
+		frmVehiculos.getContentPane().add(btnBorrarVehiculo);
 	}
 
 	/**
@@ -288,10 +295,10 @@ public class VentanaVehiculos {
 		btnClientes.setBounds(262, 12, 147, 108);
 
 		btnRepararVehvulo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnRepararVehvulo.setBounds(262, 180, 147, 108);
+		btnRepararVehvulo.setBounds(262, 139, 147, 108);
 
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAtrs.setBounds(262, 375, 147, 76);
+		btnAtrs.setBounds(262, 416, 147, 35);
 
 		labelContadorVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelContadorVehiculos.setBounds(120, 375, 38, 23);
@@ -346,7 +353,7 @@ public class VentanaVehiculos {
 				cargarVehiculo(controladorVehiculos.pulsarLeftArrow());
 			}
 		});
-		
+
 		buttonRightArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cargarVehiculo(controladorVehiculos.pulsarRightArrow());
@@ -366,16 +373,23 @@ public class VentanaVehiculos {
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
 					try {
-						cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(),
-								txt_modelo.getText(), getPuertas(), cbox_ano.getSelectedItem().toString(),
-								txt_potencia.getText()));
+						cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(),
+								txt_marca.getText(), txt_modelo.getText(), getPuertas(),
+								cbox_ano.getSelectedItem().toString(), txt_potencia.getText()));
 					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(null, "Algo ha ido mal", "Error",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Algo ha ido mal", "Error", JOptionPane.ERROR_MESSAGE);
 					}
+				}
+			}
+		});
+
+		btnBorrarVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (Constantes.MODO_CREAR) {
+					controladorVehiculos.pulsarBorrarVehiculo();
 				}
 			}
 		});

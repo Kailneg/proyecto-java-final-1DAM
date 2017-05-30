@@ -67,6 +67,11 @@ public class ControladorVehiculos {
 		actualizarCantidadCoches();
 		return obtenerVehiculoActual();
 	}
+	
+	public void pulsarBorrarVehiculo() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().borrarVehiculo(obtenerVehiculoActual());
+		actualizarCantidadCoches();
+	}
 
 	private void actualizarCantidadCoches() {
 		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex()

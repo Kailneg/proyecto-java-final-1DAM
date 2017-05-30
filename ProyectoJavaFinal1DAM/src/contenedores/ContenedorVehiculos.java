@@ -2,6 +2,8 @@ package contenedores;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import exceptions.VehiculoNoEncontrado;
 import models.Vehiculo;
 
@@ -18,8 +20,7 @@ public class ContenedorVehiculos {
 	public Vehiculo obtenerVehiculo() {
 		if (!vehiculos.isEmpty()) {
 			return obtenerVehiculo(index);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -38,6 +39,10 @@ public class ContenedorVehiculos {
 				return v;
 		}
 		throw new VehiculoNoEncontrado();
+	}
+
+	public void borrarVehiculo(Vehiculo v) {
+		vehiculos.remove(v);
 	}
 
 	public boolean aniadirCliente(Vehiculo vehiculo) {
