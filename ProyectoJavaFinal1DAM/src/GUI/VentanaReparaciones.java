@@ -22,6 +22,8 @@ import globals.Constantes;
 import models.Reparacion;
 
 import java.awt.Font;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 
 public class VentanaReparaciones {
 
@@ -60,6 +62,9 @@ public class VentanaReparaciones {
 	private JComboBox cb_anio_fin;
 	private JButton btn_crear;
 	private JButton btn_atras;
+	private JButton button;
+	private JButton button_1;
+	private JPanel panel;
 
 	/**
 	 * Create the application.
@@ -203,8 +208,6 @@ public class VentanaReparaciones {
 		cb_dia_fin = new JComboBox();
 		cb_mes_fin = new JComboBox();
 		cb_anio_fin = new JComboBox();
-		btn_crear = new JButton("Crear");
-		btn_atras = new JButton("Atras");
 	}
 
 	/**
@@ -229,8 +232,22 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(cb_ordenar);
 		frame.getContentPane().add(cb_estado);
 		frame.getContentPane().add(txt_comentario);
-		frame.getContentPane().add(btn_crear);
-		frame.getContentPane().add(btn_atras);
+		
+		panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(15, 273, 246, 69);
+		frame.getContentPane().add(panel);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
+		btn_crear = new JButton("Crear");
+		panel.add(btn_crear);
+		btn_atras = new JButton("Atras");
+		panel.add(btn_atras);
+		
+		button = new JButton("<");
+		panel.add(button);
+		
+		button_1 = new JButton(">");
+		panel.add(button_1);
 		frame.getContentPane().add(cb_dia_inicio);
 		frame.getContentPane().add(cb_mes_inicio);
 		frame.getContentPane().add(cb_anio_inicio);
@@ -318,9 +335,6 @@ public class VentanaReparaciones {
 		lb_comentarios.setBounds(286, 155, 76, 14);
 		txt_comentario.setLineWrap(true);
 		txt_comentario.setBounds(286, 180, 183, 159);
-
-		btn_crear.setBounds(27, 277, 129, 62);
-		btn_atras.setBounds(166, 277, 96, 62);
 		btn_crear.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		btn_atras.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		

@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import enums.TipoCombustible;
+import enums.TipoVehiculo;
 
 public class VentanaVehiculos {
 
@@ -204,6 +205,16 @@ public class VentanaVehiculos {
 		cbTipoCombustible.setModel(new DefaultComboBoxModel(TipoCombustible.values()));
 		cbTipoCombustible.setBounds(120, 316, 118, 20);
 		frmVehiculos.getContentPane().add(cbTipoCombustible);
+		
+		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
+		lblTipoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTipoVehiculo.setBounds(32, 152, 69, 20);
+		frmVehiculos.getContentPane().add(lblTipoVehiculo);
+		
+		JComboBox<Integer> cb_TipoVehiculo = new JComboBox<Integer>();
+		cb_TipoVehiculo.setModel(new DefaultComboBoxModel(TipoVehiculo.values()));
+		cb_TipoVehiculo.setBounds(120, 152, 118, 20);
+		frmVehiculos.getContentPane().add(cb_TipoVehiculo);
 	}
 
 	/**
@@ -223,10 +234,10 @@ public class VentanaVehiculos {
 		lblModelo.setBounds(37, 75, 64, 19);
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPuertas.setBounds(37, 138, 64, 14);
+		lblPuertas.setBounds(37, 110, 64, 14);
 
-		rb_3puertas.setBounds(120, 132, 38, 23);
-		rb_5puertas.setBounds(160, 132, 38, 23);
+		rb_3puertas.setBounds(120, 104, 58, 23);
+		rb_5puertas.setBounds(185, 104, 53, 23);
 
 		lblAoMatriculacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAoMatriculacin.setBounds(37, 188, 98, 14);
@@ -312,7 +323,7 @@ public class VentanaVehiculos {
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
 					controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(), txt_modelo.getText(),
-							(rb_3puertas.isSelected() ? "3" : "5"), cbox_ano.getSelectedItem().toString(),
+							getPuertas(), cbox_ano.getSelectedItem().toString(),
 							txt_potencia.getText()
 
 					);	
