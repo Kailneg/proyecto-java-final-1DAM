@@ -345,6 +345,7 @@ public class VentanaVehiculos {
 		txt_marca.setEnabled(b);
 		txt_matricula.setEnabled(b);
 		txt_modelo.setEnabled(b);
+		rb_2puertas.setEnabled(b);
 		rb_3puertas.setEnabled(b);
 		rb_5puertas.setEnabled(b);
 		cbox_ano.setEnabled(b);
