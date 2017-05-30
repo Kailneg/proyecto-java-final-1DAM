@@ -1,6 +1,7 @@
 package contenedores;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
@@ -18,8 +19,8 @@ public class ContenedorVehiculos {
 		vehiculos = new ArrayList<Vehiculo>();
 		
 		// --- VEHICULOS DE PRUEBA
-		vehiculos.add(new Vehiculo("7898MA", "Ferrari", "Enzo", 2, 2004, 660, TipoCombustible.Gasolina, TipoVehiculo.Coche));
-		vehiculos.add(new Vehiculo("6347GCP", "Mercedes", "Actros", 2, 2010, 460, TipoCombustible.Gasolina, TipoVehiculo.Camion));
+		vehiculos.add(new Vehiculo("7898MA", "Ferrari", "Enzo", 2, Calendar.getInstance(), 660, TipoCombustible.Gasolina, TipoVehiculo.Coche));
+		vehiculos.add(new Vehiculo("6347GCP", "Mercedes", "Actros", 2, Calendar.getInstance(), 460, TipoCombustible.Gasolina, TipoVehiculo.Camion));
 		// --- VEHICULOS DE PRUEBA
 		
 		index = 0;
