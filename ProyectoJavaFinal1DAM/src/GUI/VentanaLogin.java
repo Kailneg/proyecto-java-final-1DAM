@@ -135,7 +135,7 @@ public class VentanaLogin {
 	/**
 	 * Contiene los eventos asociados al frame
 	 */
-	private void componentsListeners() {
+	private void componentsAdapters() {
 		btn_entrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -166,8 +166,8 @@ public class VentanaLogin {
 	 */
 	private void loginComponents() {
 		componentsInitializers();
-		componentsAdders();
 		componentsProperties();
-		componentsListeners();
+		componentsAdders();
+		componentsAdapters();
 	}
 }
