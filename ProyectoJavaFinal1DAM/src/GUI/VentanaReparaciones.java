@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.management.RuntimeErrorException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import java.awt.Color;
@@ -35,7 +36,6 @@ public class VentanaReparaciones {
 
 	// Variables
 	private ControladorReparaciones controladorReparaciones;
-	private boolean isModoEscritura;
 	private JFrame frame;
 	private JTextField txt_ID;
 	private JTextField txt_propietario;
@@ -71,7 +71,6 @@ public class VentanaReparaciones {
 	 */
 	public VentanaReparaciones(ControladorReparaciones controladorReparaciones) {
 		this.controladorReparaciones = controladorReparaciones;
-		this.isModoEscritura = true;
 		componentsInitializers();
 		componentsProperties();
 		componentsAdders();
@@ -89,61 +88,28 @@ public class VentanaReparaciones {
 		frame.setVisible(false);
 	}
 	
-	/**
-	 * Cambia entre modo escritura y modo lectura a la ventana
-	 * @param escritura true si es modo escritura, false para modo lectura
-	 */
-	public void setModoEscritura(boolean escritura){
-		isModoEscritura = escritura;
-		txt_ID.setEditable(escritura);
-		txt_propietario.setEditable(escritura);
-		txt_mecanico.setEditable(escritura);
-		txt_presupuesto.setEditable(escritura);
-		txt_comentario.setEditable(escritura);
-		cb_dia_inicio.setEnabled(escritura);
-		cb_mes_inicio.setEnabled(escritura);
-		cb_anio_inicio.setEnabled(escritura);
-		cb_dia_fin.setEnabled(escritura);
-		cb_mes_fin.setEnabled(escritura);
-		cb_anio_fin.setEnabled(escritura);
-		cb_estado.setEnabled(escritura);
-		cb_ordenar.setEditable(escritura);
-		
-		if(escritura)
-			btn_crear.setText("Crear");
-		else
-			btn_crear.setText("Editar");
-	}
-	
-	
-	public void cargarReparacion(Reparacion reparacion){
-		if (!isModoEscritura) {
+	public void cargarReparacion(Reparacion reparacion) throws RuntimeException {
+		if (!Constantes.MODO_CREAR) {
 			JComboBox[] comboBoxes = { cb_dia_inicio, cb_mes_inicio, cb_anio_inicio,
-				cb_dia_fin, cb_mes_fin, cb_anio_fin };
-			txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
-			txt_propietario.setText(reparacion.getPropietario());
-			txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
-			txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
-			txt_comentario.setText(reparacion.getComentarios());
-			
-			//Combo boxes
-			cb_dia_inicio.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
-			cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
-			cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR)-anios[0]);
-			cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
-			cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
-			cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR)-anios[0]);
-			
-			cb_estado.setSelectedItem(reparacion.getEstado());
-
+					cb_dia_fin, cb_mes_fin, cb_anio_fin };
+				txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
+				txt_propietario.setText(reparacion.getPropietario());
+				txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
+				txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
+				txt_comentario.setText(reparacion.getComentarios());
+				
+				//Combo boxes
+				cb_dia_inicio.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
+				cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
+				cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR)-anios[0]);
+				cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
+				cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
+				cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR)-anios[0]);
+				
+				cb_estado.setSelectedItem(reparacion.getEstado());
 		} else {
-			throw new RuntimeException("No se puede cargar una reparación en modo Escritura");
+			throw new RuntimeException("No se puede cargar la reparacion en modo crear");
 		}
-	}
-
-	// Getters
-	public boolean getIsModoEscritura(){
-		return isModoEscritura;
 	}
 	
 	public int getIdReparacion() {
@@ -208,6 +174,11 @@ public class VentanaReparaciones {
 		cb_dia_fin = new JComboBox();
 		cb_mes_fin = new JComboBox();
 		cb_anio_fin = new JComboBox();
+		btn_crear = new JButton("Crear");
+		btn_atras = new JButton("Atras");
+		button = new JButton("<");
+		button_1 = new JButton(">");
+		panel = new JPanel();
 	}
 
 	/**
@@ -233,20 +204,13 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(cb_estado);
 		frame.getContentPane().add(txt_comentario);
 		
-		panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(15, 273, 246, 69);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		btn_crear = new JButton("Crear");
 		panel.add(btn_crear);
-		btn_atras = new JButton("Atras");
 		panel.add(btn_atras);
-		
-		button = new JButton("<");
 		panel.add(button);
-		
-		button_1 = new JButton(">");
 		panel.add(button_1);
 		frame.getContentPane().add(cb_dia_inicio);
 		frame.getContentPane().add(cb_mes_inicio);
