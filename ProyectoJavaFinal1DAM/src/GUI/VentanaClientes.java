@@ -9,10 +9,9 @@ import controller.ControladorCliente;
 import globals.Constantes;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
@@ -27,17 +26,15 @@ public class VentanaClientes extends JFrame {
 	private JPanel contentPane;
 
 	private JTextField txt_nif, txt_nombre, txt_apellidos, txt_direccion, txt_telefono, txt_email;
-	private JMenuBar menuBar;
-	private JMenu mn_modo;
-	private JMenuItem mntm_lectura, mntm_escritura;
 	private JPanel panel, panel_botones;
-	private JLabel lb_clientes, lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
+	private JLabel lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
 	private JButton btnLeftArrow, btnRightArrow;
 
 	private JSeparator separator;
 	private JLabel lb_email;
 	private JButton btn_crear, btnAtrs;
 	private ControladorCliente controladorCliente;
+	private JButton btnBorrarCliente;
 
 	/**
 	 * Create the frame.
@@ -48,43 +45,66 @@ public class VentanaClientes extends JFrame {
 		setUpComponents();
 		addComponents();
 		addAdapters();
-
 	}
-	
-	//Ocultar y mostrar
-	public void mostrarVentana(){
+
+	// Ocultar y mostrar
+	public void mostrarVentana() {
 		hideComponents(Constantes.MODO_CREAR);
 		setVisible(true);
 	}
-	
-	public void ocultarVentana(){
+
+	public void ocultarVentana() {
 		setVisible(false);
 	}
-	
-	//Getters
-//nombre, apellidos, direccion, telefono, email
-	public String getNIF(){
+
+	// Getters
+	// nombre, apellidos, direccion, telefono, email
+	public String getNIF() {
 		return txt_nif.getText();
 	}
 	
-	public String getNombre(){
+	public void setNIF(String s) {
+		txt_nif.setText(s);
+	}
+
+	public String getNombre() {
 		return txt_nombre.getText();
 	}
 	
-	public String getApellidos(){
+	public void setNombre(String s){
+		txt_nombre.setText(s);
+	}
+
+	public String getApellidos() {
 		return txt_apellidos.getText();
 	}
 	
-	public String getDireccion(){
+	public void setApellidos(String s) {
+		txt_apellidos.setText(s);
+	}
+
+	public String getDireccion() {
 		return txt_direccion.getText();
 	}
 	
-	public long getTelefono(){
+	public void setDireccion(String s) {
+		txt_direccion.setText(s);
+	}
+
+	public long getTelefono() {
 		return Long.parseLong(txt_telefono.getText());
 	}
 	
-	public String getEmail(){
+	public void setTelefono(String s) {
+		txt_telefono.setText(s);
+	}
+
+	public String getEmail() {
 		return txt_email.getText();
+	}
+	
+	public void setEmail(String s) {
+		txt_email.setText(s);
 	}
 
 	private void setUpFrame() {
@@ -143,7 +163,7 @@ public class VentanaClientes extends JFrame {
 		txt_email.setBounds(291, 87, 126, 20);
 		panel_botones = new JPanel();
 		panel_botones.setBackground(Color.LIGHT_GRAY);
-		panel_botones.setBounds(20, 141, 397, 76);
+		panel_botones.setBounds(20, 141, 294, 76);
 		panel_botones.setLayout(new GridLayout(0, 2, 0, 0));
 		btn_crear = new JButton("Crear");
 		panel_botones.add(btn_crear);
@@ -151,12 +171,13 @@ public class VentanaClientes extends JFrame {
 		btnAtrs = new JButton("Atr\u00E1s");
 		panel_botones.add(btnAtrs);
 		btnAtrs.setFont(new Font("Tahoma", Font.BOLD, 22));
-		
 		btnLeftArrow = new JButton("<");
 		panel_botones.add(btnLeftArrow);
-		
 		btnRightArrow = new JButton(">");
 		panel_botones.add(btnRightArrow);
+		btnBorrarCliente = new JButton("Borrar");
+		btnBorrarCliente.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnBorrarCliente.setBounds(324, 141, 93, 76);
 	}
 
 	private void addComponents() {
@@ -175,8 +196,9 @@ public class VentanaClientes extends JFrame {
 		panel.add(lb_email);
 		panel.add(txt_email);
 		panel.add(panel_botones);
+		panel.add(btnBorrarCliente);
 	}
-	
+
 	private void hideComponents(boolean b) {
 		txt_nif.setEnabled(b);
 		txt_nombre.setEnabled(b);
@@ -188,38 +210,65 @@ public class VentanaClientes extends JFrame {
 		btn_crear.setEnabled(b);
 		btnLeftArrow.setEnabled(!b);
 		btnRightArrow.setEnabled(!b);
+
+		if (!b) {
+			btnBorrarCliente.setVisible(false);
+			panel_botones.setBounds(20, 141, 397, 76);
+		} else {
+			btnBorrarCliente.setVisible(true);
+			panel_botones.setBounds(20, 141, 294, 76);
+		}
 	}
 
 	private void addAdapters() {
-		//Boton Crear
+		// Boton Crear
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
-					controladorCliente.pulsarCrear();	
+					if (controladorCliente.guardarCliente() == null) {
+						JOptionPane.showMessageDialog(null, "Error al crear al nuevo cliente", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Añadido cliente numero " + controladorCliente.getNumeroClientes(), "Hecho!",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			}
 		});
-		
-		//Boton Atras
+
+		// Boton Atras
 		btnAtrs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorCliente.pulsarAtras();
 			}
 		});
-		
-		// Moverte en la lista de clientes a la izq
+
 		btnLeftArrow.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				if (!Constantes.MODO_CREAR) {
+					controladorCliente.pulsarLeftArrow();
+				}
 			}
 		});
-		
-		// Moverte en la lista de clientes a la derecha
+
 		btnRightArrow.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				if (!Constantes.MODO_CREAR) {
+					controladorCliente.pulsarRightArrow();
+				}
+			}
+		});
+
+		btnBorrarCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (Constantes.MODO_CREAR) {
+					controladorCliente.pulsarBorrarCliente();
+				}
 			}
 		});
 	}

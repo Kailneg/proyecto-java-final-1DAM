@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import enums.TipoCombustible;
+import enums.TipoVehiculo;
 import exceptions.VehiculoNoEncontrado;
 import models.Vehiculo;
 
@@ -14,6 +16,12 @@ public class ContenedorVehiculos {
 
 	public ContenedorVehiculos() {
 		vehiculos = new ArrayList<Vehiculo>();
+		
+		// --- VEHICULOS DE PRUEBA
+		vehiculos.add(new Vehiculo("7898MA", "Ferrari", "Enzo", 2, 2004, 660, TipoCombustible.Gasolina, TipoVehiculo.Coche));
+		vehiculos.add(new Vehiculo("6347GCP", "Mercedes", "Actros", 2, 2010, 460, TipoCombustible.Gasolina, TipoVehiculo.Camion));
+		// --- VEHICULOS DE PRUEBA
+		
 		index = 0;
 	}
 
@@ -41,8 +49,8 @@ public class ContenedorVehiculos {
 		throw new VehiculoNoEncontrado();
 	}
 
-	public void borrarVehiculo(Vehiculo v) {
-		vehiculos.remove(v);
+	public boolean borrarVehiculo(Vehiculo v) {
+		return vehiculos.remove(v);
 	}
 
 	public boolean aniadirCliente(Vehiculo vehiculo) {
