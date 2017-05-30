@@ -1,5 +1,7 @@
 package controller;
 
+import javax.swing.JOptionPane;
+
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
 import enums.TipoVehiculo;
@@ -70,8 +72,11 @@ public class ControladorVehiculos {
 	}
 	
 	public void pulsarBorrarVehiculo() {
-		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().borrarVehiculo(obtenerVehiculoActual());
-		actualizarCantidadCoches();
+		if (!ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().borrarVehiculo(obtenerVehiculoActual())) {
+			JOptionPane.showMessageDialog(null, "No se ha podido borrar el vehiculo actual", "Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			actualizarCantidadCoches();
+		}
 	}
 
 	private void actualizarCantidadCoches() {
