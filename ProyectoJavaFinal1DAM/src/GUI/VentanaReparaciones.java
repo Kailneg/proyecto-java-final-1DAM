@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import enums.EstadoReparacion;
 import enums.Meses;
@@ -65,13 +66,15 @@ public class VentanaReparaciones {
 	private JTextField txt_piezas;
 	private JTextField txt_euro2;
 	private JLabel lblTiempoInvertido;
-	private JTextField textField;
+	private JTextField txt_tiempoTotal;
 	private JButton btnInicio;
-	private JTextField txt_fechafin;
-	private JTextField txt_fechainicio;
+	private JTextField txt_fechaFin;
+	private JTextField txt_fechaInicio;
 	private JButton btnFin;
 	private JSeparator separator;
 	private JSeparator separator_1;
+	private Calendar fechaInicio;
+	private Calendar fechaFin;
 
 	/**
 	 * Create the application.
@@ -81,8 +84,7 @@ public class VentanaReparaciones {
 		componentsInitializers();
 		componentsProperties();
 		componentsAdders();
-		adaptadores();
-
+		componentsAdapters();
 	}
 
 	// Ocultar y mostrar
@@ -120,6 +122,24 @@ public class VentanaReparaciones {
 
 	public float getPresupuesto() {
 		return Float.parseFloat(txt_presupuesto.getText());
+	}
+	
+	public float getCostePiezas() {
+		return Float.parseFloat(txt_piezas.getText());
+	}
+	
+	public Calendar getFechaInicio() {
+		if (fechaInicio != null) {
+			return fechaInicio;
+		}
+		throw new RuntimeException("Fecha inicio no se ha fijado");
+	}
+	
+	public Calendar getFechaFin() {
+		if (fechaFin != null) {
+			return fechaFin;
+		}
+		throw new RuntimeException("Fecha fin no se ha fijado");
 	}
 
 	public EstadoReparacion getEstado() {
@@ -163,13 +183,18 @@ public class VentanaReparaciones {
 		separator = new JSeparator();
 		separator_1 = new JSeparator();
 		btnFin = new JButton("Fin");
-		txt_fechainicio = new JTextField();
-		txt_fechainicio.setEditable(false);
-		txt_fechafin = new JTextField();
-		txt_fechafin.setEditable(false);
+		txt_fechaInicio = new JTextField();
+		txt_fechaInicio.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txt_fechaInicio.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_fechaInicio.setEditable(false);
+		txt_fechaFin = new JTextField();
+		txt_fechaFin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txt_fechaFin.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_fechaFin.setEditable(false);
 		btnInicio = new JButton("Inicio");
-		textField = new JTextField();
-		textField.setEditable(false);
+		txt_tiempoTotal = new JTextField();
+		txt_tiempoTotal.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txt_tiempoTotal.setEditable(false);
 		lblTiempoInvertido = new JLabel("Tiempo invertido:");
 		txt_euro2 = new JTextField();
 		txt_piezas = new JTextField();
@@ -239,20 +264,20 @@ public class VentanaReparaciones {
 		lblTiempoInvertido.setBounds(27, 330, 97, 14);
 		frame.getContentPane().add(lblTiempoInvertido);
 
-		textField.setBounds(125, 327, 137, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		txt_tiempoTotal.setBounds(125, 327, 137, 20);
+		frame.getContentPane().add(txt_tiempoTotal);
+		txt_tiempoTotal.setColumns(10);
 
 		btnInicio.setBounds(27, 249, 97, 24);
 		frame.getContentPane().add(btnInicio);
 
-		txt_fechafin.setBounds(148, 284, 114, 24);
-		frame.getContentPane().add(txt_fechafin);
-		txt_fechafin.setColumns(10);
+		txt_fechaFin.setBounds(148, 284, 114, 24);
+		frame.getContentPane().add(txt_fechaFin);
+		txt_fechaFin.setColumns(10);
 
-		txt_fechainicio.setColumns(10);
-		txt_fechainicio.setBounds(27, 284, 97, 24);
-		frame.getContentPane().add(txt_fechainicio);
+		txt_fechaInicio.setColumns(10);
+		txt_fechaInicio.setBounds(27, 284, 97, 24);
+		frame.getContentPane().add(txt_fechaInicio);
 
 		btnFin.setBounds(148, 249, 114, 24);
 		frame.getContentPane().add(btnFin);
@@ -332,7 +357,7 @@ public class VentanaReparaciones {
 	/**
 	 * Contiene los listeners
 	 */
-	private void adaptadores() {
+	private void componentsAdapters() {
 		// Boton guardar
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
@@ -354,10 +379,33 @@ public class VentanaReparaciones {
 		//Boton Inicio
 		btnInicio.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
+			public void mousePressed(MouseEvent arg0) {
+				fechaInicio = Calendar.getInstance();
+				txt_fechaInicio.setText(fechaInicio.get(Calendar.HOUR_OF_DAY) + ":" +
+						fechaInicio.get(Calendar.MINUTE) + ":" + fechaInicio.get(Calendar.SECOND));
 			}
 		});
 		
+		//Boton Fin
+		btnFin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				fechaFin = Calendar.getInstance();
+				txt_fechaFin.setText(fechaFin.get(Calendar.HOUR_OF_DAY) + ":" +
+				fechaFin.get(Calendar.MINUTE) + ":" + fechaFin.get(Calendar.SECOND));
+				
+				Calendar aux = Calendar.getInstance();
+				aux.setTimeInMillis(fechaFin.getTimeInMillis()-fechaInicio.getTimeInMillis());
+				txt_tiempoTotal.setText(aux.get(Calendar.HOUR_OF_DAY)-1 + ":" +
+						aux.get(Calendar.MINUTE) + ":" + aux.get(Calendar.SECOND));
+				
+				//Calculando total
+				int total = 0;
+				total += getCostePiezas();
+				total += aux.getTimeInMillis()/1000/60;
+				
+				txt_precioFinal.setText(String.valueOf(total));
+			}
+		});
 	}
 }
