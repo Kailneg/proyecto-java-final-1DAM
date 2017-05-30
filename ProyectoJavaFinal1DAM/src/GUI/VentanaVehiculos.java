@@ -175,6 +175,7 @@ public class VentanaVehiculos {
 		cbox_dia = new JComboBox<Integer>();
 		cbox_mes = new JComboBox<Integer>();
 		cbox_ano = new JComboBox<Integer>();
+		btnBorrarVehiculo = new JButton("Borrar Vehiculo");
 		cbTipoCombustible = new JComboBox<Integer>();
 		lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		cb_TipoVehiculo = new JComboBox<Integer>();
@@ -253,8 +254,6 @@ public class VentanaVehiculos {
 		cb_TipoVehiculo.setBounds(120, 152, 118, 20);
 		frmVehiculos.getContentPane().add(cb_TipoVehiculo);
 
-		btnBorrarVehiculo = new JButton("Borrar Vehiculo");
-
 		btnBorrarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBorrarVehiculo.setBounds(262, 279, 147, 108);
 		frmVehiculos.getContentPane().add(btnBorrarVehiculo);
@@ -325,6 +324,7 @@ public class VentanaVehiculos {
 		cbox_ano.setEnabled(b);
 		cbTipoCombustible.setEnabled(b);
 		btnGuardar.setVisible(b);
+		btnBorrarVehiculo.setVisible(b);
 	}
 
 	/**
