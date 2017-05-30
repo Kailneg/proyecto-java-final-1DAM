@@ -45,11 +45,11 @@ public class ContenedorVehiculos {
 		vehiculos.remove(v);
 	}
 
-	public boolean aniadirCliente(Vehiculo vehiculo) {
+	public boolean aniadirVehiculo(Vehiculo vehiculo) {
 		return vehiculos.add(vehiculo);
 	}
 
-	public boolean eliminarCliente(Vehiculo vehiculo) {
+	public boolean eliminarVehiculo(Vehiculo vehiculo) {
 		return vehiculos.remove(vehiculo);
 	}
 

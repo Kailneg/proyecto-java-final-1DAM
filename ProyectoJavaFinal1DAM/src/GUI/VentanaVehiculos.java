@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
+
 import enums.TipoCombustible;
 import enums.TipoVehiculo;
 
@@ -87,6 +89,14 @@ public class VentanaVehiculos {
 	public String getTxt_modelo() {
 		return txt_modelo.getText();
 	}
+	
+	public Calendar getFechaMatriculacion() {
+		Calendar c = Calendar.getInstance();
+		c.set(Integer.parseInt(cbox_ano.getSelectedItem().toString()), cbox_mes.getSelectedIndex(),
+				Integer.parseInt(cbox_dia.getSelectedItem().toString()));
+		return c;
+	}
+	
 
 	public String getTxt_matricula() {
 		return txt_matricula.getText();
@@ -377,9 +387,7 @@ public class VentanaVehiculos {
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
 					try {
-						cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(),
-								txt_marca.getText(), txt_modelo.getText(), getPuertas(),
-								cbox_ano.getSelectedItem().toString(), txt_potencia.getText()));
+						cargarVehiculo(controladorVehiculos.guardarVehiculo());
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (Exception e2) {

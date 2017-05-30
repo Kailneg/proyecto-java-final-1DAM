@@ -3,6 +3,7 @@ package controller;
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
 import enums.TipoVehiculo;
+import models.Reparacion;
 import models.Vehiculo;
 
 public class ControladorVehiculos {
@@ -46,12 +47,12 @@ public class ControladorVehiculos {
 		vehiculos.setTipoVehiculo(t);
 	}
 
-	public Vehiculo guardarVehiculo(String matricula, String marca, String modelo, String puertas,
-			String anioMatriculacion, String cv) {
-		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
-				.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-						Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(),
-						vehiculos.getTipoVehiculo()));
+	public Vehiculo guardarVehiculo() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirVehiculo(
+				new Vehiculo(vehiculos.getTxt_matricula(), vehiculos.getTxt_marca(), vehiculos.getTxt_modelo(), 
+						Integer.parseInt(vehiculos.getPuertas()), vehiculos.getFechaMatriculacion(), 
+						Integer.parseInt(vehiculos.getTxt_potencia()) , vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
+		
 		actualizarCantidadCoches();
 		return obtenerVehiculoActual();
 	}
