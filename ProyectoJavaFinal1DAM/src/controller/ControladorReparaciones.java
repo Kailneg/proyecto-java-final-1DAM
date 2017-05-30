@@ -1,6 +1,9 @@
 package controller;
 
 import java.util.Arrays;
+import java.util.Date;
+
+import org.joda.time.DateTime;
 
 import GUI.VentanaClientes;
 import GUI.VentanaReparaciones;
@@ -14,6 +17,7 @@ public class ControladorReparaciones {
 	private ControladorPrincipal controladorPrincipal;
 	private ContenedorReparaciones contenedorReparaciones;
 	private VentanaReparaciones reparaciones;
+	DateTime fecha = new DateTime();
 	
 	public ControladorReparaciones(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
@@ -41,4 +45,7 @@ public class ControladorReparaciones {
 		reparaciones.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
+	
+	
+	
 }
