@@ -1,5 +1,6 @@
 package controller;
 
+import javax.management.RuntimeErrorException;
 import javax.swing.JOptionPane;
 
 import GUI.VentanaVehiculos;
@@ -18,7 +19,7 @@ public class ControladorVehiculos {
 	}
 
 	public void mostrarVehiculos() {
-		vehiculos.mostrarVentana();//Mostrar ventana con enabled a false
+		vehiculos.mostrarVentana();// Mostrar ventana con enabled a false
 	}
 
 	public void ocultarVehiculos() {
@@ -39,56 +40,39 @@ public class ControladorVehiculos {
 		vehiculos.ocultarVentana();
 		controladorPrincipal.getControladorElegirVehiculo().mostrarElegir();
 	}
-	
+
 	public Vehiculo obtenerVehiculoActual() {
 		return ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().obtenerVehiculo();
 	}
-	
+
 	public void setTipoVehiculo(TipoVehiculo t) {
 		vehiculos.setTipoVehiculo(t);
 	}
 
-	public Vehiculo guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
-			String cv) {
-		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
-			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
-			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
-		}
+	public Vehiculo guardarVehiculo(String matricula, String marca, String modelo, String puertas,
+			String anioMatriculacion, String cv) {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
+				.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
+						Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(),
+						vehiculos.getTipoVehiculo()));
 		actualizarCantidadCoches();
 		return obtenerVehiculoActual();
 	}
-	
+
 	public Vehiculo pulsarLeftArrow() {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().disminuirIndex();
 		actualizarCantidadCoches();
 		return obtenerVehiculoActual();
 	}
-	
+
 	public Vehiculo pulsarRightArrow() {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aumentarIndex();
 		actualizarCantidadCoches();
 		return obtenerVehiculoActual();
 	}
-	
-	private void actualizarCantidadCoches() {
-		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex() + "/" + ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getSize());
-	}
-	
-	private boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
-			String cv) {
-		try {
-			if (matricula.isEmpty() || marca.isEmpty() || modelo.isEmpty()) {
-				throw new NullPointerException("No pueden existir datos vacios");
-			}
-			Integer.parseInt(cv);
-			Integer.parseInt(puertas);
-			Integer.parseInt(anioMatriculacion);
-			return true;
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
 
+	private void actualizarCantidadCoches() {
+		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex()
+				+ "/" + ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getSize());
 	}
 }

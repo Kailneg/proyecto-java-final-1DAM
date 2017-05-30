@@ -33,16 +33,10 @@ public class ControladorLogin {
 	 * Valida el usuario y la contraseña cuando intentamos logearnos
 	 */
 	public void validarLogin() {
-		try{
-			if(DAO.LoginDAO.Login(login.getUsuario(), login.getContrasenia())){	
-				JOptionPane.showMessageDialog(null, "Login correcto");
-				ocultarLogin();
-				controladorPrincipal.getControladorMenu().mostrarMenu();
-			}
-		} catch (UsuarioNoEncontrado ex1) {
-			JOptionPane.showMessageDialog(null, ex1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ContraseniaNoEncontrada ex2) {
-			JOptionPane.showMessageDialog(null, ex2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		if(DAO.LoginDAO.Login(login.getUsuario(), login.getContrasenia())){	
+			JOptionPane.showMessageDialog(null, "Login correcto");
+			ocultarLogin();
+			controladorPrincipal.getControladorMenu().mostrarMenu();
 		}
 	}
 }

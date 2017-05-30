@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JRadioButton;
@@ -362,9 +363,17 @@ public class VentanaVehiculos {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
-					cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(),
-							txt_modelo.getText(), getPuertas(), cbox_ano.getSelectedItem().toString(),
-							txt_potencia.getText()));
+					try {
+						cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(),
+								txt_modelo.getText(), getPuertas(), cbox_ano.getSelectedItem().toString(),
+								txt_potencia.getText()));
+					} catch (NumberFormatException e1) {
+						JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "Algo ha ido mal", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});

@@ -25,6 +25,9 @@ package DAO;
 
 import java.sql.*;
 
+import javax.swing.JOptionPane;
+
+import exceptions.UsuarioNoEncontrado;
 import models.Usuario;
 
 public class LoginDAO {
@@ -51,22 +54,27 @@ public class LoginDAO {
             								"WHERE USUARIO='"+usuario+"' and CLAVE='"+pass+"'");
             
             		// Iterate through the data in the result set and display it.
-            		while (rs.next()) {
+            		if (rs.next()) {
             			return true;
+            		} else {
+            			throw new UsuarioNoEncontrado();
             		}
         	}
         
 		// Handle any errors that may have occurred.
-		catch (Exception e) {
-			e.printStackTrace();
+		catch (UsuarioNoEncontrado e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
+    	catch (Exception e1) {
+    		JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    	}
 
 		finally {
 			if (rs != null) try { rs.close(); } catch(Exception e) {}
-	    		if (stmt != null) try { stmt.close(); } catch(Exception e) {}
-	    		if (con != null) try { con.close(); } catch(Exception e) {}
+    		if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+    		if (con != null) try { con.close(); } catch(Exception e) {}
 		}
-        return false;
+        	return false;
 	}
 }
 
