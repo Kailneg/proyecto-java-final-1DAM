@@ -52,6 +52,7 @@ public class LoginDAO {
             
             		// Iterate through the data in the result set and display it.
             		while (rs.next()) {
+            			System.out.println("Correcto");
             			return true;
             		}
         	}
@@ -66,6 +67,7 @@ public class LoginDAO {
 	    		if (stmt != null) try { stmt.close(); } catch(Exception e) {}
 	    		if (con != null) try { con.close(); } catch(Exception e) {}
 		}
+        System.out.println("Fallo");
         return false;
 	}
 }
