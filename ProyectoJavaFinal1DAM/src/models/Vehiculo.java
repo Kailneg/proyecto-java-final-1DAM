@@ -1,6 +1,7 @@
 package models;
 
 import enums.TipoCombustible;
+import enums.TipoVehiculo;
 
 public class Vehiculo {
 	
@@ -8,10 +9,11 @@ public class Vehiculo {
 	private String matricula, marca, modelo;
 	private int puertas, anioMatriculacion, cv;
 	private TipoCombustible combustible;
+	private TipoVehiculo tipo;
 	
 	// CONSTRUCTOR
 	public Vehiculo(String matricula, String marca, String modelo, int puertas, int anioMatriculacion, int cv,
-			TipoCombustible combustible) {
+			TipoCombustible combustible, TipoVehiculo tipo) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -19,6 +21,7 @@ public class Vehiculo {
 		this.anioMatriculacion = anioMatriculacion;
 		this.cv = cv;
 		this.combustible = combustible;
+		this.tipo = tipo;
 	}
 	
 	//Getters - Setters
@@ -43,12 +46,16 @@ public class Vehiculo {
 		return anioMatriculacion;
 	}
 
-	public int getCv() {
+	public int getPotencia() {
 		return cv;
 	}
 
 	public TipoCombustible getCombustible() {
 		return combustible;
+	}
+	
+	public TipoVehiculo getTipoVehiculo() {
+		return tipo;
 	}
 
 	public void setCombustible(TipoCombustible combustible) {
@@ -58,7 +65,7 @@ public class Vehiculo {
 	@Override
 	public String toString() {
 		return "Vehiculo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", puertas=" + puertas
-				+ ", anioMatriculacion=" + anioMatriculacion + ", cv=" + cv + ", combustible=" + combustible + "]";
+				+ ", anioMatriculacion=" + anioMatriculacion + ", cv=" + cv + ", combustible=" + combustible + ", tipo=" + tipo + "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
+import enums.TipoVehiculo;
 import models.Vehiculo;
 
 public class ControladorVehiculos {
@@ -38,6 +39,14 @@ public class ControladorVehiculos {
 		vehiculos.ocultarVentana();
 		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
+	
+	public Vehiculo obtenerVehiculoActual() {
+		return ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().obtenerVehiculo();
+	}
+	
+	public void setTipoVehiculo(TipoVehiculo t) {
+		vehiculos.setTipoVehiculo(t);
+	}
 
 	public boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
@@ -61,7 +70,21 @@ public class ControladorVehiculos {
 		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
 			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
 			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible()));
+					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
 		}
+	}
+	
+	public void pulsarLeftArrow() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().disminuirIndex();
+		actualizarCantidadCoches();
+	}
+	
+	public void pulsarRightArrow() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aumentarIndex();
+		actualizarCantidadCoches();
+	}
+	
+	private void actualizarCantidadCoches() {
+		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex() + "/" + ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getSize());
 	}
 }
