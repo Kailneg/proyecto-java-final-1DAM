@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
 import enums.TipoVehiculo;
-import models.Reparacion;
 import models.Vehiculo;
 
 public class ControladorVehiculos {
@@ -19,7 +18,8 @@ public class ControladorVehiculos {
 	}
 
 	public void mostrarVehiculos() {
-		vehiculos.mostrarVentana();// Mostrar ventana con enabled a false
+		vehiculos.mostrarVentana();
+		cargarVehiculo();
 	}
 
 	public void ocultarVehiculos() {
@@ -49,34 +49,47 @@ public class ControladorVehiculos {
 		vehiculos.setTipoVehiculo(t);
 	}
 
-	public Vehiculo guardarVehiculo() {
+	public void guardarVehiculo() {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirVehiculo(
 				new Vehiculo(vehiculos.getTxt_matricula(), vehiculos.getTxt_marca(), vehiculos.getTxt_modelo(), 
 						Integer.parseInt(vehiculos.getPuertas()), vehiculos.getFechaMatriculacion(), 
 						Integer.parseInt(vehiculos.getTxt_potencia()) , vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
-		
-		actualizarCantidadCoches();
-		return obtenerVehiculoActual();
+		cargarVehiculo();
 	}
 
-	public Vehiculo pulsarLeftArrow() {
+	public void pulsarLeftArrow() {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().disminuirIndex();
-		actualizarCantidadCoches();
-		return obtenerVehiculoActual();
+		cargarVehiculo();
 	}
 
-	public Vehiculo pulsarRightArrow() {
+	public void pulsarRightArrow() {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aumentarIndex();
-		actualizarCantidadCoches();
-		return obtenerVehiculoActual();
+		cargarVehiculo();
 	}
 	
 	public void pulsarBorrarVehiculo() {
 		if (!ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().borrarVehiculo(obtenerVehiculoActual())) {
 			JOptionPane.showMessageDialog(null, "No se ha podido borrar el vehiculo actual", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			actualizarCantidadCoches();
+			cargarVehiculo();
 		}
+	}
+	
+	private void cargarVehiculo() {
+		if (obtenerVehiculoActual() != null) {
+			vehiculos.setMarca(obtenerVehiculoActual().getMarca());
+			vehiculos.setMatricula(obtenerVehiculoActual().getMatricula());
+			vehiculos.setModelo(obtenerVehiculoActual().getModelo());
+			vehiculos.setPuertas(String.valueOf(obtenerVehiculoActual().getPuertas()));
+			vehiculos.setPotencia(String.valueOf(obtenerVehiculoActual().getPotencia()));
+			// TODO:
+			// cbox_dia.setToolTipText(controladorVehiculos.updateData());
+			// cbox_mes.setToolTipText(mes);
+			// cbox_ano.setToolTipText(anio);
+			vehiculos.setTipoCombustible(obtenerVehiculoActual().getCombustible());
+			vehiculos.setTipoVehiculo(obtenerVehiculoActual().getTipoVehiculo());
+		}
+		actualizarCantidadCoches();
 	}
 
 	private void actualizarCantidadCoches() {

@@ -2,9 +2,6 @@ package contenedores;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.JOptionPane;
-
 import enums.TipoCombustible;
 import enums.TipoVehiculo;
 import exceptions.VehiculoNoEncontrado;
