@@ -1,6 +1,7 @@
 package controller;
 
 import GUI.VentanaMenu;
+import globals.Constantes;
 
 public class ControladorMenu {
 	
@@ -22,13 +23,13 @@ public class ControladorMenu {
 	
 	public void pulsarBuscar(){
 		menu.ocultarVentana();
-		controladorPrincipal.getControladorVehiculo().disableModoLectura();
+		Constantes.MODO_CREAR = false;
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 	
 	public void pulsarNuevo(){
 		menu.ocultarVentana();
-		controladorPrincipal.getControladorVehiculo().enableModoLectura();
+		Constantes.MODO_CREAR = true;
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 }

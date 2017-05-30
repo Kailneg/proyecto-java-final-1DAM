@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
-import enums.TipoCombustible;
 import models.Vehiculo;
 
 public class ControladorVehiculos {
@@ -40,32 +39,6 @@ public class ControladorVehiculos {
 		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 
-	public void enableModoLectura() {
-		vehiculos.setModoLectura(true);
-	}
-	
-	public void disableModoLectura() {
-		vehiculos.setModoLectura(false);
-	}
-
-	public TipoCombustible convertidorTipoCombustible() {
-		switch (vehiculos.getTipoCombustible()) {
-		case 0:
-			return TipoCombustible.DIESEL;
-		case 1:
-			return TipoCombustible.ELECTRICO;
-		case 2:
-			return TipoCombustible.GASOLINA;
-		case 3:
-			return TipoCombustible.GLP;
-		case 4:
-			return TipoCombustible.HIBRIDO;
-		default:
-			return null;
-
-		}
-	}
-
 	public boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
 		try {
@@ -76,11 +49,8 @@ public class ControladorVehiculos {
 			Integer.parseInt(puertas);
 			Integer.parseInt(anioMatriculacion);
 			return true;
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			return false;
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -91,7 +61,7 @@ public class ControladorVehiculos {
 		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
 			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
 			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), convertidorTipoCombustible()));
+					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible()));
 		}
 	}
 }

@@ -49,12 +49,12 @@ public class VentanaMenu {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		btn_nuevoVehiculo = new JButton("Nuevo veh\u00EDculo");
+		btn_nuevoVehiculo = new JButton("Crear");
 
 		btn_nuevoVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(btn_nuevoVehiculo);
 		
-		btn_buscarVehiculo = new JButton("Buscar veh\u00EDculo\r\n");
+		btn_buscarVehiculo = new JButton("Buscar");
 
 		btn_buscarVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(btn_buscarVehiculo);

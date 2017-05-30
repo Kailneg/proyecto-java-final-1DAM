@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.ControladorCliente;
+import globals.Constantes;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -51,7 +52,8 @@ public class VentanaClientes extends JFrame {
 	
 	//Ocultar y mostrar
 	public void mostrarVentana(){
-		setVisible(true);
+		hideComponents(Constantes.MODO_CREAR);
+		contentPane.setVisible(true);
 	}
 	
 	public void ocultarVentana(){
@@ -167,13 +169,25 @@ public class VentanaClientes extends JFrame {
 		panel.add(txt_email);
 		panel.add(panel_botones);
 	}
+	
+	private void hideComponents(boolean b) {
+		txt_nif.setEnabled(b);
+		txt_nombre.setEnabled(b);
+		txt_apellidos.setEnabled(b);
+		txt_direccion.setEnabled(b);
+		txt_telefono.setEnabled(b);
+		txt_email.setEnabled(b);
+		panel_botones.setEnabled(b);
+	}
 
 	private void addAdapters() {
 		//Boton Crear
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorCliente.pulsarCrear();
+				if (Constantes.MODO_CREAR) {
+					controladorCliente.pulsarCrear();	
+				}
 			}
 		});
 		

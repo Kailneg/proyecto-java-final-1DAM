@@ -1,37 +1,24 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
 import controller.ControladorReparaciones;
 
-import javax.swing.JScrollPane;
-import java.awt.ScrollPane;
-import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import enums.EstadoReparacion;
 import enums.Meses;
+import globals.Constantes;
 import models.Reparacion;
 
 import java.awt.Font;
@@ -62,7 +49,7 @@ public class VentanaReparaciones {
 	private JLabel lblOrdenarPor;
 	private JLabel lb_estado;
 	private JLabel lb_comentarios;
-	private JComboBox cb_ordenar;
+	private JComboBox<?> cb_ordenar;
 	private JComboBox cb_estado;
 	private JTextArea txt_comentario;
 	private JComboBox cb_anio_inicio;
@@ -89,6 +76,7 @@ public class VentanaReparaciones {
 
 	// Ocultar y mostrar
 	public void mostrarVentana() {
+		hideComponents(Constantes.MODO_CREAR);
 		frame.setVisible(true);
 	}
 
@@ -251,6 +239,23 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(cb_anio_fin);
 
 	}
+	
+	private void hideComponents(boolean b) {
+		txt_ID.setEnabled(b);
+		txt_propietario.setEnabled(b);
+		txt_mecanico.setEnabled(b);
+		txt_presupuesto.setEnabled(b);
+		cb_ordenar.setEnabled(b);
+		cb_estado.setEnabled(b);
+		txt_comentario.setEnabled(b);
+		cb_dia_inicio.setEnabled(b);
+		cb_mes_inicio.setEnabled(b);
+		cb_anio_inicio.setEnabled(b);
+		cb_dia_fin.setEnabled(b);
+		cb_mes_fin.setEnabled(b);
+		cb_anio_fin.setEnabled(b);
+		btn_crear.setEnabled(b);
+	}
 
 	/**
 	 * Define las propiedades de los componentes del frame
@@ -329,7 +334,9 @@ public class VentanaReparaciones {
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorReparaciones.pulsarCrear();
+				if (Constantes.MODO_CREAR) {
+					controladorReparaciones.pulsarCrear();
+				}
 			}
 		});
 
@@ -338,14 +345,6 @@ public class VentanaReparaciones {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorReparaciones.pulsarAtras();
-			}
-		});
-		
-		//USO PARA FINES DE TESTEO
-		txt_euro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controladorReparaciones.pulsarTest();
 			}
 		});
 	}
