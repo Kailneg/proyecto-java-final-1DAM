@@ -23,25 +23,33 @@ public class ControladorElegirVehiculo {
 		this.eleccionVehiculo = new VentanaEleccionVehiculo(this);
 	}
 
-	public void pulsarCoche(){
+	public void mostrarElegir() {
+		eleccionVehiculo.mostrarVentana();
+	}
+
+	public void ocultarElegir() {
+		eleccionVehiculo.ocultarVentana();
+	}
+
+	public void pulsarCoche() {
 		eleccionVehiculo.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().setTipoVehiculo(TipoVehiculo.Coche);
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
-	
-	public void pulsarMoto(){
+
+	public void pulsarMoto() {
 		eleccionVehiculo.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().setTipoVehiculo(TipoVehiculo.Moto);
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
-	
-	public void pulsarCamion(){
+
+	public void pulsarCamion() {
 		eleccionVehiculo.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().setTipoVehiculo(TipoVehiculo.Camion);
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
-	
-	public void pulsarBici(){
+
+	public void pulsarBici() {
 		eleccionVehiculo.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().setTipoVehiculo(TipoVehiculo.Bicicleta);
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
