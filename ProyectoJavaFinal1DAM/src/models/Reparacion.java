@@ -17,11 +17,9 @@ public class Reparacion {
 	private String comentarios;
 
 	// CONSTRUCTOR
-	public Reparacion(int idReparacion, Calendar fechaInicio, Calendar fechaFin, String propietario, float presupuesto,
+	public Reparacion(int idReparacion, String propietario, float presupuesto,
 			EstadoReparacion estado, String comentarios) {
 		this.idReparacion = idReparacion;
-		this.fechaInicio = fechaInicio;	
-		this.fechaFin = fechaFin;
 		this.presupuesto = presupuesto;
 		this.estado = estado;
 		this.comentarios = comentarios;
