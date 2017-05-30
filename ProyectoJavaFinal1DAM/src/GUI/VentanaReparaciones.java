@@ -270,6 +270,7 @@ public class VentanaReparaciones {
 		txt_propietario.setEnabled(b);
 		txt_mecanico.setEnabled(b);
 		txt_presupuesto.setEnabled(b);
+		txt_piezas.setEnabled(b);
 		cb_ordenar.setEnabled(b);
 		cb_estado.setEnabled(b);
 		txt_comentario.setEnabled(b);

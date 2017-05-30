@@ -22,7 +22,7 @@ public class ContenedorReparaciones {
 		return reparaciones.subList(0, reparaciones.size());
 	}
 	
-	public Reparacion obtenReparacion(int idReparacion) throws UsuarioNoEncontrado {
+	public Reparacion obtenReparacion(int idReparacion) {
 		for (Reparacion r : reparaciones) {
 			if (r.getIdReparacion() == idReparacion)
 				return r;

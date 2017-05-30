@@ -41,7 +41,7 @@ public class VentanaVehiculos {
 	private JLabel lblPuertas;
 	private JRadioButton rb_3puertas;
 	private JRadioButton rb_5puertas;
-	private JLabel lblAoMatriculacin;
+	private JLabel lblAnioMatriculacion;
 	private JLabel lblCaballos;
 	private JLabel lblTipoCombustible;
 	private JButton btnClientes;
@@ -110,22 +110,24 @@ public class VentanaVehiculos {
 	}
 
 	public void cargarVehiculo(Vehiculo v) {
-		txt_marca.setText(controladorVehiculos.obtenerVehiculoActual().getMarca());
-		txt_matricula.setText(controladorVehiculos.obtenerVehiculoActual().getMatricula());
-		txt_modelo.setText(controladorVehiculos.obtenerVehiculoActual().getModelo());
-		
-		if (controladorVehiculos.obtenerVehiculoActual().getPuertas() == 3)
-			buttonGroup.setSelected(rb_3puertas.getModel(), true);
-		else
-			buttonGroup.setSelected(rb_5puertas.getModel(), true);
-		
-		txt_potencia.setText(String.valueOf(controladorVehiculos.obtenerVehiculoActual().getPotencia()));
-		//TODO:
-		//cbox_dia.setToolTipText(controladorVehiculos.updateData());
-		//cbox_mes.setToolTipText(mes);
-		//cbox_ano.setToolTipText(anio);
-		cbTipoCombustible.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getCombustible());
-		cb_TipoVehiculo.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getTipoVehiculo());
+		if (controladorVehiculos.obtenerVehiculoActual() != null) {
+			txt_marca.setText(controladorVehiculos.obtenerVehiculoActual().getMarca());
+			txt_matricula.setText(controladorVehiculos.obtenerVehiculoActual().getMatricula());
+			txt_modelo.setText(controladorVehiculos.obtenerVehiculoActual().getModelo());
+			
+			if (controladorVehiculos.obtenerVehiculoActual().getPuertas() == 3)
+				buttonGroup.setSelected(rb_3puertas.getModel(), true);
+			else
+				buttonGroup.setSelected(rb_5puertas.getModel(), true);
+			
+			txt_potencia.setText(String.valueOf(controladorVehiculos.obtenerVehiculoActual().getPotencia()));
+			//TODO:
+			//cbox_dia.setToolTipText(controladorVehiculos.updateData());
+			//cbox_mes.setToolTipText(mes);
+			//cbox_ano.setToolTipText(anio);
+			cbTipoCombustible.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getCombustible());
+			cb_TipoVehiculo.setSelectedItem(controladorVehiculos.obtenerVehiculoActual().getTipoVehiculo());	
+		}
 	}
 
 	/**
@@ -153,7 +155,7 @@ public class VentanaVehiculos {
 		rb_3puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rb_5puertas = new JRadioButton("5");
 		rb_5puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAoMatriculacin = new JLabel("Matriculaci\u00F3n:");
+		lblAnioMatriculacion = new JLabel("Matriculaci\u00F3n:");
 		lblCaballos = new JLabel("Potencia:");
 		lblTipoCombustible = new JLabel("Combustible:");
 		btnClientes = new JButton("Clientes");
@@ -189,7 +191,7 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(lblPuertas);
 		frmVehiculos.getContentPane().add(rb_3puertas);
 		frmVehiculos.getContentPane().add(rb_5puertas);
-		frmVehiculos.getContentPane().add(lblAoMatriculacin);
+		frmVehiculos.getContentPane().add(lblAnioMatriculacion);
 		frmVehiculos.getContentPane().add(lblCaballos);
 		frmVehiculos.getContentPane().add(lblTipoCombustible);
 		frmVehiculos.getContentPane().add(btnClientes);
@@ -273,8 +275,8 @@ public class VentanaVehiculos {
 		rb_3puertas.setBounds(120, 104, 58, 23);
 		rb_5puertas.setBounds(185, 104, 53, 23);
 
-		lblAoMatriculacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAoMatriculacin.setBounds(37, 188, 98, 14);
+		lblAnioMatriculacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblAnioMatriculacion.setBounds(37, 188, 98, 14);
 
 		lblCaballos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCaballos.setBounds(37, 283, 64, 14);

@@ -16,21 +16,23 @@ public class ContenedorVehiculos {
 	}
 
 	public Vehiculo obtenerVehiculo() {
-		if (!vehiculos.isEmpty())
+		if (!vehiculos.isEmpty()) {
 			return obtenerVehiculo(index);
-		else
+		}
+		else {
 			return null;
+		}
 	}
 
 	public Vehiculo obtenerVehiculo(int index) {
 		if (vehiculos.get(index) != null) {
 			return vehiculos.get(index);
 		} else {
-			throw new VehiculoNoEncontrado();
+			return null;
 		}
 	}
 
-	public Vehiculo obtenVehiculo(String matricula) {
+	public Vehiculo obtenerVehiculo(String matricula) {
 		for (Vehiculo v : vehiculos) {
 			if (v.getMatricula().equals(matricula))
 				return v;

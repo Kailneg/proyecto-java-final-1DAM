@@ -1,9 +1,6 @@
 package controller;
 
-import java.util.Arrays;
-
 import GUI.VentanaClientes;
-import GUI.VentanaVehiculos;
 import contenedores.ContenedorClientes;
 import contenedores.ContenedorPrincipal;
 import models.Cliente;
@@ -32,8 +29,6 @@ public class ControladorCliente {
 		contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(), 
 				clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), 
 				clientes.getEmail()));
-		System.out.println(Arrays.toString(ContenedorPrincipal.getContenedorPrincipal()
-				.getContenedorClientes().getCopiaClientes().toArray()));
 	}
 	
 	public void pulsarAtras(){

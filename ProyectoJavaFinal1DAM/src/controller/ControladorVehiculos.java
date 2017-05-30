@@ -1,8 +1,5 @@
 package controller;
 
-import javax.management.RuntimeErrorException;
-import javax.swing.JOptionPane;
-
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
 import enums.TipoVehiculo;
@@ -38,7 +35,7 @@ public class ControladorVehiculos {
 
 	public void pulsarAtras() {
 		vehiculos.ocultarVentana();
-		controladorPrincipal.getControladorElegirVehiculo().mostrarElegir();
+		controladorPrincipal.getControladorMenu().mostrarMenu();
 	}
 
 	public Vehiculo obtenerVehiculoActual() {

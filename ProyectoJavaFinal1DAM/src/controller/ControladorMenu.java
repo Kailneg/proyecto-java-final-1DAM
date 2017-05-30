@@ -24,7 +24,7 @@ public class ControladorMenu {
 	public void pulsarBuscar() {
 		menu.ocultarVentana();
 		Constantes.MODO_CREAR = false;
-		controladorPrincipal.getControladorElegirVehiculo().mostrarElegir();
+		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
 
 	public void pulsarNuevo() {
