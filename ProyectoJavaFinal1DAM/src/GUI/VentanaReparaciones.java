@@ -10,8 +10,6 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-import org.joda.time.DateTime;
-
 import controller.ControladorReparaciones;
 
 import javax.swing.JButton;
