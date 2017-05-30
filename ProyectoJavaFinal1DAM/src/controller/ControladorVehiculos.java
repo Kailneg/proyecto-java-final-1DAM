@@ -48,7 +48,34 @@ public class ControladorVehiculos {
 		vehiculos.setTipoVehiculo(t);
 	}
 
-	public boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
+	public Vehiculo guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
+			String cv) {
+		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
+			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
+			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
+					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
+		}
+		actualizarCantidadCoches();
+		return obtenerVehiculoActual();
+	}
+	
+	public Vehiculo pulsarLeftArrow() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().disminuirIndex();
+		actualizarCantidadCoches();
+		return obtenerVehiculoActual();
+	}
+	
+	public Vehiculo pulsarRightArrow() {
+		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aumentarIndex();
+		actualizarCantidadCoches();
+		return obtenerVehiculoActual();
+	}
+	
+	private void actualizarCantidadCoches() {
+		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex() + "/" + ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getSize());
+	}
+	
+	private boolean validarDatos(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
 			String cv) {
 		try {
 			if (matricula.isEmpty() || marca.isEmpty() || modelo.isEmpty()) {
@@ -63,28 +90,5 @@ public class ControladorVehiculos {
 			return false;
 		}
 
-	}
-
-	public void guardarVehiculo(String matricula, String marca, String modelo, String puertas, String anioMatriculacion,
-			String cv) {
-		if (validarDatos(matricula, marca, modelo, puertas, anioMatriculacion, cv)) {
-			ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos()
-			.aniadirCliente(new Vehiculo(matricula, marca, modelo, Integer.parseInt(puertas),
-					Integer.parseInt(anioMatriculacion), Integer.parseInt(cv), vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
-		}
-	}
-	
-	public void pulsarLeftArrow() {
-		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().disminuirIndex();
-		actualizarCantidadCoches();
-	}
-	
-	public void pulsarRightArrow() {
-		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aumentarIndex();
-		actualizarCantidadCoches();
-	}
-	
-	private void actualizarCantidadCoches() {
-		vehiculos.setCantidadVehiculos(ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getIndex() + "/" + ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().getSize());
 	}
 }

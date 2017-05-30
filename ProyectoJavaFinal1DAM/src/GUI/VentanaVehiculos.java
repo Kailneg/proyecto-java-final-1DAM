@@ -340,13 +340,13 @@ public class VentanaVehiculos {
 
 		buttonLeftArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controladorVehiculos.pulsarLeftArrow();
+				cargarVehiculo(controladorVehiculos.pulsarLeftArrow());
 			}
 		});
 		
 		buttonRightArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controladorVehiculos.pulsarRightArrow();
+				cargarVehiculo(controladorVehiculos.pulsarRightArrow());
 			}
 		});
 
@@ -362,11 +362,9 @@ public class VentanaVehiculos {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
-					controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(),
+					cargarVehiculo(controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(),
 							txt_modelo.getText(), getPuertas(), cbox_ano.getSelectedItem().toString(),
-							txt_potencia.getText()
-
-					);
+							txt_potencia.getText()));
 				}
 			}
 		});

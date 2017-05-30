@@ -47,23 +47,18 @@ public class ContenedorVehiculos {
 	}
 
 	public void aumentarIndex() {
-		if (!vehiculos.isEmpty()) {
-			if (index > 0 && index < vehiculos.size()) {
-				index++;
-			}
-		}
+		if (index < vehiculos.size() - 1)
+			index++;
 	}
 
 	public void disminuirIndex() {
-		if (!vehiculos.isEmpty()) {
-			if (index > 0 && index < vehiculos.size()) {
-				index--;
-			}
+		if (index > 0 && !vehiculos.isEmpty()) {
+			index--;
 		}
 	}
 
 	public int getIndex() {
-		return index;
+		return index + 1;
 	}
 
 	public int getSize() {
