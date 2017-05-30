@@ -32,12 +32,12 @@ public class ControladorVehiculos {
 
 	public void pulsarReparaciones() {
 		vehiculos.ocultarVentana();
-		controladorPrincipal.getControladorReparaciones().mostrarReparaciones();
+		controladorPrincipal.getControladorElegirVehiculo().mostrarElegir();
 	}
 
 	public void pulsarAtras() {
 		vehiculos.ocultarVentana();
-		controladorPrincipal.getControladorMenu().mostrarMenu();
+		controladorPrincipal.getControladorElegirVehiculo().mostrarElegir();
 	}
 	
 	public Vehiculo obtenerVehiculoActual() {

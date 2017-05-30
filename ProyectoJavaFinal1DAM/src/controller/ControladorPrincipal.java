@@ -7,6 +7,7 @@ public class ControladorPrincipal {
 	private ControladorVehiculos controladorVehiculo;
 	private ControladorCliente controladorCliente;
 	private ControladorReparaciones controladorReparaciones;
+	private ControladorElegirVehiculo controladorElegirVehiculo;
 
 	public ControladorPrincipal() {
 		controladorLogin = new ControladorLogin(this);
@@ -35,5 +36,11 @@ public class ControladorPrincipal {
 		if (controladorReparaciones == null)
 			controladorReparaciones = new ControladorReparaciones(this);
 		return controladorReparaciones;
+	}
+	
+	public ControladorElegirVehiculo getControladorElegirVehiculo(){
+		if (controladorElegirVehiculo == null)
+			controladorElegirVehiculo = new ControladorElegirVehiculo(this);
+		return controladorElegirVehiculo;
 	}
 }
