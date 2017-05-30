@@ -12,12 +12,16 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import controller.ControladorVehiculos;
+import enums.EstadoReparacion;
 import enums.Meses;
+import globals.Constantes;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import enums.TipoCombustible;
+import enums.TipoVehiculo;
 
 public class VentanaVehiculos {
 
@@ -27,7 +31,6 @@ public class VentanaVehiculos {
 	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
 			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
 	private final String tiposCombustible[] = { "Diesel", "Electrico", "Gasolina", "GLP", "Hibrido" };
-	private boolean modoLectura;
 
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
@@ -43,18 +46,16 @@ public class VentanaVehiculos {
 	private JButton btnRepararVehvulo;
 	private JButton btnAtrs;
 	private JLabel labelContadorVehiculos;
-	private JButton button;
-	private JButton button_1;
+	private JButton buttonLeftArrow;
+	private JButton buttonRightArrow;
 	private JButton btnGuardar;
-	private JTextField txt_cv;
+	private JTextField lbl_cv;
 	private JTextField txt_marca;
 	private JTextField txt_matricula;
 	private JTextField txt_modelo;
 	private JTextField txt_potencia;
-	private JComboBox cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible;
+	private JComboBox<Integer> cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible;
 	private ControladorVehiculos controladorVehiculos;
-	private JTextField txt_buscarPorMatricula;
-	private JLabel lblBuscar;
 
 	/**
 	 * Create the application.
@@ -63,13 +64,9 @@ public class VentanaVehiculos {
 		this.controladorVehiculos = controladorVehiculos;
 		vehiculoComponents();
 	}
-
-	public void setModoLectura(boolean b) {
-		modoLectura = b;
-	}
 	
-	public int getTipoCombustible() {
-		return cbTipoCombustible.getSelectedIndex();
+	public TipoCombustible getTipoCombustible() {
+		return TipoCombustible.valueOf(cbTipoCombustible.getSelectedItem().toString());
 	}
 
 	public String getPuertas() {
@@ -90,7 +87,7 @@ public class VentanaVehiculos {
 
 	// Ocultar y mostrar
 	public void mostrarVentana() {
-		hideComponents(modoLectura);
+		hideComponents(Constantes.MODO_CREAR);
 		frmVehiculos.setVisible(true);
 	}
 
@@ -130,19 +127,19 @@ public class VentanaVehiculos {
 		btnRepararVehvulo = new JButton("Reparar Veh\u00EDvulo");
 		btnAtrs = new JButton("Atras");
 		labelContadorVehiculos = new JLabel("0/0");
-		button = new JButton("<");
-		button_1 = new JButton(">");
+		buttonLeftArrow = new JButton("<");
+		buttonRightArrow = new JButton(">");
 		btnGuardar = new JButton("Guardar");
-		txt_cv = new JTextField();
+		lbl_cv = new JTextField();
+		lbl_cv.setEditable(false);
 		txt_marca = new JTextField();
 		txt_matricula = new JTextField();
 		txt_modelo = new JTextField();
 		txt_potencia = new JTextField();
-		cbox_dia = new JComboBox();
-		cbox_mes = new JComboBox();
-		cbox_ano = new JComboBox();
-		cbTipoCombustible = new JComboBox();
-
+		cbox_dia = new JComboBox<Integer>();
+		cbox_mes = new JComboBox<Integer>();
+		cbox_ano = new JComboBox<Integer>();
+		cbTipoCombustible = new JComboBox<Integer>();
 	}
 
 	/**
@@ -164,19 +161,18 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(btnAtrs);
 		frmVehiculos.getContentPane().setLayout(null);
 		frmVehiculos.getContentPane().add(labelContadorVehiculos);
-		frmVehiculos.getContentPane().add(button);
-		frmVehiculos.getContentPane().add(button_1);
+		frmVehiculos.getContentPane().add(buttonLeftArrow);
+		frmVehiculos.getContentPane().add(buttonRightArrow);
 		frmVehiculos.getContentPane().add(btnGuardar);
 
 		buttonGroup.add(rb_3puertas);
 		buttonGroup.add(rb_5puertas);
 
-		txt_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txt_cv.setEditable(false);
-		txt_cv.setText("CV");
-		txt_cv.setBounds(208, 280, 30, 24);
-		frmVehiculos.getContentPane().add(txt_cv);
-		txt_cv.setColumns(10);
+		lbl_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_cv.setText("CV");
+		lbl_cv.setBounds(208, 280, 30, 24);
+		frmVehiculos.getContentPane().add(lbl_cv);
+		lbl_cv.setColumns(10);
 
 		txt_marca.setColumns(10);
 		txt_marca.setBounds(120, 42, 118, 24);
@@ -194,7 +190,7 @@ public class VentanaVehiculos {
 		txt_potencia.setBounds(120, 280, 89, 24);
 		frmVehiculos.getContentPane().add(txt_potencia);
 
-		cbox_dia.setModel(new DefaultComboBoxModel(dias));
+		cbox_dia.setModel(new DefaultComboBoxModel<Integer>(dias));
 		cbox_dia.setBounds(120, 185, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_dia);
 
@@ -206,20 +202,19 @@ public class VentanaVehiculos {
 		cbox_ano.setBounds(120, 247, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_ano);
 
-		cbTipoCombustible.setModel(new DefaultComboBoxModel<String>(tiposCombustible));
+		cbTipoCombustible.setModel(new DefaultComboBoxModel(TipoCombustible.values()));
 		cbTipoCombustible.setBounds(120, 316, 118, 20);
 		frmVehiculos.getContentPane().add(cbTipoCombustible);
-
-		txt_buscarPorMatricula = new JTextField();
-		txt_buscarPorMatricula.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		txt_buscarPorMatricula.setText("Matricula ...");
-		txt_buscarPorMatricula.setBounds(323, 160, 86, 20);
-		frmVehiculos.getContentPane().add(txt_buscarPorMatricula);
-		txt_buscarPorMatricula.setColumns(10);
-
-		lblBuscar = new JLabel("Buscar");
-		lblBuscar.setBounds(267, 163, 46, 14);
-		frmVehiculos.getContentPane().add(lblBuscar);
+		
+		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
+		lblTipoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTipoVehiculo.setBounds(32, 152, 69, 20);
+		frmVehiculos.getContentPane().add(lblTipoVehiculo);
+		
+		JComboBox<Integer> cb_TipoVehiculo = new JComboBox<Integer>();
+		cb_TipoVehiculo.setModel(new DefaultComboBoxModel(TipoVehiculo.values()));
+		cb_TipoVehiculo.setBounds(120, 152, 118, 20);
+		frmVehiculos.getContentPane().add(cb_TipoVehiculo);
 	}
 
 	/**
@@ -239,10 +234,10 @@ public class VentanaVehiculos {
 		lblModelo.setBounds(37, 75, 64, 19);
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPuertas.setBounds(37, 138, 64, 14);
+		lblPuertas.setBounds(37, 110, 64, 14);
 
-		rb_3puertas.setBounds(120, 132, 38, 23);
-		rb_5puertas.setBounds(160, 132, 38, 23);
+		rb_3puertas.setBounds(120, 104, 58, 23);
+		rb_5puertas.setBounds(185, 104, 53, 23);
 
 		lblAoMatriculacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAoMatriculacin.setBounds(37, 188, 98, 14);
@@ -260,17 +255,17 @@ public class VentanaVehiculos {
 		btnRepararVehvulo.setBounds(262, 180, 147, 108);
 
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAtrs.setBounds(262, 386, 147, 76);
+		btnAtrs.setBounds(262, 375, 147, 76);
 
 		labelContadorVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelContadorVehiculos.setBounds(120, 375, 38, 23);
 
-		button.setBounds(37, 369, 53, 93);
+		buttonLeftArrow.setBounds(37, 369, 53, 93);
 
-		button_1.setBounds(185, 369, 53, 93);
+		buttonRightArrow.setBounds(185, 369, 53, 93);
 
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardar.setBounds(100, 409, 75, 53);
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGuardar.setBounds(88, 400, 98, 62);
 
 	}
 
@@ -286,10 +281,7 @@ public class VentanaVehiculos {
 		cbox_mes.setEnabled(b);
 		cbox_ano.setEnabled(b);
 		cbTipoCombustible.setEnabled(b);
-		btnRepararVehvulo.setVisible(b);
-		lblBuscar.setVisible(!b);
-		txt_buscarPorMatricula.setVisible(!b);
-
+		btnGuardar.setVisible(b);
 	}
 
 	/**
@@ -309,11 +301,11 @@ public class VentanaVehiculos {
 		btnRepararVehvulo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorVehiculos.pulsarReparaciones();
+				controladorVehiculos.pulsarReparaciones();	
 			}
 		});
 
-		button.addActionListener(new ActionListener() {
+		buttonLeftArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -329,17 +321,13 @@ public class VentanaVehiculos {
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(), txt_modelo.getText(),
-						(rb_3puertas.isSelected() ? "3" : "5"), cbox_ano.getSelectedItem().toString(),
-						txt_potencia.getText()
+				if (Constantes.MODO_CREAR) {
+					controladorVehiculos.guardarVehiculo(txt_matricula.getText(), txt_marca.getText(), txt_modelo.getText(),
+							getPuertas(), cbox_ano.getSelectedItem().toString(),
+							txt_potencia.getText()
 
-				);
-			}
-		});
-
-		txt_buscarPorMatricula.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+					);	
+				}
 			}
 		});
 	}

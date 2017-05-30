@@ -42,9 +42,4 @@ public class ControladorReparaciones {
 		reparaciones.ocultarVentana();
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
-	
-	public void pulsarTest(){
-		reparaciones.setModoEscritura(!reparaciones.getIsModoEscritura());
-		reparaciones.cargarReparacion(contenedorReparaciones.obtenReparacion(5));
-	}
 }

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.ControladorCliente;
+import globals.Constantes;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -31,6 +32,7 @@ public class VentanaClientes extends JFrame {
 	private JMenuItem mntm_lectura, mntm_escritura;
 	private JPanel panel, panel_botones;
 	private JLabel lb_clientes, lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
+	private JButton btnLeftArrow, btnRightArrow;
 
 	private JSeparator separator;
 	private JLabel lb_email;
@@ -51,6 +53,7 @@ public class VentanaClientes extends JFrame {
 	
 	//Ocultar y mostrar
 	public void mostrarVentana(){
+		hideComponents(Constantes.MODO_CREAR);
 		setVisible(true);
 	}
 	
@@ -119,7 +122,7 @@ public class VentanaClientes extends JFrame {
 		lb_apellidos.setBounds(10, 90, 56, 14);
 		separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(217, 31, 2, 76);
+		separator.setBounds(202, 31, 2, 76);
 		txt_direccion = new JTextField();
 		txt_direccion.setColumns(10);
 		txt_direccion.setBounds(291, 28, 126, 20);
@@ -148,6 +151,12 @@ public class VentanaClientes extends JFrame {
 		btnAtrs = new JButton("Atr\u00E1s");
 		panel_botones.add(btnAtrs);
 		btnAtrs.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		btnLeftArrow = new JButton("<");
+		panel_botones.add(btnLeftArrow);
+		
+		btnRightArrow = new JButton(">");
+		panel_botones.add(btnRightArrow);
 	}
 
 	private void addComponents() {
@@ -167,13 +176,28 @@ public class VentanaClientes extends JFrame {
 		panel.add(txt_email);
 		panel.add(panel_botones);
 	}
+	
+	private void hideComponents(boolean b) {
+		txt_nif.setEnabled(b);
+		txt_nombre.setEnabled(b);
+		txt_apellidos.setEnabled(b);
+		txt_direccion.setEnabled(b);
+		txt_telefono.setEnabled(b);
+		txt_email.setEnabled(b);
+		panel_botones.setEnabled(b);
+		btn_crear.setEnabled(b);
+		btnLeftArrow.setEnabled(!b);
+		btnRightArrow.setEnabled(!b);
+	}
 
 	private void addAdapters() {
 		//Boton Crear
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorCliente.pulsarCrear();
+				if (Constantes.MODO_CREAR) {
+					controladorCliente.pulsarCrear();	
+				}
 			}
 		});
 		
@@ -182,6 +206,20 @@ public class VentanaClientes extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorCliente.pulsarAtras();
+			}
+		});
+		
+		// Moverte en la lista de clientes a la izq
+		btnLeftArrow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+		});
+		
+		// Moverte en la lista de clientes a la derecha
+		btnRightArrow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 			}
 		});
 	}

@@ -1,40 +1,30 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.management.RuntimeErrorException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
 import controller.ControladorReparaciones;
 
-import javax.swing.JScrollPane;
-import java.awt.ScrollPane;
-import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import enums.EstadoReparacion;
 import enums.Meses;
+import globals.Constantes;
 import models.Reparacion;
 
 import java.awt.Font;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 
 public class VentanaReparaciones {
 
@@ -46,7 +36,6 @@ public class VentanaReparaciones {
 
 	// Variables
 	private ControladorReparaciones controladorReparaciones;
-	private boolean isModoEscritura;
 	private JFrame frame;
 	private JTextField txt_ID;
 	private JTextField txt_propietario;
@@ -62,7 +51,7 @@ public class VentanaReparaciones {
 	private JLabel lblOrdenarPor;
 	private JLabel lb_estado;
 	private JLabel lb_comentarios;
-	private JComboBox cb_ordenar;
+	private JComboBox<?> cb_ordenar;
 	private JComboBox cb_estado;
 	private JTextArea txt_comentario;
 	private JComboBox cb_anio_inicio;
@@ -73,13 +62,15 @@ public class VentanaReparaciones {
 	private JComboBox cb_anio_fin;
 	private JButton btn_crear;
 	private JButton btn_atras;
+	private JButton btnLeftArrow;
+	private JButton btnRightArrow;
+	private JPanel panel;
 
 	/**
 	 * Create the application.
 	 */
 	public VentanaReparaciones(ControladorReparaciones controladorReparaciones) {
 		this.controladorReparaciones = controladorReparaciones;
-		this.isModoEscritura = true;
 		componentsInitializers();
 		componentsProperties();
 		componentsAdders();
@@ -89,6 +80,7 @@ public class VentanaReparaciones {
 
 	// Ocultar y mostrar
 	public void mostrarVentana() {
+		hideComponents(Constantes.MODO_CREAR);
 		frame.setVisible(true);
 	}
 
@@ -96,61 +88,28 @@ public class VentanaReparaciones {
 		frame.setVisible(false);
 	}
 	
-	/**
-	 * Cambia entre modo escritura y modo lectura a la ventana
-	 * @param escritura true si es modo escritura, false para modo lectura
-	 */
-	public void setModoEscritura(boolean escritura){
-		isModoEscritura = escritura;
-		txt_ID.setEditable(escritura);
-		txt_propietario.setEditable(escritura);
-		txt_mecanico.setEditable(escritura);
-		txt_presupuesto.setEditable(escritura);
-		txt_comentario.setEditable(escritura);
-		cb_dia_inicio.setEnabled(escritura);
-		cb_mes_inicio.setEnabled(escritura);
-		cb_anio_inicio.setEnabled(escritura);
-		cb_dia_fin.setEnabled(escritura);
-		cb_mes_fin.setEnabled(escritura);
-		cb_anio_fin.setEnabled(escritura);
-		cb_estado.setEnabled(escritura);
-		cb_ordenar.setEditable(escritura);
-		
-		if(escritura)
-			btn_crear.setText("Crear");
-		else
-			btn_crear.setText("Editar");
-	}
-	
-	
-	public void cargarReparacion(Reparacion reparacion){
-		if (!isModoEscritura) {
+	public void cargarReparacion(Reparacion reparacion) throws RuntimeException {
+		if (!Constantes.MODO_CREAR) {
 			JComboBox[] comboBoxes = { cb_dia_inicio, cb_mes_inicio, cb_anio_inicio,
-				cb_dia_fin, cb_mes_fin, cb_anio_fin };
-			txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
-			txt_propietario.setText(reparacion.getPropietario());
-			txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
-			txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
-			txt_comentario.setText(reparacion.getComentarios());
-			
-			//Combo boxes
-			cb_dia_inicio.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
-			cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
-			cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR)-anios[0]);
-			cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
-			cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
-			cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR)-anios[0]);
-			
-			cb_estado.setSelectedItem(reparacion.getEstado());
-
+					cb_dia_fin, cb_mes_fin, cb_anio_fin };
+				txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
+				txt_propietario.setText(reparacion.getPropietario());
+				txt_mecanico.setText("TODO: WHO'S LOGGED"); //TODO:Quien se ha logeado
+				txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
+				txt_comentario.setText(reparacion.getComentarios());
+				
+				//Combo boxes
+				cb_dia_inicio.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
+				cb_mes_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.MONTH));
+				cb_anio_inicio.setSelectedIndex(reparacion.getFechaInicio().get(Calendar.YEAR)-anios[0]);
+				cb_dia_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.DAY_OF_MONTH)-1);
+				cb_mes_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.MONTH));
+				cb_anio_fin.setSelectedIndex(reparacion.getFechaFin().get(Calendar.YEAR)-anios[0]);
+				
+				cb_estado.setSelectedItem(reparacion.getEstado());
 		} else {
-			throw new RuntimeException("No se puede cargar una reparación en modo Escritura");
+			throw new RuntimeException("No se puede cargar la reparacion en modo crear");
 		}
-	}
-
-	// Getters
-	public boolean getIsModoEscritura(){
-		return isModoEscritura;
 	}
 	
 	public int getIdReparacion() {
@@ -217,6 +176,9 @@ public class VentanaReparaciones {
 		cb_anio_fin = new JComboBox();
 		btn_crear = new JButton("Crear");
 		btn_atras = new JButton("Atras");
+		btnLeftArrow = new JButton("<");
+		btnRightArrow = new JButton(">");
+		panel = new JPanel();
 	}
 
 	/**
@@ -241,8 +203,15 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(cb_ordenar);
 		frame.getContentPane().add(cb_estado);
 		frame.getContentPane().add(txt_comentario);
-		frame.getContentPane().add(btn_crear);
-		frame.getContentPane().add(btn_atras);
+		
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(15, 273, 246, 69);
+		frame.getContentPane().add(panel);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
+		panel.add(btn_crear);
+		panel.add(btn_atras);
+		panel.add(btnLeftArrow);
+		panel.add(btnRightArrow);
 		frame.getContentPane().add(cb_dia_inicio);
 		frame.getContentPane().add(cb_mes_inicio);
 		frame.getContentPane().add(cb_anio_inicio);
@@ -250,6 +219,25 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(cb_mes_fin);
 		frame.getContentPane().add(cb_anio_fin);
 
+	}
+	
+	private void hideComponents(boolean b) {
+		txt_ID.setEnabled(b);
+		txt_propietario.setEnabled(b);
+		txt_mecanico.setEnabled(b);
+		txt_presupuesto.setEnabled(b);
+		cb_ordenar.setEnabled(b);
+		cb_estado.setEnabled(b);
+		txt_comentario.setEnabled(b);
+		cb_dia_inicio.setEnabled(b);
+		cb_mes_inicio.setEnabled(b);
+		cb_anio_inicio.setEnabled(b);
+		cb_dia_fin.setEnabled(b);
+		cb_mes_fin.setEnabled(b);
+		cb_anio_fin.setEnabled(b);
+		btn_crear.setEnabled(b);
+		btnLeftArrow.setEnabled(!b);
+		btnRightArrow.setEnabled(!b);
 	}
 
 	/**
@@ -313,9 +301,6 @@ public class VentanaReparaciones {
 		lb_comentarios.setBounds(286, 155, 76, 14);
 		txt_comentario.setLineWrap(true);
 		txt_comentario.setBounds(286, 180, 183, 159);
-
-		btn_crear.setBounds(27, 277, 129, 62);
-		btn_atras.setBounds(166, 277, 96, 62);
 		btn_crear.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		btn_atras.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		
@@ -329,7 +314,9 @@ public class VentanaReparaciones {
 		btn_crear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				controladorReparaciones.pulsarCrear();
+				if (Constantes.MODO_CREAR) {
+					controladorReparaciones.pulsarCrear();
+				}
 			}
 		});
 
@@ -338,14 +325,6 @@ public class VentanaReparaciones {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorReparaciones.pulsarAtras();
-			}
-		});
-		
-		//USO PARA FINES DE TESTEO
-		txt_euro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				controladorReparaciones.pulsarTest();
 			}
 		});
 	}
