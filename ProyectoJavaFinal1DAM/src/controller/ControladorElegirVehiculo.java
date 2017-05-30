@@ -54,4 +54,9 @@ public class ControladorElegirVehiculo {
 		controladorPrincipal.getControladorVehiculo().setTipoVehiculo(TipoVehiculo.Bicicleta);
 		controladorPrincipal.getControladorVehiculo().mostrarVehiculos();
 	}
+	
+	public void pulsarAtras() {
+		eleccionVehiculo.ocultarVentana();
+		controladorPrincipal.getControladorMenu().mostrarMenu();
+	}
 }

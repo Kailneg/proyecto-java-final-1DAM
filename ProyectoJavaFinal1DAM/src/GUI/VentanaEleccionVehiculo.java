@@ -25,6 +25,7 @@ public class VentanaEleccionVehiculo extends JFrame {
 	private JButton btn_moto;
 	private JButton btn_camion;
 	private JButton btn_bici;
+	private JButton btn_atras;
 
 	/**
 	 * Create the frame.
@@ -68,6 +69,9 @@ public class VentanaEleccionVehiculo extends JFrame {
 		btn_moto.setIcon(new ImageIcon(VentanaEleccionVehiculo.class.getResource("/res/icons/moto.png")));
 		btn_camion.setIcon(new ImageIcon(VentanaEleccionVehiculo.class.getResource("/res/icons/camion.png")));
 		btn_bici.setIcon(new ImageIcon(VentanaEleccionVehiculo.class.getResource("/res/icons/bici.png")));
+		btn_atras = new JButton("Atr\u00E1s");
+		btn_atras.setFont(new Font("Segoe UI", Font.BOLD, 32));
+		btn_atras.setBounds(5, 335, 484, 75);
 	}
 
 	private void componentsAdders() {
@@ -77,11 +81,7 @@ public class VentanaEleccionVehiculo extends JFrame {
 		panel.add(btn_moto);
 		panel.add(btn_camion);
 		panel.add(btn_bici);
-		
-		JButton btnAtrs = new JButton("Atr\u00E1s");
-		btnAtrs.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		btnAtrs.setBounds(5, 335, 484, 75);
-		contentPane.add(btnAtrs);
+		contentPane.add(btn_atras);
 	}
 
 	private void componentsAdapters() {
@@ -115,6 +115,14 @@ public class VentanaEleccionVehiculo extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorElegirVehiculo.pulsarBici();
+			}
+		});
+		
+		// Atras
+		btn_atras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controladorElegirVehiculo.pulsarAtras();
 			}
 		});
 	}
