@@ -19,7 +19,10 @@ public class ContenedorVehiculos {
 	}
 
 	public Vehiculo obtenerVehiculo() {
-		return obtenerVehiculo(index);
+		if (!vehiculos.isEmpty())
+			return obtenerVehiculo(index);
+		else
+			return null;
 	}
 
 	public Vehiculo obtenerVehiculo(int index) {
@@ -47,7 +50,7 @@ public class ContenedorVehiculos {
 	}
 
 	public void aumentarIndex() {
-		if (index < vehiculos.size() - 1)
+		if (index < vehiculos.size() - 1 && !vehiculos.isEmpty())
 			index++;
 	}
 
@@ -58,7 +61,10 @@ public class ContenedorVehiculos {
 	}
 
 	public int getIndex() {
-		return index + 1;
+		if (vehiculos.isEmpty())
+			return index;
+		else
+			return index + 1;
 	}
 
 	public int getSize() {
