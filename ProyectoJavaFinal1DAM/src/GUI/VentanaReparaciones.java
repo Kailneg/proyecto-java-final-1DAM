@@ -62,8 +62,8 @@ public class VentanaReparaciones {
 	private JComboBox cb_anio_fin;
 	private JButton btn_crear;
 	private JButton btn_atras;
-	private JButton button;
-	private JButton button_1;
+	private JButton btnLeftArrow;
+	private JButton btnRightArrow;
 	private JPanel panel;
 
 	/**
@@ -176,8 +176,8 @@ public class VentanaReparaciones {
 		cb_anio_fin = new JComboBox();
 		btn_crear = new JButton("Crear");
 		btn_atras = new JButton("Atras");
-		button = new JButton("<");
-		button_1 = new JButton(">");
+		btnLeftArrow = new JButton("<");
+		btnRightArrow = new JButton(">");
 		panel = new JPanel();
 	}
 
@@ -210,8 +210,8 @@ public class VentanaReparaciones {
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 		panel.add(btn_crear);
 		panel.add(btn_atras);
-		panel.add(button);
-		panel.add(button_1);
+		panel.add(btnLeftArrow);
+		panel.add(btnRightArrow);
 		frame.getContentPane().add(cb_dia_inicio);
 		frame.getContentPane().add(cb_mes_inicio);
 		frame.getContentPane().add(cb_anio_inicio);
@@ -236,6 +236,8 @@ public class VentanaReparaciones {
 		cb_mes_fin.setEnabled(b);
 		cb_anio_fin.setEnabled(b);
 		btn_crear.setEnabled(b);
+		btnLeftArrow.setEnabled(!b);
+		btnRightArrow.setEnabled(!b);
 	}
 
 	/**
