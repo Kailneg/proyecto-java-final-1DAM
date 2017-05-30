@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+import org.joda.time.DateTime;
+
 import controller.ControladorReparaciones;
 
 import javax.swing.JButton;
@@ -125,7 +127,7 @@ public class VentanaReparaciones {
 	public EstadoReparacion getEstado() {
 		return EstadoReparacion.valueOf(cb_estado.getSelectedItem().toString());
 	}
-
+	
 	public String getComentarios() {
 		return txt_comentario.getText();
 	}
@@ -350,5 +352,14 @@ public class VentanaReparaciones {
 				controladorReparaciones.pulsarAtras();
 			}
 		});
+		
+		//Boton Inicio
+		btnInicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
+		
 	}
 }
