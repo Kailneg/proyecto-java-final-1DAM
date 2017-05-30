@@ -84,6 +84,10 @@ public class VentanaVehiculos {
 		return txt_marca.getText();
 	}
 
+	public String getTxt_modelo() {
+		return txt_modelo.getText();
+	}
+
 	public String getTxt_matricula() {
 		return txt_matricula.getText();
 	}
