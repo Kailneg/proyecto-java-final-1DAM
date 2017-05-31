@@ -17,6 +17,16 @@ public class Reparacion {
 	private String comentarios;
 
 	// CONSTRUCTOR
+	/**
+	 * Crea un objeto Reparacion con todos sus atributos
+	 * @param idReparacion El identificador de la reparacion
+	 * @param propietario Es el dueño del vehiculo
+	 * @param presupuesto Lo que se estima que va a costar la reparacion
+	 * @param fechaInicio Es la fecha y hora de cuando se comienza a reparar el vehiculo
+	 * @param fechaFin Es la fecha y hora de cuando se termina de reparar el vehiculo
+	 * @param estado Es la situacion en la que se encuentra el vehiculo en cuanto a la reparacion
+	 * @param comentarios Observaciones que pueda hacer el dueño o el propio mecanico sobre el coche
+	 */
 	public Reparacion(int idReparacion, String propietario, float presupuesto,
 			Calendar fechaInicio, Calendar fechaFin, EstadoReparacion estado, String comentarios) {
 		this.idReparacion = idReparacion;
@@ -76,6 +86,10 @@ public class Reparacion {
 		this.comentarios = comentarios;
 	}
 
+	//TOSTRING
+	/**
+	 * Imprime todos los atributos de reparacion
+	 */
 	@Override
 	public String toString() {
 		return "Reparacion [idReparacion=" + idReparacion + 
