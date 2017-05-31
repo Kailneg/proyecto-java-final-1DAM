@@ -29,7 +29,6 @@ public class VentanaClientes extends JFrame {
 	private JPanel panel, panel_botones;
 	private JLabel lb_nif, lb_nombre, lb_apellidos, lb_direccion, lb_telefono;
 	private JButton btnLeftArrow, btnRightArrow;
-
 	private JSeparator separator;
 	private JLabel lb_email;
 	private JButton btn_crear, btnAtrs;
@@ -47,66 +46,113 @@ public class VentanaClientes extends JFrame {
 		addAdapters();
 	}
 
-	// Ocultar y mostrar
+	/**
+	 * Muestra la ventana 
+	 */
 	public void mostrarVentana() {
 		hideComponents(Constantes.MODO_CREAR);
 		setVisible(true);
 	}
 
+	/**
+	 * Oculta la ventana
+	 */
 	public void ocultarVentana() {
 		setVisible(false);
 	}
 
-	// Getters
-	// nombre, apellidos, direccion, telefono, email
+	// GETTERS
+	/**
+	 * Devuelve el contenido del atributo NIF.
+	 * @return atributo nif de VentanaCliente
+	 */
 	public String getNIF() {
 		return txt_nif.getText();
 	}
-	
-	public void setNIF(String s) {
-		txt_nif.setText(s);
-	}
-
+	/**
+	 * Devuelve el contenido del atributo nombre.
+	 * @return atributo nombre de VentanaCliente
+	 */
 	public String getNombre() {
 		return txt_nombre.getText();
 	}
-	
-	public void setNombre(String s){
-		txt_nombre.setText(s);
-	}
-
+	/**
+	 * Devuelve el contenido del atributo Apellidos.
+	 * @return atributo apellidos de VentanaCliente
+	 */
 	public String getApellidos() {
 		return txt_apellidos.getText();
 	}
-	
-	public void setApellidos(String s) {
-		txt_apellidos.setText(s);
-	}
-
+	/**
+	 * Devuelve el contenido del atributo direccion.
+	 * @return artibuto direccion de VentanaCliente
+	 */
 	public String getDireccion() {
 		return txt_direccion.getText();
 	}
-	
-	public void setDireccion(String s) {
-		txt_direccion.setText(s);
-	}
-
+	/**
+	 * Devuelve el contenido del atributo telefono.
+	 * @return atributo telefono de ventanaCliente
+	 */
 	public long getTelefono() {
 		return Long.parseLong(txt_telefono.getText());
 	}
-	
-	public void setTelefono(String s) {
-		txt_telefono.setText(s);
-	}
-
+	/**
+	 * Devuelve el contenido del atributo email.
+	 * @return atributo email de VentanaCliente
+	 */
 	public String getEmail() {
 		return txt_email.getText();
 	}
 	
+	//SETTERS
+	/**
+	 * Asigna al atributo apellidos el parámetro
+	 * @param s el apellido que se quiere asignar
+	 */
+	public void setApellidos(String s) {
+		txt_apellidos.setText(s);
+	}
+	/**
+	 * Asigna al atributo nombre el parámetro
+	 * @param s el nombre que se quiere asignar
+	 */
+	public void setNombre(String s){
+		txt_nombre.setText(s);
+	}
+	/**
+	 * Asigna al atributo direccion el parámetro
+	 * @param s la direccion que se quiere asignar
+	 */
+	public void setDireccion(String s) {
+		txt_direccion.setText(s);
+	}
+	/**
+	 * Asigna al atributo nif el parámetro
+	 * @param s el nif que se quiere asignar
+	 */
+	public void setNIF(String s) {
+		txt_nif.setText(s);
+	}
+	/**
+	 * Asigna al atributo email el parámetro
+	 * @param s el email que se quiere asignar
+	 */
 	public void setEmail(String s) {
 		txt_email.setText(s);
 	}
-
+	/**
+	 * Asigna al atributo telefono el parámetro
+	 * @param s el telefono que se quiere asignar
+	 */
+	public void setTelefono(String s) {
+		txt_telefono.setText(s);
+	}
+	
+	//METODOS
+	/**
+	 * Propiedades de la ventana Frame
+	 */
 	private void setUpFrame() {
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,7 +160,9 @@ public class VentanaClientes extends JFrame {
 		setVisible(true);
 		setResizable(false);
 	}
-
+	/**
+	 * Instanciacion de todos los componentes de la ventana
+	 */
 	private void setUpComponents() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -179,7 +227,9 @@ public class VentanaClientes extends JFrame {
 		btnBorrarCliente.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnBorrarCliente.setBounds(324, 141, 93, 76);
 	}
-
+	/**
+	 * Añade todos los componentes a la ventana
+	 */
 	private void addComponents() {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.add(lb_nif);
@@ -198,7 +248,10 @@ public class VentanaClientes extends JFrame {
 		panel.add(panel_botones);
 		panel.add(btnBorrarCliente);
 	}
-
+	/**
+	 * Oculta los componentes de la ventana
+	 * @param b booleano que indica si se ocultan o no
+	 */
 	private void hideComponents(boolean b) {
 		txt_nif.setEnabled(b);
 		txt_nombre.setEnabled(b);
@@ -219,7 +272,9 @@ public class VentanaClientes extends JFrame {
 			panel_botones.setBounds(20, 141, 294, 76);
 		}
 	}
-
+	/**
+	 * Funcionalidad de los diferentes botones de la ventana
+	 */
 	private void addAdapters() {
 		// Boton Crear
 		btn_crear.addMouseListener(new MouseAdapter() {
