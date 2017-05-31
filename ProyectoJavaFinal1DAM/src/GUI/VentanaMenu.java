@@ -21,7 +21,7 @@ public class VentanaMenu {
 	/**
 	 * Crea una nueva VentanaMenu.
 	 * 
-	 * @param controladorElegirVehiculo
+	 * @param controladorVentanaMenu
 	 *            controlador necesario para el funcionamiento. Se obtiene de
 	 *            ControladorPrincipal.
 	 */
