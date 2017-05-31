@@ -2,9 +2,9 @@ package GUI;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.management.RuntimeErrorException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import java.awt.Color;
@@ -16,10 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
-import java.util.TimeZone;
 
 import enums.EstadoReparacion;
-import enums.Meses;
 import globals.Constantes;
 import models.Reparacion;
 
@@ -97,44 +95,49 @@ public class VentanaReparaciones {
 		frame.setVisible(false);
 	}
 
-	public void cargarReparacion(Reparacion reparacion) throws RuntimeException {
-		if (!Constantes.MODO_CREAR) {
-			txt_ID.setText(String.valueOf(reparacion.getIdReparacion()));
-			txt_propietario.setText(reparacion.getPropietario());
-			txt_mecanico.setText("TODO: WHO'S LOGGED"); // TODO:Quien se ha
-														// logeado
-			txt_presupuesto.setText(String.valueOf(reparacion.getPresupuesto()));
-			txt_comentario.setText(reparacion.getComentarios());
-
-			cb_estado.setSelectedItem(reparacion.getEstado());
-		} else {
-			throw new RuntimeException("No se puede cargar la reparacion en modo crear");
-		}
+	public int getID() {
+		return Integer.parseInt(txt_ID.getText());
 	}
 
-	public int getIdReparacion() {
-		return Integer.parseInt(txt_ID.getText());
+	public void setID(String s) {
+		txt_ID.setText(s);
 	}
 
 	public String getPropietario() {
 		return txt_propietario.getText();
 	}
 
+	public void setPropietario(String s) {
+		txt_propietario.setText(s);
+	}
+
 	public float getPresupuesto() {
 		return Float.parseFloat(txt_presupuesto.getText());
 	}
-	
+
+	public void setPresupuesto(String s) {
+		txt_presupuesto.setText(s);
+	}
+
 	public float getCostePiezas() {
 		return Float.parseFloat(txt_piezas.getText());
 	}
-	
+
+	public void setCostePiezas(String s) {
+		txt_piezas.setText(s);
+	}
+
 	public Calendar getFechaInicio() {
 		if (fechaInicio != null) {
 			return fechaInicio;
 		}
 		throw new RuntimeException("Fecha inicio no se ha fijado");
 	}
-	
+
+	public void setFechaInicio(String s) {
+		txt_fechaInicio.setText(s);
+	}
+
 	public Calendar getFechaFin() {
 		if (fechaFin != null) {
 			return fechaFin;
@@ -142,12 +145,28 @@ public class VentanaReparaciones {
 		throw new RuntimeException("Fecha fin no se ha fijado");
 	}
 
+	public void setFechaFin(String s) {
+		txt_fechaFin.setText(s);
+	}
+	
+	public void setTiempoTotal(String s) {
+		txt_tiempoTotal.setText(s);
+	}
+
 	public EstadoReparacion getEstado() {
 		return EstadoReparacion.valueOf(cb_estado.getSelectedItem().toString());
 	}
-	
+
+	public void setEstado(EstadoReparacion e) {
+		cb_estado.setSelectedItem(e);
+	}
+
 	public String getComentarios() {
 		return txt_comentario.getText();
+	}
+
+	public void setComentarios(String s) {
+		txt_comentario.setText(s);
 	}
 
 	/**
@@ -302,6 +321,10 @@ public class VentanaReparaciones {
 		btn_crear.setEnabled(b);
 		btnLeftArrow.setEnabled(!b);
 		btnRightArrow.setEnabled(!b);
+		btnFin.setEnabled(b);
+		btnInicio.setEnabled(b);
+		txt_tiempoTotal.setVisible(b);
+		lblTiempoInvertido.setVisible(b);
 	}
 
 	/**
@@ -375,36 +398,63 @@ public class VentanaReparaciones {
 				controladorReparaciones.pulsarAtras();
 			}
 		});
-		
-		//Boton Inicio
+
+		// Boton Inicio
 		btnInicio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				fechaInicio = Calendar.getInstance();
-				txt_fechaInicio.setText(fechaInicio.get(Calendar.HOUR_OF_DAY) + ":" +
-						fechaInicio.get(Calendar.MINUTE) + ":" + fechaInicio.get(Calendar.SECOND));
+				if (Constantes.MODO_CREAR) {
+					fechaInicio = Calendar.getInstance();
+					txt_fechaInicio.setText(fechaInicio.get(Calendar.HOUR_OF_DAY) + ":"
+							+ fechaInicio.get(Calendar.MINUTE) + ":" + fechaInicio.get(Calendar.SECOND));
+				}
 			}
 		});
-		
-		//Boton Fin
+
+		// Boton Fin
 		btnFin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				fechaFin = Calendar.getInstance();
-				txt_fechaFin.setText(fechaFin.get(Calendar.HOUR_OF_DAY) + ":" +
-				fechaFin.get(Calendar.MINUTE) + ":" + fechaFin.get(Calendar.SECOND));
-				
-				Calendar aux = Calendar.getInstance();
-				aux.setTimeInMillis(fechaFin.getTimeInMillis()-fechaInicio.getTimeInMillis());
-				txt_tiempoTotal.setText(aux.get(Calendar.HOUR_OF_DAY)-1 + ":" +
-						aux.get(Calendar.MINUTE) + ":" + aux.get(Calendar.SECOND));
-				
-				//Calculando total
-				int total = 0;
-				total += getCostePiezas();
-				total += aux.getTimeInMillis()/1000/60;
-				
-				txt_precioFinal.setText(String.valueOf(total));
+				if (Constantes.MODO_CREAR) {
+					try {
+						fechaFin = Calendar.getInstance();
+						txt_fechaFin.setText(fechaFin.get(Calendar.HOUR_OF_DAY) + ":" + fechaFin.get(Calendar.MINUTE) + ":"
+								+ fechaFin.get(Calendar.SECOND));
+
+						Calendar aux = Calendar.getInstance();
+						aux.setTimeInMillis(fechaFin.getTimeInMillis() - fechaInicio.getTimeInMillis());
+						txt_tiempoTotal.setText(aux.get(Calendar.HOUR_OF_DAY) - 1 + ":" + aux.get(Calendar.MINUTE) + ":"
+								+ aux.get(Calendar.SECOND));
+
+						// Calculando total
+						int total = 0;
+						total += getCostePiezas();
+						total += aux.getTimeInMillis() / 1000 / 60;
+
+						txt_precioFinal.setText(String.valueOf(total));
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Se necesita el coste de las piezas y la fecha de inicio", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+
+				}
+			}
+		});
+
+		btnLeftArrow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (!Constantes.MODO_CREAR) {
+					controladorReparaciones.pulsarLeftArrow();
+				}
+			}
+		});
+
+		btnRightArrow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (!Constantes.MODO_CREAR) {
+					controladorReparaciones.pulsarRightArrow();
+				}
 			}
 		});
 	}

@@ -3,19 +3,17 @@ package contenedores;
 import java.util.ArrayList;
 import java.util.List;
 
-import exceptions.ClienteNoEncontrado;
 import exceptions.ReparacionNoEncontrada;
-import exceptions.UsuarioNoEncontrado;
-import models.Cliente;
 import models.Reparacion;
-import models.Usuario;
 
 public class ContenedorReparaciones {
 	
 	private ArrayList<Reparacion> reparaciones;
+	private int index;
 	
 	public ContenedorReparaciones() {
 		reparaciones = new ArrayList<Reparacion>();
+		index = 0;
 	}
 	
 	public List<Reparacion> getCopiaReparaciones(){
@@ -34,7 +32,45 @@ public class ContenedorReparaciones {
 		return reparaciones.add(reparacion);
 	}
 
-	public boolean eliminarCliente(Reparacion reparacion) {
+	public boolean borrarReparacion(Reparacion reparacion) {
 		return reparaciones.remove(reparacion);
+	}
+
+	public Reparacion obtenerReparacion() {
+		if (!reparaciones.isEmpty()) {
+			return obtenerReparacion(index);
+		} else {
+			return null;
+		}
+	}
+	
+	public Reparacion obtenerReparacion(int index) {
+		if (reparaciones.get(index) != null) {
+			return reparaciones.get(index);
+		} else {
+			return null;
+		}
+	}
+	
+	public void aumentarIndex() {
+		if (index < reparaciones.size() - 1 && !reparaciones.isEmpty())
+			index++;
+	}
+
+	public void disminuirIndex() {
+		if (index > 0 && !reparaciones.isEmpty()) {
+			index--;
+		}
+	}
+	
+	public int getIndex() {
+		if (reparaciones.isEmpty())
+			return index;
+		else
+			return index + 1;
+	}
+
+	public int getSize() {
+		return reparaciones.size();
 	}
 }

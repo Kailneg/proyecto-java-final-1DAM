@@ -23,9 +23,7 @@ public class ControladorCliente {
 
 	public void mostrarClientes() {
 		clientes.mostrarVentana();
-		if (!Constantes.MODO_CREAR) {
-			cargarCliente();
-		}
+		cargarCliente();
 	}
 
 	public Cliente obtenerClienteActual() {

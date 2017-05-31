@@ -15,27 +15,44 @@ public class Reparacion {
 	private String propietario;
 	private EstadoReparacion estado;
 	private String comentarios;
+	private float costePiezas;
 
 	// CONSTRUCTOR
 	public Reparacion(int idReparacion, String propietario, float presupuesto,
-			Calendar fechaInicio, Calendar fechaFin, EstadoReparacion estado, String comentarios) {
+			Calendar fechaInicio, Calendar fechaFin, EstadoReparacion estado, String comentarios, float costePiezas) {
 		this.idReparacion = idReparacion;
 		this.presupuesto = presupuesto;
 		this.estado = estado;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
 		this.comentarios = comentarios;
+		this.costePiezas = costePiezas;
 	}
 
 	// GETTERS
 	public int getIdReparacion() {
 		return idReparacion;
 	}
+	public float getCostePiezas() {
+		return costePiezas;
+	}
 
 	public Calendar getFechaInicio() {
 		return fechaInicio;
 	}
 	
+	public String getFechaInicioString() {
+		return fechaInicio.get(Calendar.HOUR_OF_DAY) + ":"
+				+ fechaInicio.get(Calendar.MINUTE) + ":" + fechaInicio.get(Calendar.SECOND);
+	}
+	
 	public Calendar getFechaFin() {
 		return fechaFin;
+	}
+	
+	public String getFechaFinString() {
+		return fechaFin.get(Calendar.HOUR_OF_DAY) + ":"
+				+ fechaFin.get(Calendar.MINUTE) + ":" + fechaFin.get(Calendar.SECOND);
 	}
 	
 	public String getPropietario(){
@@ -59,7 +76,15 @@ public class Reparacion {
 	public void setIdReparacion(int idReparacion) {
 		this.idReparacion = idReparacion;
 	}
+	
+	public void setCostePiezas(float c) {
+		this.costePiezas = c;
+	}
 
+	public void setFechaInicio(Calendar fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	
 	public void setFechaFin(Calendar fechaFin) {
 		this.fechaFin = fechaFin;
 	}
