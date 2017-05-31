@@ -36,56 +36,104 @@ public class Reparacion {
 	}
 
 	// GETTERS
+	/**
+	 * Devuelve el atributo ID
+	 * @return atributo id de reparacion
+	 */
 	public int getIdReparacion() {
 		return idReparacion;
 	}
 
+	/**
+	 * Devuelve el atributo Fecha inicio
+	 * @return atributo fecha inicio de reparacion
+	 */
 	public Calendar getFechaInicio() {
 		return fechaInicio;
 	}
 	
+	/**
+	 * Devuelve el atributo Fecha fin
+	 * @return atributo fecha fin de reparacion
+	 */
 	public Calendar getFechaFin() {
 		return fechaFin;
 	}
 	
+	/**
+	 * Devuelve el atributo Propietario
+	 * @return atributo propietario de reparacion
+	 */
 	public String getPropietario(){
 		return propietario;
 	}
 	
+	/**
+	 * Devuelve el atributo Presupuesto
+	 * @return atributo presupuesto de reparacion
+	 */
 	public float getPresupuesto() {
 		return presupuesto;
 	}
 	
+	/**
+	 * Devuelve el atributo Estado
+	 * @return atributo estado de reparacion
+	 */
 	public EstadoReparacion getEstado() {
 		return estado;
 	}
-	
+	 /**
+	  * Devuelve el atributo comentarios
+	  * @return atributo comentarios de reparacion
+	  */
 	public String getComentarios() {
 		return comentarios;
 	}
 
 	
 	// SETTERS
+	/**
+	 * Fija el atributo id de reparacion con el valor pasado por parametro
+	 * @param idReparacion nuevo id que tendrá el atributo
+	 */
 	public void setIdReparacion(int idReparacion) {
 		this.idReparacion = idReparacion;
 	}
 
+	/**
+	 * Fija el atributo fecha fin de reparacion con el valor pasado por parametro
+	 * @param fechaFin nueva fecha final que tendrá el atributo
+	 */
 	public void setFechaFin(Calendar fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
+	/**
+	 * Fija el atributo presupuesto de reparacion con el valor pasado por parametro
+	 * @param presupuesto nuevo presupuesto que tendrá el atributo
+	 */
 	public void setPresupuesto(float presupuesto) {
 		this.presupuesto = presupuesto;
 	}
 
+	/**
+	 * Fija el atributo estado de reparacion con el valor pasado por parametro
+	 * @param estado nuevo estado que tendrá el atributo
+	 */
 	public void setEstado(EstadoReparacion estado) {
 		this.estado = estado;
 	}
 
+	/**
+	 * Fija el atributo comentarios de reparacion con el valor pasado por parametro
+	 * @param comentarios nuevo comentario que tendrá el atributo
+	 */
 	public void setComentarios(String comentarios) {
 		this.comentarios = comentarios;
 	}
 
+	
 	//TOSTRING
 	/**
 	 * Imprime todos los atributos de reparacion
