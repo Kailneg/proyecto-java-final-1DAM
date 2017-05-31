@@ -232,8 +232,10 @@ public class VentanaVehiculos {
 		lblModelo = new JLabel("Modelo:");
 		lblPuertas = new JLabel("Puertas:");
 		rb_3puertas = new JRadioButton("3");
+		buttonGroup.add(rb_3puertas);
 		rb_3puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rb_5puertas = new JRadioButton("5");
+		buttonGroup.add(rb_5puertas);
 		rb_5puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAnioMatriculacion = new JLabel("Matriculaci\u00F3n:");
 		lblCaballos = new JLabel("Potencia:");
@@ -260,7 +262,9 @@ public class VentanaVehiculos {
 		cb_TipoVehiculo = new JComboBox<Integer>();
 		cb_TipoVehiculo.setEnabled(false);
 		rb_2puertas = new JRadioButton("2");
+		buttonGroup.add(rb_2puertas);
 		rb_0puertas = new JRadioButton("0");
+		buttonGroup.add(rb_0puertas);
 	}
 
 	/**
@@ -285,10 +289,6 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(buttonLeftArrow);
 		frmVehiculos.getContentPane().add(buttonRightArrow);
 		frmVehiculos.getContentPane().add(btnGuardar);
-
-		buttonGroup.add(rb_3puertas);
-		buttonGroup.add(rb_5puertas);
-		buttonGroup.add(rb_2puertas);
 
 		lbl_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbl_cv.setText("CV");
