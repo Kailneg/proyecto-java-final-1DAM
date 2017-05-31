@@ -28,7 +28,11 @@ public class VentanaEleccionVehiculo extends JFrame {
 	private JButton btn_atras;
 
 	/**
-	 * Create the frame.
+	 * Crea una nueva Ventana para elegir vehículos.
+	 * 
+	 * @param controladorElegirVehiculo
+	 *            controlador necesario para el funcionamiento. Se obtiene de
+	 *            ControladorPrincipal.
 	 */
 	public VentanaEleccionVehiculo(ControladorElegirVehiculo controladorElegirVehiculo) {
 		this.controladorElegirVehiculo = controladorElegirVehiculo;
@@ -39,14 +43,23 @@ public class VentanaEleccionVehiculo extends JFrame {
 	}
 
 	// Ocultar y mostrar
+	/**
+	 * Muestra la ventana
+	 */
 	public void mostrarVentana() {
 		setVisible(true);
 	}
 
+	/**
+	 * Oculta la ventana
+	 */
 	public void ocultarVentana() {
 		setVisible(false);
 	}
 
+	/**
+	 * Inicializa los componentes
+	 */
 	private void componentsInitializers() {
 		panel = new JPanel();
 		panel.setBounds(5, 5, 484, 330);
@@ -56,6 +69,9 @@ public class VentanaEleccionVehiculo extends JFrame {
 		btn_bici = new JButton("");
 	}
 
+	/**
+	 * Setea las propiedades de los componentes
+	 */
 	private void componentsProperties() {
 		setResizable(false);
 		setTitle("Eleccion Veh\u00EDculo");
@@ -74,6 +90,9 @@ public class VentanaEleccionVehiculo extends JFrame {
 		btn_atras.setBounds(5, 335, 484, 75);
 	}
 
+	/**
+	 * Aniade los componentes a sus respectivos paneles
+	 */
 	private void componentsAdders() {
 		contentPane.setLayout(null);
 		contentPane.add(panel);
@@ -84,6 +103,9 @@ public class VentanaEleccionVehiculo extends JFrame {
 		contentPane.add(btn_atras);
 	}
 
+	/**
+	 * Aniade los adaptadores de la ventana
+	 */
 	private void componentsAdapters() {
 
 		// Coche
@@ -117,7 +139,7 @@ public class VentanaEleccionVehiculo extends JFrame {
 				controladorElegirVehiculo.pulsarBici();
 			}
 		});
-		
+
 		// Atras
 		btn_atras.addMouseListener(new MouseAdapter() {
 			@Override
