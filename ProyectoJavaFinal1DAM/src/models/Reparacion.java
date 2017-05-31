@@ -24,6 +24,7 @@ public class Reparacion {
 		this.idReparacion = idReparacion;
 		this.presupuesto = presupuesto;
 		this.estado = estado;
+		this.propietario = propietario;
 		this.mecanico = mecanico;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
@@ -90,6 +91,10 @@ public class Reparacion {
 	// SETTERS
 	public void setIdReparacion(int idReparacion) {
 		this.idReparacion = idReparacion;
+	}
+	
+	public void setPropietario(String s) {
+		this.propietario = s;
 	}
 
 	public void setCostePiezas(float c) {
