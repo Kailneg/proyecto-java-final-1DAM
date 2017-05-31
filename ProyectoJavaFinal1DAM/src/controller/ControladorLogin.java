@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import GUI.VentanaLogin;
 import contenedores.ContenedorPrincipal;
 import contenedores.ContenedorUsuarios;
+import exceptions.UsuarioNoEncontrado;
 
 public class ControladorLogin {
 
@@ -31,10 +32,16 @@ public class ControladorLogin {
 	 * Valida el usuario y la contraseña cuando intentamos logearnos
 	 */
 	public void validarLogin() {
-		if(DAO.LoginDAO.Login(login.getUsuario(), login.getContrasenia())){	
-			JOptionPane.showMessageDialog(null, "Login correcto");
-			ocultarLogin();
-			controladorPrincipal.getControladorMenu().mostrarMenu();
+		try {
+			if(DAO.LoginDAO.Login(login.getUsuario(), login.getContrasenia())){	
+				JOptionPane.showMessageDialog(null, "Login correcto");
+				ocultarLogin();
+				controladorPrincipal.getControladorMenu().mostrarMenu();
+			}
+		} catch (UsuarioNoEncontrado e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
