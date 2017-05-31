@@ -13,10 +13,10 @@ public class Usuario {
 	private Calendar fechaContratacion;
 	
 	
-	// CONSTRUCTOR
+	// CONSTRUCTORES
 	
 	/**
-	 * Crea un objeto de tipo Usuario con los mínimos atributos posibles.
+	 * Crea un objeto de tipo Usuario con los atributos referentes al inicio de sesion.
 	 * @param usuario el nombre de login del usuario.
 	 * @param contrasenia la contraseña que tendrá el usuario.
 	 */
@@ -26,7 +26,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Crea un objeto de tipo Usuario con todos los atributos posibles.
+	 * Crea un objeto de tipo Usuario con todos los atributos de usuario.
 	 * @param usuario el nombre de login del usuario.
 	 * @param nombre el nombre del usuario.
 	 * @param apellidos el apellido del usuario.
@@ -46,47 +46,90 @@ public class Usuario {
 	}
 
 	//GETTERS
+	/**
+	 * Devuelve el atributo Usuario.
+	 * @return atributo usuario de Usuario
+	 */
 	public String getUsuario() {
 		return usuario;
 	}
 
+	/**
+	 * Devuelve el atributo Nombre.
+	 * @return atributo nombre de Usuario
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
+	/**
+	 * Devuelve el atributo sueldo.
+	 * @return atributo Sueldo de Usuario
+	 */
 	public float getSueldo() {
 		return sueldo;
 	}
 
+	/**
+	 * Devuelve el atributo Dias de Vacaciones.
+	 * @return atributo diasVacaciones de Usuario
+	 */
 	public int getDiasVacaciones() {
 		return diasVacaciones;
 	}
 
+	/**
+	 * Devuelve el atributo fechaContratacion.
+	 * @return atributo fechaContratacion.
+	 */
 	public Calendar getFechaContratacion() {
 		return fechaContratacion;
 	}
 
 	//SETTERS
+	/**
+	 * Fija al atributo usuario de la instancia el valor pasado por parámetros.
+	 * @param usuario el nuevo valor que tendrá el atributo usuario.
+	 */
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
+	/**
+	 * Fija al atributo nombre de la instancia el valor pasado por parámetros
+	 * @param nombre el nuevo valor que tendrá el atributo nombre.
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Fija al atributo sueldo de la instancia el valor pasado por parámetros
+	 * @param sueldo el nuevo valor que tendrá el atributo sueldo.
+	 */
 	public void setSueldo(float sueldo) {
 		this.sueldo = sueldo;
 	}
 
+	/**
+	 * Fija al atributo DiasVacaciones de la instancia el valor pasado por parámetros
+	 * @param diasVacaciones el nuevo valor que tendrá el atributo diasVacaciones.
+	 */
 	public void setDiasVacaciones(int diasVacaciones) {
 		this.diasVacaciones = diasVacaciones;
 	}
 
+	/**
+	 * Fija al atributo fechaContratacion de la instancia el valor pasado por parámetros
+	 * @param fechaContratacion el nuevo valor que tendrá el atributo fechaContratacion.
+	 */ 
 	public void setFechaContratacion(Calendar fechaContratacion) {
 		this.fechaContratacion = fechaContratacion;
 	}
 
+	
+	//METODOS
+	
 	/**
 	 * Cambia la contraseña del usuario.
 	 * @param antiguaContrasenia La contraseña actual, la que queremos cambiar.
@@ -114,6 +157,9 @@ public class Usuario {
 			throw new ContraseniaNoEncontrada();
 	}
 
+	/**
+	 * Imprime el usuario y la contrasenia del usuario
+	 */
 	@Override
 	public String toString() {
 		return "Usuario [usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
