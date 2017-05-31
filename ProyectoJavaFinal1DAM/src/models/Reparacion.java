@@ -1,7 +1,6 @@
 package models;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import enums.EstadoReparacion;
 
@@ -16,10 +15,11 @@ public class Reparacion {
 	private EstadoReparacion estado;
 	private String comentarios;
 	private float costePiezas;
+	private float total;
 
 	// CONSTRUCTOR
 	public Reparacion(int idReparacion, String propietario, float presupuesto,
-			Calendar fechaInicio, Calendar fechaFin, EstadoReparacion estado, String comentarios, float costePiezas) {
+			Calendar fechaInicio, Calendar fechaFin, EstadoReparacion estado, String comentarios, float costePiezas, float total) {
 		this.idReparacion = idReparacion;
 		this.presupuesto = presupuesto;
 		this.estado = estado;
@@ -27,6 +27,7 @@ public class Reparacion {
 		this.fechaFin = fechaFin;
 		this.comentarios = comentarios;
 		this.costePiezas = costePiezas;
+		this.total = total;
 	}
 
 	// GETTERS
@@ -39,6 +40,10 @@ public class Reparacion {
 
 	public Calendar getFechaInicio() {
 		return fechaInicio;
+	}
+	
+	public float getTotal() {
+		return total;
 	}
 	
 	public String getFechaInicioString() {
@@ -79,6 +84,10 @@ public class Reparacion {
 	
 	public void setCostePiezas(float c) {
 		this.costePiezas = c;
+	}
+	
+	public void setTotal(float t) {
+		this.total = t;
 	}
 
 	public void setFechaInicio(Calendar fechaInicio) {

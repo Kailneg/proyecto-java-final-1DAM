@@ -39,7 +39,7 @@ public class ControladorReparaciones {
 			contenedorReparaciones.aniadirReparacion(
 					new Reparacion(reparaciones.getID(), reparaciones.getPropietario(), 
 							reparaciones.getPresupuesto(), reparaciones.getFechaInicio(), reparaciones.getFechaFin(), 
-							reparaciones.getEstado(), reparaciones.getComentarios(), reparaciones.getCostePiezas()));
+							reparaciones.getEstado(), reparaciones.getComentarios(), reparaciones.getCostePiezas(), reparaciones.getTotal()));
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se admiten campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -70,6 +70,7 @@ public class ControladorReparaciones {
 			reparaciones.setPresupuesto(String.valueOf(contenedorReparaciones.obtenerReparacion().getPresupuesto()));
 			reparaciones.setComentarios(contenedorReparaciones.obtenerReparacion().getComentarios());
 			reparaciones.setEstado(contenedorReparaciones.obtenerReparacion().getEstado());
+			reparaciones.setTotal(String.valueOf(contenedorReparaciones.obtenerReparacion().getTotal()));
 			reparaciones.setCostePiezas(String.valueOf(contenedorReparaciones.obtenerReparacion().getCostePiezas()));
 			reparaciones.setPresupuesto(calcularPresupuesTotal());
 		}

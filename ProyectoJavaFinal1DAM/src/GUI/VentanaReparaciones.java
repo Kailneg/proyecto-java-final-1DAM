@@ -46,10 +46,8 @@ public class VentanaReparaciones {
 	private JLabel lblCliente;
 	private JLabel lb_mecanico;
 	private JLabel lb_presupuesto;
-	private JLabel lblOrdenarPor;
 	private JLabel lb_estado;
 	private JLabel lb_comentarios;
-	private JComboBox<?> cb_ordenar;
 	private JComboBox cb_estado;
 	private JTextArea txt_comentario;
 	private JButton btn_crear;
@@ -97,6 +95,14 @@ public class VentanaReparaciones {
 
 	public int getID() {
 		return Integer.parseInt(txt_ID.getText());
+	}
+	
+	public float getTotal() {
+		return Float.parseFloat(txt_precioFinal.getText());
+	}
+	
+	public void setTotal(String s) {
+		txt_precioFinal.setText(s);
 	}
 
 	public void setID(String s) {
@@ -178,7 +184,6 @@ public class VentanaReparaciones {
 		lblCliente = new JLabel("Propietario:");
 		lb_mecanico = new JLabel("Mec\u00E1nico:");
 		lb_presupuesto = new JLabel("Presupuesto:");
-		lblOrdenarPor = new JLabel("Ordenar por:");
 		lb_estado = new JLabel("Estado:");
 		lb_comentarios = new JLabel("Comentarios:");
 		txt_ID = new JTextField();
@@ -186,7 +191,6 @@ public class VentanaReparaciones {
 		txt_mecanico = new JTextField();
 		txt_presupuesto = new JTextField();
 		txt_euro = new JTextField();
-		cb_ordenar = new JComboBox();
 		cb_estado = new JComboBox();
 		txt_comentario = new JTextArea();
 		panel = new JPanel();
@@ -228,7 +232,6 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(lblCliente);
 		frame.getContentPane().add(lb_mecanico);
 		frame.getContentPane().add(lb_presupuesto);
-		frame.getContentPane().add(lblOrdenarPor);
 		frame.getContentPane().add(lb_estado);
 		frame.getContentPane().add(lb_comentarios);
 		frame.getContentPane().add(txt_ID);
@@ -236,7 +239,6 @@ public class VentanaReparaciones {
 		frame.getContentPane().add(txt_mecanico);
 		frame.getContentPane().add(txt_presupuesto);
 		frame.getContentPane().add(txt_euro);
-		frame.getContentPane().add(cb_ordenar);
 		frame.getContentPane().add(cb_estado);
 		frame.getContentPane().add(txt_comentario);
 
@@ -315,7 +317,6 @@ public class VentanaReparaciones {
 		txt_mecanico.setEnabled(b);
 		txt_presupuesto.setEnabled(b);
 		txt_piezas.setEnabled(b);
-		cb_ordenar.setEnabled(b);
 		cb_estado.setEnabled(b);
 		txt_comentario.setEnabled(b);
 		btn_crear.setEnabled(b);
@@ -361,13 +362,9 @@ public class VentanaReparaciones {
 		txt_euro.setBounds(231, 150, 31, 24);
 		txt_euro.setColumns(10);
 
-		lblOrdenarPor.setBounds(303, 29, 76, 14);
-		cb_ordenar.setModel(new DefaultComboBoxModel(new String[] { "Fecha", "Nombre", "Presupuesto" }));
-		cb_ordenar.setBounds(401, 26, 97, 20);
-
-		lb_estado.setBounds(303, 96, 76, 14);
+		lb_estado.setBounds(303, 29, 76, 14);
 		cb_estado.setModel(new DefaultComboBoxModel(EstadoReparacion.values()));
-		cb_estado.setBounds(401, 93, 97, 20);
+		cb_estado.setBounds(394, 26, 97, 20);
 
 		lb_comentarios.setBounds(303, 155, 76, 14);
 		txt_comentario.setLineWrap(true);
