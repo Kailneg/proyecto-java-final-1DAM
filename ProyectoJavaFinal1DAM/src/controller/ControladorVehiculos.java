@@ -4,13 +4,16 @@ import javax.swing.JOptionPane;
 
 import GUI.VentanaVehiculos;
 import contenedores.ContenedorPrincipal;
+import enums.TipoCombustible;
 import enums.TipoVehiculo;
+import globals.Constantes;
 import models.Vehiculo;
 
 public class ControladorVehiculos {
 
 	private ControladorPrincipal controladorPrincipal;
 	private VentanaVehiculos vehiculos;
+	private boolean firstTime = true;
 
 	public ControladorVehiculos(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
@@ -19,6 +22,11 @@ public class ControladorVehiculos {
 
 	public void mostrarVehiculos() {
 		vehiculos.mostrarVentana();
+		if (!Constantes.MODO_CREAR) {
+			firstTime = false;
+		} else {
+			firstTime = true;
+		}
 		cargarVehiculo();
 	}
 
@@ -54,6 +62,7 @@ public class ControladorVehiculos {
 				new Vehiculo(vehiculos.getTxt_matricula(), vehiculos.getTxt_marca(), vehiculos.getTxt_modelo(), 
 						Integer.parseInt(vehiculos.getPuertas()), vehiculos.getFechaMatriculacion(), 
 						Integer.parseInt(vehiculos.getTxt_potencia()) , vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
+		firstTime = true;
 		cargarVehiculo();
 	}
 
@@ -76,20 +85,26 @@ public class ControladorVehiculos {
 	}
 	
 	private void cargarVehiculo() {
-		if (obtenerVehiculoActual() != null) {
-			vehiculos.setMarca(obtenerVehiculoActual().getMarca());
-			vehiculos.setMatricula(obtenerVehiculoActual().getMatricula());
-			vehiculos.setModelo(obtenerVehiculoActual().getModelo());
-			vehiculos.setPuertas(String.valueOf(obtenerVehiculoActual().getPuertas()));
-			vehiculos.setPotencia(String.valueOf(obtenerVehiculoActual().getPotencia()));
-			// TODO:
-			// cbox_dia.setToolTipText(controladorVehiculos.updateData());
-			// cbox_mes.setToolTipText(mes);
-			// cbox_ano.setToolTipText(anio);
-			vehiculos.setTipoCombustible(obtenerVehiculoActual().getCombustible());
-			vehiculos.setTipoVehiculo(obtenerVehiculoActual().getTipoVehiculo());
+		if (firstTime) {
+			vehiculos.setMarca("");
+			vehiculos.setMatricula("");
+			vehiculos.setModelo("");
+			vehiculos.setPuertas("");
+			vehiculos.setPotencia("");
+			vehiculos.setTipoCombustible(TipoCombustible.Electrico);
+			vehiculos.setTipoVehiculo(TipoVehiculo.Coche);
+			firstTime = false;
+			
+		} else if (obtenerVehiculoActual() != null) {
+				vehiculos.setMarca(obtenerVehiculoActual().getMarca());
+				vehiculos.setMatricula(obtenerVehiculoActual().getMatricula());
+				vehiculos.setModelo(obtenerVehiculoActual().getModelo());
+				vehiculos.setPuertas(String.valueOf(obtenerVehiculoActual().getPuertas()));
+				vehiculos.setPotencia(String.valueOf(obtenerVehiculoActual().getPotencia()));
+				vehiculos.setTipoCombustible(obtenerVehiculoActual().getCombustible());
+				vehiculos.setTipoVehiculo(obtenerVehiculoActual().getTipoVehiculo());
+				actualizarCantidadCoches();
 		}
-		actualizarCantidadCoches();
 	}
 
 	private void actualizarCantidadCoches() {

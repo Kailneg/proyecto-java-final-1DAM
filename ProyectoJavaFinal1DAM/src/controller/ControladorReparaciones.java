@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import GUI.VentanaReparaciones;
 import contenedores.ContenedorPrincipal;
 import contenedores.ContenedorReparaciones;
+import enums.EstadoReparacion;
+import globals.Constantes;
 import models.Reparacion;
 
 public class ControladorReparaciones {
@@ -14,6 +16,7 @@ public class ControladorReparaciones {
 	private ControladorPrincipal controladorPrincipal;
 	private ContenedorReparaciones contenedorReparaciones;
 	private VentanaReparaciones reparaciones;
+	private boolean firstTime = true;
 	
 	public ControladorReparaciones(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
@@ -23,6 +26,11 @@ public class ControladorReparaciones {
 	
 	public void mostrarReparaciones(){
 		reparaciones.mostrarVentana();
+		if (!Constantes.MODO_CREAR) {
+			firstTime = false;
+		} else {
+			firstTime = true;
+		}
 		cargarReparacion();
 	}
 	
@@ -37,9 +45,11 @@ public class ControladorReparaciones {
 	public void pulsarCrear(){
 		try {
 			contenedorReparaciones.aniadirReparacion(
-					new Reparacion(reparaciones.getID(), reparaciones.getPropietario(), 
+					new Reparacion(reparaciones.getID(), reparaciones.getPropietario(), reparaciones.getMecanico(), 
 							reparaciones.getPresupuesto(), reparaciones.getFechaInicio(), reparaciones.getFechaFin(), 
 							reparaciones.getEstado(), reparaciones.getComentarios(), reparaciones.getCostePiezas(), reparaciones.getTotal()));
+			firstTime = true;
+			cargarReparacion();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se admiten campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -62,12 +72,27 @@ public class ControladorReparaciones {
 	}
 	
 	private void cargarReparacion() {
-		if (obtenerReparacionActual() != null) {
+		if (firstTime) {
+			reparaciones.setID("");
+			reparaciones.setPropietario("");
+			reparaciones.setFechaInicio("");
+			reparaciones.setFechaFin("");
+			reparaciones.setMecanico("");
+			reparaciones.setPresupuesto("");
+			reparaciones.setComentarios("");
+			reparaciones.setEstado(EstadoReparacion.Pediente);
+			reparaciones.setTotal("");
+			reparaciones.setCostePiezas("");
+			reparaciones.setPresupuesto("");
+			firstTime = false;
+			
+		} else if (obtenerReparacionActual() != null) {
 			reparaciones.setID(String.valueOf(contenedorReparaciones.obtenerReparacion().getIdReparacion()));
 			reparaciones.setPropietario(contenedorReparaciones.obtenerReparacion().getPropietario());
 			reparaciones.setFechaInicio(contenedorReparaciones.obtenerReparacion().getFechaInicioString());
 			reparaciones.setFechaFin(contenedorReparaciones.obtenerReparacion().getFechaFinString());
 			reparaciones.setPresupuesto(String.valueOf(contenedorReparaciones.obtenerReparacion().getPresupuesto()));
+			reparaciones.setMecanico(contenedorReparaciones.obtenerReparacion().getMecanico());
 			reparaciones.setComentarios(contenedorReparaciones.obtenerReparacion().getComentarios());
 			reparaciones.setEstado(contenedorReparaciones.obtenerReparacion().getEstado());
 			reparaciones.setTotal(String.valueOf(contenedorReparaciones.obtenerReparacion().getTotal()));

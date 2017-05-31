@@ -35,7 +35,6 @@ public class VentanaVehiculos {
 	private final Integer anios[] = { 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
 			2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990 };
 
-
 	private JFrame frmVehiculos;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -60,7 +59,6 @@ public class VentanaVehiculos {
 	private JComboBox<Integer> cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible, cb_TipoVehiculo;
 	private JButton btnBorrarVehiculo;
 	private ControladorVehiculos controladorVehiculos;
-	
 
 	/**
 	 * Create the application.
@@ -69,46 +67,57 @@ public class VentanaVehiculos {
 		this.controladorVehiculos = controladorVehiculos;
 		vehiculoComponents();
 	}
-	
+
 	// GETTERS
-	
+
 	/**
 	 * Devuelve el contenido del atributo TipoCombustible.
+	 * 
 	 * @return atributo TipoCombustible de ventanaVehiculos
 	 */
 	public TipoCombustible getTipoCombustible() {
 		return TipoCombustible.valueOf(cbTipoCombustible.getSelectedItem().toString());
 	}
+
 	/**
 	 * Devuelve el contenido del atributo TipoVehiculo.
+	 * 
 	 * @return atributo TipoVehiculo de ventanaVehiculos
 	 */
 	public TipoVehiculo getTipoVehiculo() {
 		return TipoVehiculo.valueOf(cb_TipoVehiculo.getSelectedItem().toString());
 	}
+
 	/**
 	 * Devuelve el contenido del atributo puertas.
+	 * 
 	 * @return atributo puertas de ventanaVehiculos
 	 */
 	public String getPuertas() {
 		return (rb_3puertas.isSelected() ? "3" : "5");
 	}
+
 	/**
 	 * Devuelve el contenido del atributo marca.
+	 * 
 	 * @return atributo marca de ventanaVehiculos
 	 */
 	public String getTxt_marca() {
 		return txt_marca.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo modelo.
+	 * 
 	 * @return atributo modelo de ventanaVehiculos
 	 */
 	public String getTxt_modelo() {
 		return txt_modelo.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo FechaMatriculacion.
+	 * 
 	 * @return atributo FechaMatriculacion de ventanaVehiculos
 	 */
 	public Calendar getFechaMatriculacion() {
@@ -117,52 +126,71 @@ public class VentanaVehiculos {
 				Integer.parseInt(cbox_dia.getSelectedItem().toString()));
 		return c;
 	}
+
 	/**
 	 * Devuelve el contenido del atributo matricula.
+	 * 
 	 * @return atributo matricula de ventanaVehiculos
 	 */
 	public String getTxt_matricula() {
 		return txt_matricula.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo potencia.
+	 * 
 	 * @return atributo potencia de ventanaVehiculos
 	 */
 	public String getTxt_potencia() {
 		return txt_potencia.getText();
 	}
-	//SETTERS
+
+	// SETTERS
 	/**
 	 * Asigna al atributo matricula el parámetro
-	 * @param s la matricula que se quiere asignar
+	 * 
+	 * @param s
+	 *            la matricula que se quiere asignar
 	 */
 	public void setMatricula(String s) {
 		txt_matricula.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo potencia el parámetro
-	 * @param s la potencia que se quiere asignar
+	 * 
+	 * @param s
+	 *            la potencia que se quiere asignar
 	 */
 	public void setPotencia(String s) {
 		txt_potencia.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo marca el parámetro
-	 * @param s la marca que se quiere asignar
+	 * 
+	 * @param s
+	 *            la marca que se quiere asignar
 	 */
 	public void setMarca(String s) {
 		txt_marca.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo modelo el parámetro
-	 * @param s el modelo que se quiere asignar
+	 * 
+	 * @param s
+	 *            el modelo que se quiere asignar
 	 */
 	public void setModelo(String s) {
 		txt_modelo.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo puertas el parámetro
-	 * @param s las puertas que se quieren asignar dependiendo de la seleccion
+	 * 
+	 * @param s
+	 *            las puertas que se quieren asignar dependiendo de la seleccion
 	 */
 	public void setPuertas(String s) {
 		if (s.equals("0")) {
@@ -178,23 +206,32 @@ public class VentanaVehiculos {
 			rb_5puertas.setSelected(true);
 		}
 	}
+
 	/**
 	 * Asigna al atributo ContadorVehiculos el parámetro
-	 * @param s el ContadorVehiculos que se quiere asignar
+	 * 
+	 * @param s
+	 *            el ContadorVehiculos que se quiere asignar
 	 */
 	public void setCantidadVehiculos(String e) {
 		labelContadorVehiculos.setText(e);
 	}
+
 	/**
 	 * Asigna al atributo TipoVehiculo el parámetro
-	 * @param s el TipoVehiculo que se quiere asignar
+	 * 
+	 * @param s
+	 *            el TipoVehiculo que se quiere asignar
 	 */
 	public void setTipoVehiculo(TipoVehiculo t) {
 		cb_TipoVehiculo.setSelectedItem(t);
 	}
+
 	/**
 	 * Asigna al atributo TipoCombustible el parámetro
-	 * @param s el TipoCombustible que se quiere asignar
+	 * 
+	 * @param s
+	 *            el TipoCombustible que se quiere asignar
 	 */
 	public void setTipoCombustible(TipoCombustible t) {
 		cbTipoCombustible.setSelectedItem(t);
@@ -343,7 +380,6 @@ public class VentanaVehiculos {
 		rb_2puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rb_2puertas.setBounds(137, 104, 36, 23);
 		frmVehiculos.getContentPane().add(rb_2puertas);
-		
 
 		rb_0puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rb_0puertas.setBounds(97, 104, 38, 23);
@@ -368,7 +404,7 @@ public class VentanaVehiculos {
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblPuertas.setBounds(37, 110, 64, 14);
-		
+
 		rb_0puertas.setBounds(97, 104, 38, 23);
 		rb_3puertas.setBounds(175, 104, 38, 23);
 		rb_5puertas.setBounds(215, 104, 38, 23);
@@ -419,6 +455,8 @@ public class VentanaVehiculos {
 		cbTipoCombustible.setEnabled(b);
 		btnGuardar.setVisible(b);
 		btnBorrarVehiculo.setVisible(b);
+		buttonLeftArrow.setEnabled(!b);
+		buttonRightArrow.setEnabled(!b);
 	}
 
 	/**
@@ -444,13 +482,17 @@ public class VentanaVehiculos {
 		// Anterior vehiculo
 		buttonLeftArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controladorVehiculos.pulsarLeftArrow();
+				if (!Constantes.MODO_CREAR) {
+					controladorVehiculos.pulsarLeftArrow();
+				}
 			}
 		});
 		// Siguiente vehiculo
 		buttonRightArrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controladorVehiculos.pulsarRightArrow();
+				if (!Constantes.MODO_CREAR) {
+					controladorVehiculos.pulsarRightArrow();
+				}
 			}
 		});
 

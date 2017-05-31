@@ -14,6 +14,7 @@ public class ControladorCliente {
 	private ControladorPrincipal controladorPrincipal;
 	private ContenedorClientes contenedorClientes;
 	private VentanaClientes clientes;
+	private boolean firstTime = true;
 
 	public ControladorCliente(ControladorPrincipal controladorPrincipal) {
 		this.controladorPrincipal = controladorPrincipal;
@@ -23,6 +24,13 @@ public class ControladorCliente {
 
 	public void mostrarClientes() {
 		clientes.mostrarVentana();
+
+		if (!Constantes.MODO_CREAR) {
+			firstTime = false;
+		} else {
+			firstTime = true;
+		}
+		
 		cargarCliente();
 	}
 
@@ -42,6 +50,8 @@ public class ControladorCliente {
 		try {
 			contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(),
 					clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()));
+			firstTime = true;
+			cargarCliente();
 			return obtenerClienteActual();
 		} catch (Exception e) {
 			return null;
@@ -76,20 +86,21 @@ public class ControladorCliente {
 	}
 	
 	private void cargarCliente() {
-		if (obtenerClienteActual() != null) {
-			clientes.setNIF(obtenerClienteActual().getDni());
-			clientes.setNombre(obtenerClienteActual().getNombre());
-			clientes.setApellidos(obtenerClienteActual().getApellidos());
-			clientes.setDireccion(obtenerClienteActual().getDireccion());
-			clientes.setTelefono(String.valueOf(obtenerClienteActual().getTelefono()));
-			clientes.setEmail(obtenerClienteActual().getEmail());
-		} else {
+		if (firstTime) {
 			clientes.setNIF("");
 			clientes.setNombre("");
 			clientes.setApellidos("");
 			clientes.setDireccion("");
 			clientes.setTelefono("");
 			clientes.setEmail("");
+			firstTime = false;
+		} else if (obtenerClienteActual() != null) {
+			clientes.setNIF(obtenerClienteActual().getDni());
+			clientes.setNombre(obtenerClienteActual().getNombre());
+			clientes.setApellidos(obtenerClienteActual().getApellidos());
+			clientes.setDireccion(obtenerClienteActual().getDireccion());
+			clientes.setTelefono(String.valueOf(obtenerClienteActual().getTelefono()));
+			clientes.setEmail(obtenerClienteActual().getEmail());
 		}
 	}
 }

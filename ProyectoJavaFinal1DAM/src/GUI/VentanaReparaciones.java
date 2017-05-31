@@ -97,6 +97,14 @@ public class VentanaReparaciones {
 		return Integer.parseInt(txt_ID.getText());
 	}
 	
+	public String getMecanico() {
+		return txt_mecanico.getText();
+	}
+	
+	public void setMecanico(String s) {
+		txt_mecanico.setText(s);
+	}
+	
 	public float getTotal() {
 		return Float.parseFloat(txt_precioFinal.getText());
 	}
