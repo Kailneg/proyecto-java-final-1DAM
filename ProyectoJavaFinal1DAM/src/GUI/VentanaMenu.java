@@ -19,56 +19,79 @@ public class VentanaMenu {
 	private ControladorMenu controladorMenu;
 
 	/**
-	 * Create the application.
+	 * Crea una nueva VentanaMenu.
+	 * 
+	 * @param controladorElegirVehiculo
+	 *            controlador necesario para el funcionamiento. Se obtiene de
+	 *            ControladorPrincipal.
 	 */
 	public VentanaMenu(ControladorMenu controladorMenu) {
 		this.controladorMenu = controladorMenu;
-		initialize();
-		adaptadores();
+		componentsInitializers();
+		componentsProperties();
+		componentsAdders();
+		componentsAddapters();
 	}
-	
-	public void mostrarVentana(){
+
+	// Ocultar y mostrar
+	/**
+	 * Muestra la ventana
+	 */
+	public void mostrarVentana() {
 		frame.setVisible(true);
 	}
-	
-	public void ocultarVentana(){
+
+	/**
+	 * Oculta la ventana
+	 */
+	public void ocultarVentana() {
 		frame.setVisible(false);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa los componentes
 	 */
-	private void initialize() {
+	private void componentsInitializers() {
 		frame = new JFrame();
+		panel = new JPanel();
+		btn_nuevoVehiculo = new JButton("Crear");
+		btn_buscarVehiculo = new JButton("Buscar");
+
+	}
+
+	/**
+	 * Setea las propiedades de los componentes
+	 */
+	private void componentsProperties() {
 		frame.setTitle("Principal");
 		frame.setBounds(100, 100, 450, 193);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		
-		panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		btn_nuevoVehiculo = new JButton("Crear");
-
 		btn_nuevoVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel.add(btn_nuevoVehiculo);
-		
-		btn_buscarVehiculo = new JButton("Buscar");
-
 		btn_buscarVehiculo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel.add(btn_buscarVehiculo);
-		
 	}
 
-	private void adaptadores(){
+	/**
+	 * Aniade los componentes a sus respectivos paneles
+	 */
+	private void componentsAdders() {
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.add(btn_nuevoVehiculo);
+		panel.add(btn_buscarVehiculo);
+	}
+
+	/**
+	 * Aniade los adaptadores de la ventana
+	 */
+	private void componentsAddapters() {
 		btn_nuevoVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				controladorMenu.pulsarNuevo();
 			}
 		});
-		
+
 		btn_buscarVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
