@@ -10,6 +10,9 @@ public class ContenedorUsuarios {
 
 	private ArrayList<Usuario> usuarios;
 
+	/**
+	 * Crea un objeto Contenedor usuario e inicializa una lista de usuarios
+	 */
 	public ContenedorUsuarios() {
 		usuarios = new ArrayList<>();
 		usuarios.add(new Usuario("admin", "123"));
