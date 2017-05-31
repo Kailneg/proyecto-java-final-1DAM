@@ -13,10 +13,10 @@ public class Usuario {
 	private Calendar fechaContratacion;
 	
 	
-	// CONSTRUCTOR
+	// CONSTRUCTORES
 	
 	/**
-	 * Crea un objeto de tipo Usuario con los mínimos atributos posibles.
+	 * Crea un objeto de tipo Usuario con los atributos referentes al inicio de sesion.
 	 * @param usuario el nombre de login del usuario.
 	 * @param contrasenia la contraseña que tendrá el usuario.
 	 */
@@ -26,7 +26,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Crea un objeto de tipo Usuario con todos los atributos posibles.
+	 * Crea un objeto de tipo Usuario con todos los atributos de usuario.
 	 * @param usuario el nombre de login del usuario.
 	 * @param nombre el nombre del usuario.
 	 * @param apellidos el apellido del usuario.
@@ -87,6 +87,9 @@ public class Usuario {
 		this.fechaContratacion = fechaContratacion;
 	}
 
+	
+	//METODOS
+	
 	/**
 	 * Cambia la contraseña del usuario.
 	 * @param antiguaContrasenia La contraseña actual, la que queremos cambiar.
@@ -114,6 +117,9 @@ public class Usuario {
 			throw new ContraseniaNoEncontrada();
 	}
 
+	/**
+	 * Imprime el usuario y la contrasenia del usuario
+	 */
 	@Override
 	public String toString() {
 		return "Usuario [usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
