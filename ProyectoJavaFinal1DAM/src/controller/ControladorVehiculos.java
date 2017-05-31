@@ -103,8 +103,9 @@ public class ControladorVehiculos {
 				vehiculos.setPotencia(String.valueOf(obtenerVehiculoActual().getPotencia()));
 				vehiculos.setTipoCombustible(obtenerVehiculoActual().getCombustible());
 				vehiculos.setTipoVehiculo(obtenerVehiculoActual().getTipoVehiculo());
-				actualizarCantidadCoches();
+				
 		}
+		actualizarCantidadCoches();
 	}
 
 	private void actualizarCantidadCoches() {

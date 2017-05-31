@@ -40,7 +40,7 @@ public class VentanaVehiculos {
 	private JLabel lblNewLabel_1;
 	private JLabel lblModelo;
 	private JLabel lblPuertas;
-	private JRadioButton rb_3puertas, rb_5puertas, rb_2puertas, rb_0puertas;
+	private JRadioButton rb_3puertas, rb_5puertas, rb_2puertas;
 	private JLabel lblAnioMatriculacion;
 	private JLabel lblCaballos;
 	private JLabel lblTipoCombustible;
@@ -300,8 +300,6 @@ public class VentanaVehiculos {
 		cb_TipoVehiculo.setEnabled(false);
 		rb_2puertas = new JRadioButton("2");
 		buttonGroup.add(rb_2puertas);
-		rb_0puertas = new JRadioButton("0");
-		buttonGroup.add(rb_0puertas);
 	}
 
 	/**
@@ -378,12 +376,8 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(btnBorrarVehiculo);
 
 		rb_2puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rb_2puertas.setBounds(137, 104, 36, 23);
+		rb_2puertas.setBounds(122, 104, 36, 23);
 		frmVehiculos.getContentPane().add(rb_2puertas);
-
-		rb_0puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rb_0puertas.setBounds(97, 104, 38, 23);
-		frmVehiculos.getContentPane().add(rb_0puertas);
 	}
 
 	/**
@@ -404,10 +398,8 @@ public class VentanaVehiculos {
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblPuertas.setBounds(37, 110, 64, 14);
-
-		rb_0puertas.setBounds(97, 104, 38, 23);
-		rb_3puertas.setBounds(175, 104, 38, 23);
-		rb_5puertas.setBounds(215, 104, 38, 23);
+		rb_3puertas.setBounds(160, 104, 38, 23);
+		rb_5puertas.setBounds(200, 104, 38, 23);
 
 		lblAnioMatriculacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAnioMatriculacion.setBounds(37, 188, 98, 14);
@@ -443,7 +435,6 @@ public class VentanaVehiculos {
 		txt_marca.setEnabled(b);
 		txt_matricula.setEnabled(b);
 		txt_modelo.setEnabled(b);
-		rb_0puertas.setEnabled(b);
 		rb_2puertas.setEnabled(b);
 		rb_3puertas.setEnabled(b);
 		rb_5puertas.setEnabled(b);
