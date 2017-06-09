@@ -1,0 +1,9 @@
+{
+    "nif":"12345678Z",
+    "nombre":"Juan",
+    "apellidos" : "Montes",
+    "direccion" : "Calle la pera 4",
+    "telefono" : 680680680,
+    "email" : "juanMontes@example.com"
+}
+ 

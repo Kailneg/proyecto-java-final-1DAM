@@ -1,0 +1,16 @@
+{
+    "matricula":"4321CBD",
+    "marca":"Ford",
+    "modelo" : "Mondeo",
+    "puertas" : 3,
+    "tipo_vehiculo" : "Coche",
+    "email" : "juanMontes@example.com",
+    "matriculacion" : {
+    	"dia" : 1,
+    	"mes" : "Junio",
+    	"anio" : 2015
+    },
+    "potencia" : 80,
+    "combustible" : "Gasolina",
+    "nif_propietario" : "12345678Z"
+}

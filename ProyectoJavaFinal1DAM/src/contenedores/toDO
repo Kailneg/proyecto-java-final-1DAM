@@ -1,0 +1,3 @@
+Pasar todos los contenedores a uno principal, que contendrá objetos para conectarse con la BBDD
+Vehiculos tendrá el NIF del cliente al que pertenece.
+Reparación tendrá la matrícula del vehículo al que pertenece.

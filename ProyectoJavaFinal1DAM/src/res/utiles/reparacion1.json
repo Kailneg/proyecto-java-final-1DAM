@@ -1,0 +1,12 @@
+{
+    "id_reparacion":"123441",
+    "mecanico" : "Paco",
+    "presupuesto" : 50,
+    "coste_piezas" : 200,
+    "tiempoInicio" : "15:10:00",
+    "tiempoFin" : "15:15:30",
+    "estado" : "Pendiente",
+    "comentarios" : "Fuga de aceite",
+    "total" : 250,
+    "matricula_vinculada" : "4321CBD"
+}
