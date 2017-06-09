@@ -33,7 +33,8 @@ public class ControladorLogin {
 	 */
 	public void validarLogin() {
 		try {
-			if(DAO.LoginDAO.Login(login.getUsuario(), login.getContrasenia())){	
+			if (usuarios.comprobarLogin(usuarios.obtenUsuario(login.getUsuario()),
+					login.getContrasenia())) {
 				JOptionPane.showMessageDialog(null, "Login correcto");
 				ocultarLogin();
 				controladorPrincipal.getControladorMenu().mostrarMenu();
