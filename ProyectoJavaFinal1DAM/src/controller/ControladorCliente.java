@@ -48,12 +48,15 @@ public class ControladorCliente {
 
 	public Cliente guardarCliente() {
 		try {
-			contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(),
-					clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()));
-			firstTime = true;
-			cargarCliente();
+			if (contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(),
+					clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()))){
+				firstTime = true;
+				cargarCliente();
+				return obtenerClienteActual();
+			}
 			return obtenerClienteActual();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -3,6 +3,8 @@ package contenedores;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mongodb.BasicDBObject;
+
 import exceptions.ClienteNoEncontrado;
 import exceptions.UsuarioNoEncontrado;
 import models.Cliente;
@@ -13,6 +15,7 @@ public class ContenedorClientes {
 	
 	//ATRIBUTOS
 	private ArrayList<Cliente> clientes;
+	private ConectorMongoDB mongodb;
 	private int index;
 	
 	//CONSTRUCTOR
@@ -21,7 +24,7 @@ public class ContenedorClientes {
 	 */
 	public ContenedorClientes() {
 		clientes = new ArrayList<Cliente>();
-		
+		mongodb = new ConectorMongoDB("Clientes");
 		// --- CLIENTES DE PRUEBA
 		clientes.add(new Cliente("78932156L", "John", "Smith", "Calle La Triana, 23", 689137520, "johnsmith@hotmail.com"));
 		clientes.add(new Cliente("78867832N", "Carlos", "Mendez", "Av. Carlos de Haya, 45", 69735812, "carlitos_elmejor@gmail.com"));
@@ -117,8 +120,15 @@ public class ContenedorClientes {
 	 * @return true si lo consigue o false si no
 	 */
 	public boolean aniadirCliente(Cliente cliente) {
-		return clientes.add(cliente);
+		BasicDBObject registro = new BasicDBObject("dni", cliente.getDni());
+		registro.append("nombre", cliente.getNombre());
+		registro.append("apellidos", cliente.getApellidos());
+		registro.append("direccion", cliente.getDireccion());
+		registro.append("telefono", cliente.getTelefono());
+		registro.append("email", cliente.getEmail());
+		return mongodb.insertarEnDB(registro);
 	}
+
 	
 	/**
 	 * Elimina un cliente de la lista clientes
