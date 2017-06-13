@@ -18,6 +18,8 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 import com.mongodb.MongoURI;
 
+import exceptions.ObjetoYaInsertadoException;
+
 public class ConectorMongoDB {
 
 	private String nombreColeccion;
@@ -32,24 +34,6 @@ public class ConectorMongoDB {
 		this.key = key;
 	}
 	
-//	private void actualizarLista() {
-//		list.setModel(new AbstractListModel() {
-//			String[] values = recibirDB();
-//			
-//			public int getSize() {
-//				return values.length;
-//			}
-//
-//			public Object getElementAt(int index) {
-//				return values[index];
-//			}
-//			
-//			
-//		});
-//		JScrollBar vertical = scrollPane.getVerticalScrollBar();
-//		vertical.setValue(vertical.getMaximum());
-//	}
-	
 	public void borrarDB() {
 		abrirConexion();
 		collection.drop();
@@ -59,10 +43,15 @@ public class ConectorMongoDB {
 	public boolean borrarUno(String keyValue) {
 		abrirConexion();
 		BasicDBObject registro = new BasicDBObject(key, keyValue);
-		boolean yaInsertado = isYaInsertado(registro);
+		boolean retorno = false;
+		try {
+			isYaInsertado(registro);
+		} catch (ObjetoYaInsertadoException e) {
+			retorno = true;
+		}
 		collection.remove(registro);
 		mongodb.close();
-		return yaInsertado;
+		return retorno;
 	}
 	
 	public boolean isEmpty(){
@@ -106,7 +95,7 @@ public class ConectorMongoDB {
 		DBCursor cursor = collection.find();
 		while (cursor.hasNext()) {
 			if (cursor.next().get(key).toString().equalsIgnoreCase(registro.get(key).toString())){
-				return true;
+				throw new ObjetoYaInsertadoException();
 			}
 		}
 		return false;
