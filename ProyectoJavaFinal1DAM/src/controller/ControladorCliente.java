@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.NoSuchElementException;
+
 import javax.swing.JOptionPane;
 
 import GUI.VentanaClientes;
@@ -30,7 +32,7 @@ public class ControladorCliente {
 		} else {
 			firstTime = true;
 		}
-		
+
 		cargarCliente();
 	}
 
@@ -41,24 +43,27 @@ public class ControladorCliente {
 	public void ocultarClientes() {
 		clientes.ocultarVentana();
 	}
-	
-	public int getNumeroClientes() {
+
+	public long getNumeroClientes() {
 		return ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes().cantidadClientes();
 	}
 
 	public Cliente guardarCliente() {
-		try {
-			if (contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(),
-					clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()))){
-				firstTime = true;
-				cargarCliente();
-				return obtenerClienteActual();
-			}
+		boolean todoBien = true;
+		todoBien = !clientes.getNIF().trim().isEmpty();
+		todoBien = !clientes.getNombre().trim().isEmpty();
+		if (!todoBien)
+			throw new NoSuchElementException("Faltan campos obligatorios");
+		
+		clientes.getTelefono();
+
+		if (contenedorClientes.aniadirCliente(new Cliente(clientes.getNIF(), clientes.getNombre(),
+				clientes.getApellidos(), clientes.getDireccion(), clientes.getTelefono(), clientes.getEmail()))) {
+			firstTime = true;
+			cargarCliente();
 			return obtenerClienteActual();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
 		}
+		return obtenerClienteActual();
 	}
 
 	public void pulsarAtras() {
@@ -77,17 +82,16 @@ public class ControladorCliente {
 	}
 
 	public void pulsarBorrarCliente() {
-		if (!ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes()
-				.borrarCliente(obtenerClienteActual())) {
+		if (!ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes().borrarCliente(clientes.getNIF())) {
 			JOptionPane.showMessageDialog(null, "No se ha podido borrar el cliente actual", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null, "Borrado el cliente numero " + (getNumeroClientes() + 1), "rip",
+			JOptionPane.showMessageDialog(null, "Borrado el cliente numero " + (getNumeroClientes() + 1), "Informacion",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 		cargarCliente();
 	}
-	
+
 	private void cargarCliente() {
 		if (firstTime) {
 			clientes.setNIF("");
