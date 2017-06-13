@@ -20,6 +20,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.NoSuchElementException;
 
 public class VentanaClientes extends JFrame {
 
@@ -34,6 +35,7 @@ public class VentanaClientes extends JFrame {
 	private JButton btn_crear, btnAtrs;
 	private ControladorCliente controladorCliente;
 	private JButton btnBorrarCliente;
+	private JLabel lblCamposObligatorios;
 
 	/**
 	 * Create the frame.
@@ -170,7 +172,7 @@ public class VentanaClientes extends JFrame {
 		setContentPane(contentPane);
 		panel = new JPanel();
 		panel.setLayout(null);
-		lb_nif = new JLabel("NIF:");
+		lb_nif = new JLabel("* NIF:");
 		lb_nif.setHorizontalAlignment(SwingConstants.TRAILING);
 		lb_nif.setBounds(10, 31, 56, 14);
 		txt_nif = new JTextField();
@@ -179,7 +181,7 @@ public class VentanaClientes extends JFrame {
 		txt_nombre = new JTextField();
 		txt_nombre.setColumns(10);
 		txt_nombre.setBounds(76, 59, 111, 20);
-		lb_nombre = new JLabel("Nombre:");
+		lb_nombre = new JLabel("* Nombre:");
 		lb_nombre.setHorizontalAlignment(SwingConstants.TRAILING);
 		lb_nombre.setBounds(10, 62, 56, 14);
 		txt_apellidos = new JTextField();
@@ -197,7 +199,7 @@ public class VentanaClientes extends JFrame {
 		lb_direccion = new JLabel("Direccion:");
 		lb_direccion.setHorizontalAlignment(SwingConstants.TRAILING);
 		lb_direccion.setBounds(217, 31, 64, 14);
-		lb_telefono = new JLabel("Telefono:");
+		lb_telefono = new JLabel("* Telefono:");
 		lb_telefono.setHorizontalAlignment(SwingConstants.TRAILING);
 		lb_telefono.setBounds(217, 62, 64, 14);
 		txt_telefono = new JTextField();
@@ -211,7 +213,7 @@ public class VentanaClientes extends JFrame {
 		txt_email.setBounds(291, 87, 126, 20);
 		panel_botones = new JPanel();
 		panel_botones.setBackground(Color.LIGHT_GRAY);
-		panel_botones.setBounds(20, 141, 294, 76);
+		panel_botones.setBounds(20, 145, 294, 76);
 		panel_botones.setLayout(new GridLayout(0, 2, 0, 0));
 		btn_crear = new JButton("Crear");
 		panel_botones.add(btn_crear);
@@ -225,7 +227,10 @@ public class VentanaClientes extends JFrame {
 		panel_botones.add(btnRightArrow);
 		btnBorrarCliente = new JButton("Borrar");
 		btnBorrarCliente.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnBorrarCliente.setBounds(324, 141, 93, 76);
+		btnBorrarCliente.setBounds(324, 145, 93, 76);
+		lblCamposObligatorios = new JLabel("* Campos obligatorios");
+		lblCamposObligatorios.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblCamposObligatorios.setBounds(20, 118, 111, 14);
 	}
 	/**
 	 * Añade todos los componentes a la ventana
@@ -247,6 +252,7 @@ public class VentanaClientes extends JFrame {
 		panel.add(txt_email);
 		panel.add(panel_botones);
 		panel.add(btnBorrarCliente);
+		panel.add(lblCamposObligatorios);
 	}
 	/**
 	 * Oculta los componentes de la ventana
@@ -281,12 +287,17 @@ public class VentanaClientes extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (Constantes.MODO_CREAR) {
-					if (controladorCliente.guardarCliente() == null) {
-						JOptionPane.showMessageDialog(null, "Error al crear al nuevo cliente", "Error",
-								JOptionPane.ERROR_MESSAGE);
-					} else {
+					try {
+						controladorCliente.guardarCliente();
 						JOptionPane.showMessageDialog(null, "Añadido cliente numero " + controladorCliente.getNumeroClientes(), "Hecho!",
 								JOptionPane.INFORMATION_MESSAGE);
+						
+					} catch (NoSuchElementException ex) {
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} catch (NumberFormatException ex) {
+						JOptionPane.showMessageDialog(null, "El teléfono no tiene un formato numérico adecuado", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
