@@ -21,13 +21,15 @@ import com.mongodb.MongoURI;
 public class ConectorMongoDB {
 
 	private String nombreColeccion;
+	private String key;
 	private MongoURI connectionString;
 	private Mongo mongodb;
 	private DB mydb;
 	private DBCollection collection;
 
-	public ConectorMongoDB(String nombreColeccion) {
+	public ConectorMongoDB(String nombreColeccion, String key) {
 		this.nombreColeccion = nombreColeccion;
+		this.key = key;
 	}
 	
 //	private void actualizarLista() {
@@ -54,14 +56,23 @@ public class ConectorMongoDB {
 		mongodb.close();
 	}
 	
-	public void borrarUno(String key, String value) {
+	public boolean borrarUno(String keyValue) {
 		abrirConexion();
-		BasicDBObject bdbo = new BasicDBObject(key, value);
-		collection.remove(bdbo);
+		BasicDBObject registro = new BasicDBObject(key, keyValue);
+		boolean yaInsertado = isYaInsertado(registro);
+		collection.remove(registro);
 		mongodb.close();
+		return yaInsertado;
+	}
+	
+	public boolean isEmpty(){
+		abrirConexion();
+		boolean retorno = collection.count() == 0;
+		mongodb.close();
+		return retorno;
 	}
 
-	public boolean insertarEnDB(BasicDBObject registro) {
+	public boolean insertarEnDB(DBObject registro) {
 		abrirConexion();
 		boolean yaInsertado = isYaInsertado(registro);
 		if (!yaInsertado){
@@ -75,19 +86,26 @@ public class ConectorMongoDB {
 		return yaInsertado;
 	}
 	
+	
 	public List<DBObject> recibirDBColeccion() {
 		abrirConexion();
 		DBCursor registros = collection.find();
+		List<DBObject> retorno = registros.copy().toArray();
 		mongodb.close();
-		return registros.copy().toArray();
+		return retorno;
+	}
+	
+	public long size(){
+		abrirConexion();
+		long retorno = collection.count();
+		mongodb.close();
+		return retorno;
 	}
 	
 	private boolean isYaInsertado(DBObject registro){
 		DBCursor cursor = collection.find();
 		while (cursor.hasNext()) {
-			DBObject d = cursor.next();
-			System.out.println(d.get("dni").toString());
-			if (cursor.next().get("dni").toString().equalsIgnoreCase(registro.get("dni").toString())){
+			if (cursor.next().get(key).toString().equalsIgnoreCase(registro.get(key).toString())){
 				return true;
 			}
 		}
