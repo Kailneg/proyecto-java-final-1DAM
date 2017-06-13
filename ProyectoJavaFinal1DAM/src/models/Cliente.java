@@ -35,14 +35,12 @@ public class Cliente implements Guardable{
 	}
 	
 	public Cliente(DBObject dbObject) { 
-		String dni, nombre, apellidos, direccion, email;
-		long telefono;
-		dni = (String) dbObject.get("dni");
-		nombre = (String) dbObject.get("nombre");
-		apellidos = (String) dbObject.get("apellidos");
-		direccion = (String) dbObject.get("direccion");
-		email = (String) dbObject.get("email");
-		telefono = (long) dbObject.get("telefono");
+		this.dni = (String) dbObject.get("dni");
+		this.nombre = (String) dbObject.get("nombre");
+		this.apellidos = (String) dbObject.get("apellidos");
+		this.direccion = (String) dbObject.get("direccion");
+		this.email = (String) dbObject.get("email");
+		this.telefono = (long) dbObject.get("telefono");
 	}
 
 	// GETTERS

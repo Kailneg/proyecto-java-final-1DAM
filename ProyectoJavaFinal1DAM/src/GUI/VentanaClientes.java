@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.ControladorCliente;
+import exceptions.ObjetoYaInsertadoException;
 import globals.Constantes;
 
 import javax.swing.JLabel;
@@ -49,7 +50,7 @@ public class VentanaClientes extends JFrame {
 	}
 
 	/**
-	 * Muestra la ventana 
+	 * Muestra la ventana
 	 */
 	public void mostrarVentana() {
 		hideComponents(Constantes.MODO_CREAR);
@@ -66,92 +67,120 @@ public class VentanaClientes extends JFrame {
 	// GETTERS
 	/**
 	 * Devuelve el contenido del atributo NIF.
+	 * 
 	 * @return atributo nif de VentanaCliente
 	 */
 	public String getNIF() {
 		return txt_nif.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo nombre.
+	 * 
 	 * @return atributo nombre de VentanaCliente
 	 */
 	public String getNombre() {
 		return txt_nombre.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo Apellidos.
+	 * 
 	 * @return atributo apellidos de VentanaCliente
 	 */
 	public String getApellidos() {
 		return txt_apellidos.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo direccion.
+	 * 
 	 * @return artibuto direccion de VentanaCliente
 	 */
 	public String getDireccion() {
 		return txt_direccion.getText();
 	}
+
 	/**
 	 * Devuelve el contenido del atributo telefono.
+	 * 
 	 * @return atributo telefono de ventanaCliente
 	 */
 	public long getTelefono() {
 		return Long.parseLong(txt_telefono.getText());
 	}
+
 	/**
 	 * Devuelve el contenido del atributo email.
+	 * 
 	 * @return atributo email de VentanaCliente
 	 */
 	public String getEmail() {
 		return txt_email.getText();
 	}
-	
-	//SETTERS
+
+	// SETTERS
 	/**
 	 * Asigna al atributo apellidos el parámetro
-	 * @param s el apellido que se quiere asignar
+	 * 
+	 * @param s
+	 *            el apellido que se quiere asignar
 	 */
 	public void setApellidos(String s) {
 		txt_apellidos.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo nombre el parámetro
-	 * @param s el nombre que se quiere asignar
+	 * 
+	 * @param s
+	 *            el nombre que se quiere asignar
 	 */
-	public void setNombre(String s){
+	public void setNombre(String s) {
 		txt_nombre.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo direccion el parámetro
-	 * @param s la direccion que se quiere asignar
+	 * 
+	 * @param s
+	 *            la direccion que se quiere asignar
 	 */
 	public void setDireccion(String s) {
 		txt_direccion.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo nif el parámetro
-	 * @param s el nif que se quiere asignar
+	 * 
+	 * @param s
+	 *            el nif que se quiere asignar
 	 */
 	public void setNIF(String s) {
 		txt_nif.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo email el parámetro
-	 * @param s el email que se quiere asignar
+	 * 
+	 * @param s
+	 *            el email que se quiere asignar
 	 */
 	public void setEmail(String s) {
 		txt_email.setText(s);
 	}
+
 	/**
 	 * Asigna al atributo telefono el parámetro
-	 * @param s el telefono que se quiere asignar
+	 * 
+	 * @param s
+	 *            el telefono que se quiere asignar
 	 */
 	public void setTelefono(String s) {
 		txt_telefono.setText(s);
 	}
-	
-	//METODOS
+
+	// METODOS
 	/**
 	 * Propiedades de la ventana Frame
 	 */
@@ -162,6 +191,7 @@ public class VentanaClientes extends JFrame {
 		setVisible(true);
 		setResizable(false);
 	}
+
 	/**
 	 * Instanciacion de todos los componentes de la ventana
 	 */
@@ -232,6 +262,7 @@ public class VentanaClientes extends JFrame {
 		lblCamposObligatorios.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lblCamposObligatorios.setBounds(20, 118, 111, 14);
 	}
+
 	/**
 	 * Añade todos los componentes a la ventana
 	 */
@@ -254,9 +285,12 @@ public class VentanaClientes extends JFrame {
 		panel.add(btnBorrarCliente);
 		panel.add(lblCamposObligatorios);
 	}
+
 	/**
 	 * Oculta los componentes de la ventana
-	 * @param b booleano que indica si se ocultan o no
+	 * 
+	 * @param b
+	 *            booleano que indica si se ocultan o no
 	 */
 	private void hideComponents(boolean b) {
 		txt_nif.setEnabled(b);
@@ -267,8 +301,6 @@ public class VentanaClientes extends JFrame {
 		txt_email.setEnabled(b);
 		panel_botones.setEnabled(b);
 		btn_crear.setEnabled(b);
-		btnLeftArrow.setEnabled(!b);
-		btnRightArrow.setEnabled(!b);
 
 		if (!b) {
 			btnBorrarCliente.setVisible(false);
@@ -278,6 +310,7 @@ public class VentanaClientes extends JFrame {
 			panel_botones.setBounds(20, 141, 294, 76);
 		}
 	}
+
 	/**
 	 * Funcionalidad de los diferentes botones de la ventana
 	 */
@@ -289,15 +322,16 @@ public class VentanaClientes extends JFrame {
 				if (Constantes.MODO_CREAR) {
 					try {
 						controladorCliente.guardarCliente();
-						JOptionPane.showMessageDialog(null, "Añadido cliente numero " + controladorCliente.getNumeroClientes(), "Hecho!",
+						JOptionPane.showMessageDialog(null,
+								"Añadido cliente numero " + controladorCliente.getNumeroClientes(), "Hecho!",
 								JOptionPane.INFORMATION_MESSAGE);
-						
+					} catch (ObjetoYaInsertadoException ex) {
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (NoSuchElementException ex) {
-						JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (NumberFormatException ex) {
-						JOptionPane.showMessageDialog(null, "El teléfono no tiene un formato numérico adecuado", "Error",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "El teléfono no tiene un formato numérico adecuado",
+								"Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -314,27 +348,22 @@ public class VentanaClientes extends JFrame {
 		btnLeftArrow.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (!Constantes.MODO_CREAR) {
-					controladorCliente.pulsarLeftArrow();
-				}
+				controladorCliente.pulsarLeftArrow();
 			}
 		});
 
 		btnRightArrow.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (!Constantes.MODO_CREAR) {
-					controladorCliente.pulsarRightArrow();
-				}
+
+				controladorCliente.pulsarRightArrow();
 			}
 		});
 
 		btnBorrarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (Constantes.MODO_CREAR) {
-					controladorCliente.pulsarBorrarCliente();
-				}
+				controladorCliente.pulsarBorrarCliente();
 			}
 		});
 	}

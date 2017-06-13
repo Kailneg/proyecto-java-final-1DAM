@@ -86,7 +86,7 @@ public class ControladorCliente {
 			JOptionPane.showMessageDialog(null, "No se ha podido borrar el cliente actual", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null, "Borrado el cliente numero " + (getNumeroClientes() + 1), "Informacion",
+			JOptionPane.showMessageDialog(null, "Borrado cliente", "Informacion",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 		cargarCliente();

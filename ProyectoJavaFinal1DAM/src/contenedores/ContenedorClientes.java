@@ -112,14 +112,14 @@ public class ContenedorClientes {
 	 * @return tamaño de la lista
 	 */
 	public long cantidadClientes() {
-		return mongodb.size();
+		return clientes.size();
 	}
 
 	/**
 	 * Aumenta 1 el indice para recorer la lista clientes
 	 */
 	public void aumentarIndex() {
-		if (index < mongodb.size() - 1 && !mongodb.isEmpty())
+		if (index < clientes.size() - 1 && !clientes.isEmpty())
 			index++;
 	}
 
@@ -127,7 +127,7 @@ public class ContenedorClientes {
 	 * Disminuye 1 el indice para recorer la lista clientes
 	 */
 	public void disminuirIndex() {
-		if (index > 0 && !mongodb.isEmpty()) {
+		if (index > 0 && !clientes.isEmpty()) {
 			index--;
 		}
 	}
@@ -153,5 +153,6 @@ public class ContenedorClientes {
 		while (iterador.hasNext()) {
 			clientes.add(new Cliente(iterador.next()));
 		}
+		index = clientes.size()-1;
 	}
 }
