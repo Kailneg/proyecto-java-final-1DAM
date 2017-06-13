@@ -1,6 +1,11 @@
 package models;
 
-public class Cliente {
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
+import interfaces.Guardable;
+
+public class Cliente implements Guardable{
 
 	// VARIABLES
 	private String dni;
@@ -27,6 +32,17 @@ public class Cliente {
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.email = email;
+	}
+	
+	public Cliente(DBObject dbObject) { 
+		String dni, nombre, apellidos, direccion, email;
+		long telefono;
+		dni = (String) dbObject.get("dni");
+		nombre = (String) dbObject.get("nombre");
+		apellidos = (String) dbObject.get("apellidos");
+		direccion = (String) dbObject.get("direccion");
+		email = (String) dbObject.get("email");
+		telefono = (long) dbObject.get("telefono");
 	}
 
 	// GETTERS
@@ -123,5 +139,16 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
 				+ ", telefono=" + telefono + ", email=" + email + "]";
+	}
+
+	@Override
+	public BasicDBObject guardar() {
+		BasicDBObject registro = new BasicDBObject("dni", this.getDni());
+		registro.append("nombre", this.getNombre());
+		registro.append("apellidos", this.getApellidos());
+		registro.append("direccion", this.getDireccion());
+		registro.append("telefono", this.getTelefono());
+		registro.append("email", this.getEmail());
+		return registro;
 	}
 }
