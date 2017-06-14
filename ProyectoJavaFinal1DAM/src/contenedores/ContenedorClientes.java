@@ -123,4 +123,11 @@ public class ContenedorClientes {
 		}
 		index = clientes.size()-1;
 	}
+
+	public String[] getNifs() {
+		String[] s = new String[clientes.size()];
+		for (int i = 0; i < s.length; i++)
+			s[i] = clientes.get(i).getDni();
+		return s;
+	}
 }
