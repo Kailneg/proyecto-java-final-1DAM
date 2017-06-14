@@ -25,7 +25,7 @@ public class ContenedorClientes {
 	 * Crea un objeto Contenedor cliente
 	 */
 	public ContenedorClientes() {
-		mongodb = new ConectorMongoDB("Clientes", "dni");
+		mongodb = new ConectorMongoDB("Clientes", "nif");
 		actualizarLista();
 		index = 0;
 	}

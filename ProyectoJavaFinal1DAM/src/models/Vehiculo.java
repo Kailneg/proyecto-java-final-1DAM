@@ -13,7 +13,7 @@ public class Vehiculo implements Guardable {
 
 	// VARIABLES
 	private String matricula, marca, modelo, nif_propietario;
-	private long puertas, cv;
+	private double puertas, cv;
 	private Calendar fechaMatriculacion;
 	private TipoCombustible combustible;
 	private TipoVehiculo tipo;
@@ -56,7 +56,7 @@ public class Vehiculo implements Guardable {
 		this.matricula = (String) dbObject.get("matricula");
 		this.marca = (String) dbObject.get("marca");
 		this.modelo = (String) dbObject.get("modelo");
-		this.puertas = (long) dbObject.get("puertas");
+		this.puertas = new Long((long) dbObject.get("puertas")) ;
 		this.fechaMatriculacion = parsearFecha((String) dbObject.get("matriculacion.dia"),
 				(String) dbObject.get("matriculacion.mes"), (String) dbObject.get("matriculacion.anio"));
 		this.cv = (long) dbObject.get("potencia");
@@ -98,7 +98,7 @@ public class Vehiculo implements Guardable {
 	 * 
 	 * @return atributo puertas de la instancia
 	 */
-	public long getPuertas() {
+	public double getPuertas() {
 		return puertas;
 	}
 
@@ -134,7 +134,7 @@ public class Vehiculo implements Guardable {
 	 * 
 	 * @return atributo cv de la instancia
 	 */
-	public long getPotencia() {
+	public double getPotencia() {
 		return cv;
 	}
 

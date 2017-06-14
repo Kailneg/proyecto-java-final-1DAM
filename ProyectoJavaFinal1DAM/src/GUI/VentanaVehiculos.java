@@ -138,7 +138,7 @@ public class VentanaVehiculos {
 	 * 
 	 * @return atributo matricula de ventanaVehiculos
 	 */
-	public String getTxt_N() {
+	public String getTxt_Nif() {
 		return cb_nifCliente.getSelectedItem().toString();
 	}
 
