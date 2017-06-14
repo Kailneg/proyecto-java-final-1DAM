@@ -61,7 +61,8 @@ public class ControladorVehiculos {
 		ContenedorPrincipal.getContenedorPrincipal().getContenedorVehiculos().aniadirVehiculo(
 				new Vehiculo(vehiculos.getTxt_matricula(), vehiculos.getTxt_marca(), vehiculos.getTxt_modelo(), 
 						Integer.parseInt(vehiculos.getPuertas()), vehiculos.getFechaMatriculacion(), 
-						Integer.parseInt(vehiculos.getTxt_potencia()) , vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo()));
+						Integer.parseInt(vehiculos.getTxt_potencia()) , vehiculos.getTipoCombustible(), vehiculos.getTipoVehiculo(),
+						vehiculos.getTxt_N()));
 		firstTime = true;
 		cargarVehiculo();
 	}

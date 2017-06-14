@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+import contenedores.ContenedorPrincipal;
 import controller.ControladorVehiculos;
 import enums.EstadoReparacion;
 import enums.Meses;
@@ -26,6 +27,7 @@ import java.util.Calendar;
 
 import enums.TipoCombustible;
 import enums.TipoVehiculo;
+import javax.swing.ImageIcon;
 
 public class VentanaVehiculos {
 
@@ -59,6 +61,10 @@ public class VentanaVehiculos {
 	private JComboBox<Integer> cbox_dia, cbox_mes, cbox_ano, cbTipoCombustible, cb_TipoVehiculo;
 	private JButton btnBorrarVehiculo;
 	private ControladorVehiculos controladorVehiculos;
+	private JLabel lblCamposObligatorios;
+	private JLabel lblNifCliente;
+	private JComboBox cb_nifCliente;
+	private JButton btnRefrescarnifs;
 
 	/**
 	 * Create the application.
@@ -125,6 +131,15 @@ public class VentanaVehiculos {
 		c.set(Integer.parseInt(cbox_ano.getSelectedItem().toString()), cbox_mes.getSelectedIndex(),
 				Integer.parseInt(cbox_dia.getSelectedItem().toString()));
 		return c;
+	}
+
+	/**
+	 * Devuelve el NIF seleccionado.
+	 * 
+	 * @return atributo matricula de ventanaVehiculos
+	 */
+	public String getTxt_N() {
+		return cb_nifCliente.getSelectedItem().toString();
 	}
 
 	/**
@@ -264,10 +279,12 @@ public class VentanaVehiculos {
 	private void componentsInitializers() {
 		frmVehiculos = new JFrame();
 		frmVehiculos.setTitle("Vehiculos");
-		lblNewLabel = new JLabel("Matricula:");
+		lblNewLabel = new JLabel("* Matricula:");
 		lblNewLabel_1 = new JLabel("Marca:");
 		lblModelo = new JLabel("Modelo:");
-		lblPuertas = new JLabel("Puertas:");
+		lblPuertas = new JLabel("* Puertas:");
+		rb_2puertas = new JRadioButton("2");
+		buttonGroup.add(rb_2puertas);
 		rb_3puertas = new JRadioButton("3");
 		buttonGroup.add(rb_3puertas);
 		rb_3puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -275,7 +292,7 @@ public class VentanaVehiculos {
 		buttonGroup.add(rb_5puertas);
 		rb_5puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAnioMatriculacion = new JLabel("Matriculaci\u00F3n:");
-		lblCaballos = new JLabel("Potencia:");
+		lblCaballos = new JLabel("* Potencia:");
 		lblTipoCombustible = new JLabel("Combustible:");
 		btnClientes = new JButton("Clientes");
 		btnRepararVehvulo = new JButton("Reparar Veh\u00EDvulo");
@@ -298,8 +315,10 @@ public class VentanaVehiculos {
 		lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		cb_TipoVehiculo = new JComboBox<Integer>();
 		cb_TipoVehiculo.setEnabled(false);
-		rb_2puertas = new JRadioButton("2");
-		buttonGroup.add(rb_2puertas);
+		lblCamposObligatorios = new JLabel("* Campos obligatorios");
+		lblNifCliente = new JLabel("* NIF cliente:");
+		cb_nifCliente = new JComboBox();
+		btnRefrescarnifs = new JButton("");
 	}
 
 	/**
@@ -324,91 +343,54 @@ public class VentanaVehiculos {
 		frmVehiculos.getContentPane().add(buttonLeftArrow);
 		frmVehiculos.getContentPane().add(buttonRightArrow);
 		frmVehiculos.getContentPane().add(btnGuardar);
-
-		lbl_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbl_cv.setText("CV");
-		lbl_cv.setBounds(208, 280, 30, 24);
 		frmVehiculos.getContentPane().add(lbl_cv);
-		lbl_cv.setColumns(10);
-
-		txt_marca.setColumns(10);
-		txt_marca.setBounds(120, 42, 118, 24);
 		frmVehiculos.getContentPane().add(txt_marca);
-
-		txt_matricula.setColumns(10);
-		txt_matricula.setBounds(120, 11, 118, 24);
 		frmVehiculos.getContentPane().add(txt_matricula);
-
-		txt_modelo.setColumns(10);
-		txt_modelo.setBounds(120, 74, 118, 24);
 		frmVehiculos.getContentPane().add(txt_modelo);
-
-		txt_potencia.setColumns(10);
-		txt_potencia.setBounds(120, 280, 89, 24);
 		frmVehiculos.getContentPane().add(txt_potencia);
-
-		cbox_dia.setModel(new DefaultComboBoxModel<Integer>(dias));
-		cbox_dia.setBounds(120, 185, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_dia);
-
-		cbox_mes.setModel(new DefaultComboBoxModel(Meses.values()));
-		cbox_mes.setBounds(120, 215, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_mes);
-
-		cbox_ano.setModel(new DefaultComboBoxModel<Integer>(anios));
-		cbox_ano.setBounds(120, 247, 118, 20);
 		frmVehiculos.getContentPane().add(cbox_ano);
-
-		cbTipoCombustible.setModel(new DefaultComboBoxModel(TipoCombustible.values()));
-		cbTipoCombustible.setBounds(120, 316, 118, 20);
 		frmVehiculos.getContentPane().add(cbTipoCombustible);
-
-		lblTipoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTipoVehiculo.setBounds(37, 152, 69, 20);
 		frmVehiculos.getContentPane().add(lblTipoVehiculo);
-
-		cb_TipoVehiculo.setModel(new DefaultComboBoxModel(TipoVehiculo.values()));
-		cb_TipoVehiculo.setBounds(120, 152, 118, 20);
 		frmVehiculos.getContentPane().add(cb_TipoVehiculo);
-
-		btnBorrarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnBorrarVehiculo.setBounds(262, 279, 147, 108);
 		frmVehiculos.getContentPane().add(btnBorrarVehiculo);
-
-		rb_2puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rb_2puertas.setBounds(122, 104, 36, 23);
 		frmVehiculos.getContentPane().add(rb_2puertas);
+		frmVehiculos.getContentPane().add(lblCamposObligatorios);
+		frmVehiculos.getContentPane().add(lblNifCliente);
+		frmVehiculos.getContentPane().add(cb_nifCliente);
+		frmVehiculos.getContentPane().add(btnRefrescarnifs);
 	}
 
 	/**
 	 * Contiene las propiedades de todos los componentes del frame
 	 */
 	private void componentsProperties() {
-		frmVehiculos.setBounds(100, 100, 450, 499);
+		frmVehiculos.setBounds(100, 100, 450, 550);
 		frmVehiculos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(37, 12, 64, 19);
+		lblNewLabel.setBounds(37, 53, 64, 19);
 
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(37, 45, 53, 19);
+		lblNewLabel_1.setBounds(37, 86, 53, 19);
 
 		lblModelo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblModelo.setBounds(37, 75, 64, 19);
+		lblModelo.setBounds(37, 116, 64, 19);
 
 		lblPuertas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPuertas.setBounds(37, 110, 64, 14);
-		rb_3puertas.setBounds(160, 104, 38, 23);
-		rb_5puertas.setBounds(200, 104, 38, 23);
+		lblPuertas.setBounds(37, 151, 64, 14);
+		rb_3puertas.setBounds(160, 145, 38, 23);
+		rb_5puertas.setBounds(200, 145, 38, 23);
 
 		lblAnioMatriculacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAnioMatriculacion.setBounds(37, 188, 98, 14);
+		lblAnioMatriculacion.setBounds(37, 215, 98, 14);
 
 		lblCaballos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCaballos.setBounds(37, 283, 64, 14);
+		lblCaballos.setBounds(37, 310, 64, 14);
 
 		lblTipoCombustible.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTipoCombustible.setBounds(37, 321, 73, 14);
+		lblTipoCombustible.setBounds(37, 348, 73, 14);
 
 		btnClientes.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnClientes.setBounds(262, 12, 147, 108);
@@ -417,18 +399,70 @@ public class VentanaVehiculos {
 		btnRepararVehvulo.setBounds(262, 139, 147, 108);
 
 		btnAtrs.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAtrs.setBounds(262, 416, 147, 35);
+		btnAtrs.setBounds(262, 416, 147, 94);
 
 		labelContadorVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelContadorVehiculos.setBounds(120, 375, 38, 23);
+		labelContadorVehiculos.setBounds(120, 423, 38, 23);
 
-		buttonLeftArrow.setBounds(37, 369, 53, 93);
+		buttonLeftArrow.setBounds(37, 417, 53, 93);
 
-		buttonRightArrow.setBounds(185, 369, 53, 93);
+		buttonRightArrow.setBounds(185, 417, 53, 93);
 
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGuardar.setBounds(88, 400, 98, 62);
+		btnGuardar.setBounds(88, 448, 98, 62);
 
+		lbl_cv.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_cv.setText("CV");
+		lbl_cv.setBounds(208, 307, 30, 24);
+		lbl_cv.setColumns(10);
+
+		txt_marca.setColumns(10);
+		txt_marca.setBounds(120, 83, 118, 24);
+
+		txt_matricula.setColumns(10);
+		txt_matricula.setBounds(120, 52, 118, 24);
+
+		txt_modelo.setColumns(10);
+		txt_modelo.setBounds(120, 115, 118, 24);
+
+		txt_potencia.setColumns(10);
+		txt_potencia.setBounds(120, 307, 89, 24);
+
+		cbox_dia.setModel(new DefaultComboBoxModel<Integer>(dias));
+		cbox_dia.setBounds(120, 212, 118, 20);
+
+		cbox_mes.setModel(new DefaultComboBoxModel(Meses.values()));
+		cbox_mes.setBounds(120, 242, 118, 20);
+
+		cbox_ano.setModel(new DefaultComboBoxModel<Integer>(anios));
+		cbox_ano.setBounds(120, 274, 118, 20);
+
+		cbTipoCombustible.setModel(new DefaultComboBoxModel(TipoCombustible.values()));
+		cbTipoCombustible.setBounds(120, 343, 118, 20);
+
+		lblTipoVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTipoVehiculo.setBounds(37, 179, 69, 20);
+
+		cb_TipoVehiculo.setModel(new DefaultComboBoxModel(TipoVehiculo.values()));
+		cb_TipoVehiculo.setBounds(120, 179, 118, 20);
+
+		btnBorrarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBorrarVehiculo.setBounds(262, 279, 147, 108);
+
+		rb_2puertas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		rb_2puertas.setBounds(122, 145, 36, 23);
+
+		lblCamposObligatorios.setBounds(37, 373, 105, 14);
+
+		lblNifCliente.setBounds(37, 28, 73, 14);
+
+		cb_nifCliente.setBounds(120, 26, 95, 21);
+		cb_nifCliente.setModel(new DefaultComboBoxModel(ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes().getNifs()));
+
+
+		btnRefrescarnifs.setIcon(
+				new ImageIcon(VentanaVehiculos.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
+		btnRefrescarnifs.setBounds(214, 25, 25, 23);
 	}
 
 	private void hideComponents(boolean b) {
@@ -454,6 +488,13 @@ public class VentanaVehiculos {
 	 * Contiene los eventos asociados al frame
 	 */
 	private void componentsListeners() {
+		// NIFs
+		btnRefrescarnifs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cb_nifCliente.setModel(new DefaultComboBoxModel(ContenedorPrincipal.getContenedorPrincipal().getContenedorClientes().getNifs()));
+			}
+		});
 
 		// Clientes
 		btnClientes.addMouseListener(new MouseAdapter() {
