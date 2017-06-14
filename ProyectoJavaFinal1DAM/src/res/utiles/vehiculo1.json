@@ -4,7 +4,6 @@
     "modelo" : "Mondeo",
     "puertas" : 3,
     "tipo_vehiculo" : "Coche",
-    "email" : "juanMontes@example.com",
     "matriculacion" : {
     	"dia" : 1,
     	"mes" : "Junio",

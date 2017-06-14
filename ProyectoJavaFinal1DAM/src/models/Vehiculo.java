@@ -12,7 +12,7 @@ import interfaces.Guardable;
 public class Vehiculo implements Guardable {
 
 	// VARIABLES
-	private String matricula, marca, modelo;
+	private String matricula, marca, modelo, nif_propietario;
 	private long puertas, cv;
 	private Calendar fechaMatriculacion;
 	private TipoCombustible combustible;
@@ -40,7 +40,7 @@ public class Vehiculo implements Guardable {
 	 *            tipo del vehículo
 	 */
 	public Vehiculo(String matricula, String marca, String modelo, int puertas, Calendar fechaMatriculacion, int cv,
-			TipoCombustible combustible, TipoVehiculo tipo) {
+			TipoCombustible combustible, TipoVehiculo tipo, String nif_propietario) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -49,17 +49,20 @@ public class Vehiculo implements Guardable {
 		this.cv = cv;
 		this.combustible = combustible;
 		this.tipo = tipo;
+		this.nif_propietario = nif_propietario;
 	}
 
 	public Vehiculo(DBObject dbObject) {
 		this.matricula = (String) dbObject.get("matricula");
 		this.marca = (String) dbObject.get("marca");
 		this.modelo = (String) dbObject.get("modelo");
-		this.puertas = (long) dbObject.get("long");
-		this.fechaMatriculacion = parsearFecha((String) dbObject.get("fecha"));
-		this.cv = (long) dbObject.get("cv");
+		this.puertas = (long) dbObject.get("puertas");
+		this.fechaMatriculacion = parsearFecha((String) dbObject.get("matriculacion.dia"),
+				(String) dbObject.get("matriculacion.mes"), (String) dbObject.get("matriculacion.anio"));
+		this.cv = (long) dbObject.get("potencia");
 		this.combustible = parsearCombustible((String) dbObject.get("combustible"));
-		this.tipo = parsearVehiculo((String) dbObject.get("tipo"));
+		this.tipo = parsearVehiculo((String) dbObject.get("tipo_vehiculo"));
+		this.nif_propietario = (String) dbObject.get("nif_propietario");
 	}
 
 	// GETTERS
@@ -125,11 +128,6 @@ public class Vehiculo implements Guardable {
 	public int getAnioMatriculacion() {
 		return fechaMatriculacion.get(Calendar.YEAR);
 	}
-	
-	public String getFechaMatriculacion() {
-		return getDiaMatriculacion() + "-" + getMesMatriculacion()
-		+ "-" + getAnioMatriculacion();
-	}
 
 	/**
 	 * Devuelve el atributo Potencia
@@ -194,15 +192,15 @@ public class Vehiculo implements Guardable {
 				+ cv + ", combustible=" + combustible + ", tipo=" + tipo + "]";
 	}
 
-	private Calendar parsearFecha(String s) {
+	private Calendar parsearFecha(String dia, String mes, String anio) {
 		Calendar c = Calendar.getInstance();
 		// Formato dd-mm-yyy
 		// Dia
-		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(s.substring(0, 2)));
+		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dia));
 		// Mes
-		c.set(Calendar.MONTH, Integer.parseInt(s.substring(3, 5)));
+		c.set(Calendar.MONTH, Integer.parseInt(mes));
 		// Anio
-		c.set(Calendar.YEAR, Integer.parseInt(s.substring(6, 10)));
+		c.set(Calendar.YEAR, Integer.parseInt(anio));
 		return c;
 	}
 
@@ -216,11 +214,15 @@ public class Vehiculo implements Guardable {
 
 	@Override
 	public DBObject guardar() {
+		BasicDBObject fechaMatriculacion = 
+				new BasicDBObject("dia", String.valueOf(getDiaMatriculacion()))
+				.append("mes", String.valueOf(getMesMatriculacion()))
+				.append("anio", String.valueOf(getAnioMatriculacion()));
 		BasicDBObject registro = new BasicDBObject("matricula", this.getMatricula());
 		registro.append("marca", this.getMarca());
 		registro.append("modelo", this.getModelo());
 		registro.append("puertas", this.getPuertas());
-		registro.append("fecha", this.getFechaMatriculacion());
+		registro.append("matriculacion", fechaMatriculacion);
 		registro.append("cv", this.getPotencia());
 		registro.append("combustible", this.getCombustible().name());
 		registro.append("tipo", this.getTipoVehiculo().name());
