@@ -2,19 +2,28 @@ package contenedores;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.List;
+
+import com.mongodb.DBObject;
+
 import enums.TipoCombustible;
 import enums.TipoVehiculo;
 import exceptions.VehiculoNoEncontrado;
+import models.Cliente;
 import models.Vehiculo;
 
 public class ContenedorVehiculos {
 
 	//ATRIBUTOS
 	private ArrayList<Vehiculo> vehiculos;
+	private ConectorMongoDB mongodb;
 	private int index;
 
 	public ContenedorVehiculos() {
 		vehiculos = new ArrayList<Vehiculo>();
+		mongodb = new ConectorMongoDB("Vehiculos", "matricula");
+		actualizarLista();
 		
 		// --- VEHICULOS DE PRUEBA
 		vehiculos.add(new Vehiculo("7898MA", "Ferrari", "Enzo", 2, Calendar.getInstance(), 660, TipoCombustible.Gasolina, TipoVehiculo.Coche));
@@ -47,18 +56,7 @@ public class ContenedorVehiculos {
 			return null;
 		}
 	}
-	/**
-	 * Obtiene el vehiculo segun la matricula
-	 * @param matricula parametro de busqueda 
-	 * @return el vehiculo 
-	 */
-	public Vehiculo obtenerVehiculo(String matricula) {
-		for (Vehiculo v : vehiculos) {
-			if (v.getMatricula().equals(matricula))
-				return v;
-		}
-		throw new VehiculoNoEncontrado();
-	}
+
 	/**
 	 * Borra el vehiculo que le pasemos por parametro
 	 * @param v el vehiculo que deseamos borrar
@@ -108,5 +106,16 @@ public class ContenedorVehiculos {
 	 */
 	public int getSize() {
 		return vehiculos.size();
+	}
+	
+	private void actualizarLista() {
+		List<DBObject> mongolista = mongodb.recibirDBColeccion();
+		Iterator<DBObject> iterador = mongolista.iterator();
+		vehiculos = new ArrayList<>();
+
+		while (iterador.hasNext()) {
+			vehiculos.add(new Vehiculo(iterador.next()));
+		}
+		index = vehiculos.size()-1;
 	}
 }
