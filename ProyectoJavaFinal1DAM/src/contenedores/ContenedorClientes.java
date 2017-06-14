@@ -27,39 +27,7 @@ public class ContenedorClientes {
 	public ContenedorClientes() {
 		mongodb = new ConectorMongoDB("Clientes", "dni");
 		actualizarLista();
-		// --- CLIENTES DE PRUEBA
-		clientes.add(
-				new Cliente("78932156L", "John", "Smith", "Calle La Triana, 23", 689137520, "johnsmith@hotmail.com"));
-		clientes.add(new Cliente("78867832N", "Carlos", "Mendez", "Av. Carlos de Haya, 45", 69735812,
-				"carlitos_elmejor@gmail.com"));
-		// --- CLIENTES DE PRUEBA
-
 		index = 0;
-	}
-
-	// GETTERS
-	/**
-	 * Devuelve una copia de todos los clientes de la lista
-	 * 
-	 * @return una copia de la lista clientes
-	 */
-	public List<Cliente> getCopiaClientes() {
-		return clientes.subList(0, clientes.size());
-	}
-
-	/**
-	 * Devuelve un cliente de la lista
-	 * 
-	 * @param cliente
-	 *            el cliente que deseas obtener
-	 * @return el cliente deseado si está
-	 */
-	public Cliente obtenCliente(String cliente) {
-		for (Cliente u : clientes) {
-			if (u.getNombre().equals(cliente))
-				return u;
-		}
-		throw new ClienteNoEncontrado();
 	}
 
 	/**
