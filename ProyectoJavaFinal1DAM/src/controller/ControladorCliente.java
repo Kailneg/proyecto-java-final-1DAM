@@ -102,7 +102,7 @@ public class ControladorCliente {
 			clientes.setEmail("");
 			firstTime = false;
 		} else if (obtenerClienteActual() != null) {
-			clientes.setNIF(obtenerClienteActual().getDni());
+			clientes.setNIF(obtenerClienteActual().getNIF());
 			clientes.setNombre(obtenerClienteActual().getNombre());
 			clientes.setApellidos(obtenerClienteActual().getApellidos());
 			clientes.setDireccion(obtenerClienteActual().getDireccion());

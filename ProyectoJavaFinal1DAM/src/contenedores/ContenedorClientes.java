@@ -127,7 +127,7 @@ public class ContenedorClientes {
 	public String[] getNifs() {
 		String[] s = new String[clientes.size()];
 		for (int i = 0; i < s.length; i++)
-			s[i] = clientes.get(i).getDni();
+			s[i] = clientes.get(i).getNIF();
 		return s;
 	}
 }

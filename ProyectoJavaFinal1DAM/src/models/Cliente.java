@@ -8,7 +8,7 @@ import interfaces.Guardable;
 public class Cliente implements Guardable{
 
 	// VARIABLES
-	private String dni;
+	private String NIF;
 	private String nombre;
 	private String apellidos;
 	private String direccion;
@@ -18,15 +18,15 @@ public class Cliente implements Guardable{
 	// CONSTRUCTOR
 	/**
 	 * Crea un nuevo objeto de tipo Cliente con los atributos especificados.
-	 * @param dni dni identificador del cliente.
+	 * @param NIF NIF identificador del cliente.
 	 * @param nombre nombre del cliente.
 	 * @param apellidos apellido del cliente
 	 * @param direccion direccion del cliente.
 	 * @param telefono número de teléfono del cliente.
 	 * @param email email del cliente.
 	 */
-	public Cliente(String dni, String nombre, String apellidos, String direccion, long telefono, String email) {
-		this.dni = dni;
+	public Cliente(String NIF, String nombre, String apellidos, String direccion, long telefono, String email) {
+		this.NIF = NIF;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.direccion = direccion;
@@ -35,7 +35,7 @@ public class Cliente implements Guardable{
 	}
 	
 	public Cliente(DBObject dbObject) { 
-		this.dni = (String) dbObject.get("dni");
+		this.NIF = (String) dbObject.get("NIF");
 		this.nombre = (String) dbObject.get("nombre");
 		this.apellidos = (String) dbObject.get("apellidos");
 		this.direccion = (String) dbObject.get("direccion");
@@ -45,11 +45,11 @@ public class Cliente implements Guardable{
 
 	// GETTERS
 	/**
-	 * Devuelve el atributo DNI.
-	 * @return atributo dni de la instancia.
+	 * Devuelve el atributo NIF.
+	 * @return atributo NIF de la instancia.
 	 */
-	public String getDni() {
-		return dni;
+	public String getNIF() {
+		return NIF;
 	}
 
 	/**
@@ -135,13 +135,13 @@ public class Cliente implements Guardable{
 
 	@Override
 	public String toString() {
-		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
+		return "Cliente [NIF=" + NIF + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
 				+ ", telefono=" + telefono + ", email=" + email + "]";
 	}
 
 	@Override
 	public BasicDBObject guardar() {
-		BasicDBObject registro = new BasicDBObject("dni", this.getDni());
+		BasicDBObject registro = new BasicDBObject("NIF", this.getNIF());
 		registro.append("nombre", this.getNombre());
 		registro.append("apellidos", this.getApellidos());
 		registro.append("direccion", this.getDireccion());
